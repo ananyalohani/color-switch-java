@@ -2,7 +2,7 @@ package src;
 
 public enum ObstacleShape {
   CIRCLE,
-  BAR,
+  HORIZONTAL_BAR,
   SQUARE,
   TRIANGLE
 }
