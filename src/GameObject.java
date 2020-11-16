@@ -21,10 +21,8 @@ class Ball {
         return this.ballColor;
     }
 
-    public void setBallColor(Color newColor) { stupid ass bitch i aint fucking with you
-        this.ballColor = newColor;stfu dont run away ok ok ok OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKok bro chill tf out man wtf stay in your limits you 
-        ok
-        ok
+    public void setBallColor(Color newColor) {
+        this.ballColor = newColor;
     }
 
     public void moveUp() {

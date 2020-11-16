@@ -13,7 +13,7 @@ public class Gameplay {
 
     }
 
-    public void saveGame() {
+    public  void saveGame() {
 
     }
 
@@ -26,6 +26,6 @@ public class Gameplay {
     }
 
     public void endGame() {
-        
+
     }
 }
