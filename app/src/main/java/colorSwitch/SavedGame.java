@@ -1,7 +1,7 @@
-package src;
+import java.io.Serializable;
 import java.util.Date;
 
-public class SavedGame {
+public class SavedGame implements Serializable {
     private Integer id;
     private String label;
     private String gameStateFile;

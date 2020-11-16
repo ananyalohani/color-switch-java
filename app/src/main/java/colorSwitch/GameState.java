@@ -1,7 +1,7 @@
-package src;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GameState {
+public class GameState implements Serializable {
     private Ball ball;
     private Integer score;
     private Boolean stateSaved;

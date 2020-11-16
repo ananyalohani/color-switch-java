@@ -1,4 +1,3 @@
-package src;
 
 public class Point {
     public Double x;

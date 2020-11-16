@@ -1,4 +1,3 @@
-package src;
 
 class LabelExistsException extends Exception {
     LabelExistsException(String message) {
