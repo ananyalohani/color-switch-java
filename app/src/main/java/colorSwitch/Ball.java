@@ -1,6 +1,6 @@
 public class Ball extends GameObject {
-    private static final transient Integer ACCELERATION;
-    private static final transient Integer UPWARD_INITIAL_VEL;
+    private static final transient Integer ACCELERATION = null;
+    private static final transient Integer UPWARD_INITIAL_VEL = null;
     private Color ballColor;
 
     public Color getBallColor() {

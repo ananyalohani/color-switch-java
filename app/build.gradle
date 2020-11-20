@@ -14,7 +14,7 @@ plugins {
 
 javafx {
     version = "15"
-    modules = [ 'javafx.controls' ]
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web' ]
 }
 
 repositories {
@@ -32,5 +32,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'colorSwitch.App'
+    mainClass = 'App'
 }

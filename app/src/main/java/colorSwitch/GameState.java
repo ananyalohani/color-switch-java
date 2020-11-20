@@ -30,7 +30,7 @@ public class GameState implements Serializable {
     }
 
     private Boolean checkForCollision() {
-
+        return null;
     }
 
     private void collisionWithStar() {
