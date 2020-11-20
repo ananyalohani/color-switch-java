@@ -1,3 +1,4 @@
+// package colorSwitch;
 
 public enum Color {
   TURQUOISE,
