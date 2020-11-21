@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartMenuController">
+   <children>
+      <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
          <children>
             <Group layoutX="120.0" layoutY="97.0" scaleX="0.75" scaleY="0.75">
                <children>
@@ -47,7 +47,7 @@
                   <Arc fill="#00315200" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="9.0" />
                </children>
             </Group>
-            <Group fx:id="exitBtn" layoutX="466.0" layoutY="34.0" scaleX="0.75" scaleY="0.75">
+            <Group fx:id="exitBtn" layoutX="466.0" onMouseClicked="#exitButtonClicked" layoutY="34.0" scaleX="0.75" scaleY="0.75">
                <children>
                   <Circle fill="#cd0909" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fill="WHITE" layoutX="-13.0" layoutY="13.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="×">
@@ -130,6 +130,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

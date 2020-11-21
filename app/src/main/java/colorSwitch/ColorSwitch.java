@@ -23,18 +23,13 @@ public class ColorSwitch extends Application implements Serializable {
 
     public void _init() {
         launch();
-        // startMenu.displayMenu();
     }
 
+    // the class that extends Application must have a default constructor
     @Override
     public void start(Stage stage) {
         stage.setTitle("Color Switch");
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("scenes/startMenu.fxml"));
-            stage.setScene(new Scene(root));
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        startMenu.displayMenu(stage);
         stage.show();
     }
 }

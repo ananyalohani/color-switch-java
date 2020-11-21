@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Group layoutX="-160.0" layoutY="119.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+               <children>
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
+                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
+               </children>
+            </Group>
+            <Group layoutX="220.0" layoutY="-105.0" rotate="45.0" styleClass="animate-rotate">
+               <children>
+                  <Line endX="100.0" layoutX="19.5" layoutY="0.5" startX="-81.0" stroke="TURQUOISE" strokeWidth="20.0" />
+                  <Line endX="100.0" layoutX="19.5" layoutY="181.5" startX="-81.0" stroke="#ff1dce" strokeWidth="20.0" />
+                  <Line endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
+                  <Line endX="100.0" layoutX="-90.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#4d4df8" strokeWidth="20.0" />
+               </children>
+            </Group>
+            <Circle fx:id="ball" fill="#4d4df8" layoutX="252.0" layoutY="710.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Group layoutX="130.0" layoutY="181.0" styleClass="star">
+               <children>
+                  <Text fill="WHITE" layoutX="98.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★">
+                     <font>
+                        <Font size="47.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Circle fill="#ff1dce" layoutX="252.0" layoutY="204.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
+            <Group layoutX="15.0" layoutY="38.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
+                     <font>
+                        <Font name="Blissful Thinking" size="28.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="scoreCount" fill="WHITE" layoutX="31.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Menlo Regular" size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group fx:id="pauseBtn" layoutX="458.0" layoutY="45.0" scaleX="0.75" scaleY="0.75">
+               <children>
+                  <Circle fill="#666666" radius="36.0" stroke="#610b0b00" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="36.0" layoutX="-14.0" layoutY="-19.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="8.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="36.0" layoutX="5.0" layoutY="-18.0" stroke="TRANSPARENT" strokeType="INSIDE" width="8.0" />
+               </children>
+            </Group>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

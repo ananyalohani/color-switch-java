@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text fill="WHITE" layoutX="110.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER">
+               <font>
+                  <Font name="Blissful Thinking" size="56.0" />
+               </font>
+            </Text>
+            <Group layoutX="195.0" layoutY="220.0">
+               <children>
+                  <Text fill="WHITE" layoutX="4.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
+                     <font>
+                        <Font name="Blissful Thinking" size="37.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="scoreCount" fill="#00e9ff" layoutX="13.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16" textAlignment="CENTER" wrappingWidth="87.0615234375">
+                     <font>
+                        <Font name="Menlo Regular" size="60.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Button fx:id="mainMenuBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="435.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="369.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="MAIN MENU" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Blissful Thinking" size="64.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveToLBBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="499.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #f76f02#f76f02; -fx-background-radius: 10px;" text="SAVE TO LEADERBOARD" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Blissful Thinking" size="64.0" />
+               </font>
+            </Button>
+            <Button fx:id="newGameBtn" contentDisplay="CENTER" layoutX="68.0" layoutY="564.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 10px;" text="NEW GAME" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Blissful Thinking" size="64.0" />
+               </font>
+            </Button>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
