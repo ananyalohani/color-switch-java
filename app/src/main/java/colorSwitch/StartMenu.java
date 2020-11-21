@@ -1,11 +1,11 @@
 // import javafx.scene.Parent;
 import javafx.scene.*;
+import java.io.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import java.io.*;
 
 public class StartMenu extends Menu {
     private ColorSwitch mainGame;
@@ -13,8 +13,10 @@ public class StartMenu extends Menu {
     @Override
     public void displayMenu(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("scenes/startMenu.fxml"));
-            stage.setScene(new Scene(root));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/startMenu.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            StartMenuController cont = loader.getController();
+            cont.initData(this);
         } catch(IOException e) {
             e.printStackTrace();
         }

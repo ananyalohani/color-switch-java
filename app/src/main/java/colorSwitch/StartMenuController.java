@@ -13,11 +13,7 @@ import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 
 public class StartMenuController {
-    @FXML
-    private URL location;
-
-    @FXML
-    private ResourceBundle resources;
+    private StartMenu startMenu;
 
     @FXML
     private Group exitBtn, playBtn, helpBtn, settingsBtn;
@@ -33,9 +29,42 @@ public class StartMenuController {
     @FXML
     private void initialize() {}
 
-    @FXML
-    private void exitButtonClicked() {
-        System.exit(0);
+    public void initData(StartMenu startMenu) {
+        this.startMenu = startMenu;
     }
 
+    @FXML
+    private void exitBtnClicked() {
+        startMenu.exit();
+    }
+
+    @FXML
+    private void playBtnClicked() {
+
+    }
+
+    @FXML
+    private void helpBtnClicked() {
+
+    }
+
+    @FXML
+    private void settingsBtnClicked() {
+
+    }
+
+    @FXML
+    private void savedGamesBtnClicked() {
+
+    }
+
+    @FXML
+    private void leaderboardBtnClicked() {
+
+    }
+
+    @FXML
+    private void statsBtnClicked() {
+
+    }
 }
