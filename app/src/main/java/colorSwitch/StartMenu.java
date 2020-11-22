@@ -1,4 +1,3 @@
-// import javafx.scene.Parent;
 import javafx.scene.*;
 import java.io.*;
 import javafx.event.EventHandler;

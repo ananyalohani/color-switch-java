@@ -11,8 +11,8 @@
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" stylesheets="@../css/savedGames.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <Text fill="WHITE" layoutX="96.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAVED GAMES">
                <font>
@@ -75,6 +75,6 @@
                </children>
             </Group>
          </children>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

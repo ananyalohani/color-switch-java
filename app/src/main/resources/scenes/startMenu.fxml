@@ -144,6 +144,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
-    </AnchorPane>
-  </children>
+      </AnchorPane>
+   </children>
 </VBox>

@@ -1,5 +1,3 @@
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
