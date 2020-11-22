@@ -40,7 +40,7 @@
                   </Text>
                </children>
             </Group>
-            <Group layoutX="196.0" layoutY="46.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+            <Group fx:id="o1" layoutX="196.0" layoutY="46.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
                <children>
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="9.0" />
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="9.0" />
@@ -58,7 +58,7 @@
                   </Text>
                </children>
             </Group>
-            <Group layoutX="230.0" layoutY="329.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+            <Group fx:id="c3" layoutX="230.0" layoutY="329.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
                <children>
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="200.0" radiusY="200.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="30.0" />
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="200.0" radiusY="200.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="30.0" />
@@ -66,7 +66,7 @@
                   <Arc fill="#00315200" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="200.0" radiusY="200.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="30.0" />
                </children>
             </Group>
-            <Group layoutX="-160.0" layoutY="81.0" rotate="90.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+            <Group fx:id="c2" layoutX="-160.0" layoutY="81.0" rotate="90.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
                <children>
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
@@ -74,7 +74,7 @@
                   <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
                </children>
             </Group>
-            <Group layoutX="-160.0" layoutY="81.0" rotate="270.0" scaleX="0.75" scaleY="0.75">
+            <Group fx:id="c1" layoutX="-160.0" layoutY="81.0" rotate="270.0" scaleX="0.75" scaleY="0.75">
                <children>
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="135.0" radiusY="135.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="20.0" />
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="135.0" radiusY="135.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="20.0" />
@@ -107,7 +107,7 @@
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Group layoutX="269.0" layoutY="45.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+            <Group fx:id="o2" layoutX="269.0" layoutY="45.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
                <children>
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="9.0" />
                   <Arc fill="#1f93ff00" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="9.0" />

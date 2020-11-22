@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" stylesheets="@../css/savedGames.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SavedGamesController">
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -38,12 +39,12 @@
                                     <Font name="Blissful Thinking" size="20.0" />
                                  </font>
                               </Text>
-                              <Button layoutX="22.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 5;" text="RESUME" textFill="WHITE">
+                              <Button fx:id="resumeBtn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 5;" text="RESUME" textFill="WHITE">
                                  <font>
                                     <Font name="Blissful Thinking" size="18.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="171.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #cd0909#cd0909 #cd0909#cd0909; -fx-background-radius: 5;" text="DELETE" textFill="WHITE">
+                              <Button fx:id="deleteBtn" layoutX="171.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #cd0909#cd0909 #cd0909#cd0909; -fx-background-radius: 5;" text="DELETE" textFill="WHITE">
                                  <font>
                                     <Font name="Blissful Thinking" size="18.0" />
                                  </font>
@@ -64,7 +65,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Group fx:id="helpBtn" layoutX="-198.0" layoutY="-63.0" scaleX="0.5" scaleY="0.5">
+            <Group fx:id="backBtn" layoutX="-198.0" layoutY="-63.0" onMouseClicked="#backBtnClicked" scaleX="0.5" scaleY="0.5" styleClass="clickable">
                <children>
                   <Circle fill="#666666" layoutX="237.0" layoutY="102.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fill="WHITE" fontSmoothingType="LCD" layoutX="211.0" layoutY="115.0" stroke="WHITE" strokeWidth="3.0" text="←">
@@ -77,4 +78,8 @@
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../css/savedGames.css" />
+      <URL value="@../css/common.css" />
+   </stylesheets>
 </VBox>

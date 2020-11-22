@@ -1,16 +1,14 @@
 import javafx.scene.*;
 import java.io.*;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class StartMenu extends Menu {
     private ColorSwitch mainGame;
 
     @Override
-    public void displayMenu(Stage stage) {
+    public void displayMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/startMenu.fxml"));
             stage.setScene(new Scene(loader.load()));
@@ -31,11 +29,25 @@ public class StartMenu extends Menu {
     }
 
     public void newGame() {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/gameplay.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            GameplayController cont = loader.getController();
+            cont.initData(new Gameplay(), stage);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void displaySavedGames() {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/savedGames.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            SavedGamesController cont = loader.getController();
+            cont.setStage(stage);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     StartMenu(ColorSwitch game) {

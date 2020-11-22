@@ -2,11 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import java.lang.Exception;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 
 public class ColorSwitch extends Application implements Serializable {
     private transient StartMenu startMenu;
@@ -29,7 +25,8 @@ public class ColorSwitch extends Application implements Serializable {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Color Switch");
-        startMenu.displayMenu(stage);
+        startMenu.setStage(stage);
+        startMenu.displayMenu();
         stage.show();
     }
 }

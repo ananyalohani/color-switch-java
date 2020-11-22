@@ -7,11 +7,16 @@ import javafx.stage.Stage;
 
 public abstract class Menu {
     protected Gameplay game;
+    protected Stage stage;
 
     Menu(Gameplay game) {
         this.game = game;
     }
 
-    public abstract void displayMenu(Stage stage);
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public abstract void displayMenu();
     public abstract void exit();
 }

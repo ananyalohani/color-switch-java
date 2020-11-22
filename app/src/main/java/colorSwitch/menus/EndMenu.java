@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class EndMenu extends Menu {
     @Override
-    public void displayMenu(Stage stage) {
+    public void displayMenu() {
 
     }
 
