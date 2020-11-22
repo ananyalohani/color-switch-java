@@ -30,7 +30,28 @@ dependencies {
     implementation 'com.google.guava:guava:29.0-jre'
 }
 
+mainClassName = 'App'
+
 application {
     // Define the main class for the application.
-    mainClass = 'App'
+    mainClass = "$mainClassName"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "$mainClassName"
+    }
+    baseName = 'ColorSwitch_018_061'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
