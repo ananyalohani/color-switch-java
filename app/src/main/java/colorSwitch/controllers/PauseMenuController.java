@@ -18,7 +18,7 @@ public class PauseMenuController {
     private Text scoreCount;
 
     @FXML
-    private Button mainMenuBtn, saveGameBtn;
+    private Button mainMenuBtn, saveGameBtn, endGameBtn;
 
     @FXML
     private Group resumeBtn;
@@ -34,17 +34,23 @@ public class PauseMenuController {
     private void initialize() {}
 
     @FXML
-    public void resumeBtnClicked() {
+    private void resumeBtnClicked() {
         pauseMenu.resumeGame();
     }
 
     @FXML
-    public void mainMenuBtnClicked() {
+    private void mainMenuBtnClicked() {
         pauseMenu.exit();
     }
 
     @FXML
     public void saveGameBtnClicked() {
 
+    }
+
+    @FXML
+    private void endGameBtnClicked() {
+        EndMenu em = new EndMenu(null, stage);
+        em.displayMenu();
     }
 }

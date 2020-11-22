@@ -25,20 +25,19 @@ public class EndMenuController {
     @FXML
     private void initialize() {}
 
+    public void initData(EndMenu endMenu, Stage stage) {
+        this.endMenu = endMenu;
+        this.stage = stage;
+    }
+
     @FXML
     private void mainMenuBtnClicked() {
-        stage = (Stage) mainMenuBtn.getScene().getWindow();
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.displayMenu();
+        endMenu.exit();
     }
 
     @FXML
     private void newGameBtnClicked() {
-        stage = (Stage) mainMenuBtn.getScene().getWindow();
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.newGame();
+        endMenu.newGame();
     }
 
     @FXML

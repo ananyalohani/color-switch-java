@@ -30,17 +30,17 @@
                   </Text>
                </children>
             </Group>
-            <Button fx:id="mainMenuBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="435.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="369.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="MAIN MENU" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="mainMenuBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#mainMenuBtnClicked" prefHeight="58.0" prefWidth="369.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="MAIN MENU" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Button fx:id="saveToLBBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="499.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #f76f02#f76f02; -fx-background-radius: 10px;" text="SAVE TO LEADERBOARD" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="saveToLBBtn" contentDisplay="CENTER" layoutX="67.0" layoutY="499.0" mnemonicParsing="false" onMouseClicked="#saveToLBBtnClicked" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #f76f02#f76f02; -fx-background-radius: 10px;" text="SAVE TO LEADERBOARD" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Button fx:id="newGameBtn" contentDisplay="CENTER" layoutX="68.0" layoutY="564.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 10px;" text="NEW GAME" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="newGameBtn" contentDisplay="CENTER" layoutX="68.0" layoutY="564.0" mnemonicParsing="false" onMouseClicked="#newGameBtnClicked" prefHeight="58.0" prefWidth="368.0" scaleX="0.75" scaleY="0.75" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 10px;" text="NEW GAME" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
