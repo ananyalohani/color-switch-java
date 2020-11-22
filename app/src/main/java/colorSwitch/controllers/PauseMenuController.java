@@ -35,7 +35,7 @@ public class PauseMenuController {
 
     @FXML
     public void resumeBtnClicked() {
-
+        pauseMenu.resumeGame();
     }
 
     @FXML

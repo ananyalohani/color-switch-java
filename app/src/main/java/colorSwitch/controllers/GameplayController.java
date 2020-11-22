@@ -17,6 +17,8 @@ public class GameplayController {
     private static final int ANGLE = 360;
     private static final int BALL_JUMP_SIZE = 100;
     private static final int BALL_FLIGHT_DURATION = 500;
+    private Timeline ballTimeline;
+    private RotateTransition obsRT1, obsRT2;
 
     @FXML
     private Circle ball, colorChanger;
@@ -31,8 +33,8 @@ public class GameplayController {
 
     @FXML
     public void initialize() {
-        Utils.rotate(obs1, DURATION, ANGLE);
-        Utils.rotate(obs2, DURATION, -ANGLE);
+        obsRT1 = Utils.rotate(obs1, DURATION, ANGLE);
+        obsRT2 = Utils.rotate(obs2, DURATION, -ANGLE);
 
         moveBall();
     }
@@ -44,20 +46,32 @@ public class GameplayController {
         }
     };
 
+    public void animPlay() {
+        ballTimeline.play();
+        obsRT1.play();
+        obsRT2.play();
+    }
+
+    private void animPause() {
+        ballTimeline.pause();
+        obsRT1.pause();
+        obsRT2.pause();
+    }
+
     public void moveBall() {
         double ballY = ball.getTranslateY();
 
         KeyValue kv1 = new KeyValue(ball.translateYProperty(), ballY, gravityInterpolator);
         KeyValue kv2 = new KeyValue(ball.translateYProperty(), ballY - BALL_JUMP_SIZE, gravityInterpolator);
 
-        Timeline timeline = new Timeline(
+        ballTimeline = new Timeline(
             new KeyFrame(Duration.ZERO, kv1),
             new KeyFrame(Duration.millis(BALL_FLIGHT_DURATION), kv2)
         );
 
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.setAutoReverse(true);
-        timeline.play();
+        ballTimeline.setCycleCount(Animation.INDEFINITE);
+        ballTimeline.setAutoReverse(true);
+        ballTimeline.play();
     }
 
     public void initData(Gameplay gameplay, Stage stage) {
@@ -67,7 +81,8 @@ public class GameplayController {
 
     @FXML
     private void pauseBtnClicked() {
-        PauseMenu pm = new PauseMenu(gameplay);
+        animPause();
+        PauseMenu pm = new PauseMenu(gameplay, pauseBtn.getScene(), this);
         pm.setStage(stage);
         pm.displayMenu();
     }

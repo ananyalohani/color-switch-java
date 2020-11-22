@@ -4,7 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
-public class PauseMenu extends Menu{
+public class PauseMenu extends Menu {
+    private Scene gameplayScene;
+    private GameplayController gpc;
+
     @Override
     public void displayMenu() {
         try {
@@ -25,14 +28,17 @@ public class PauseMenu extends Menu{
     }
 
     public void resumeGame() {
-
+        stage.setScene(gameplayScene);
+        gpc.animPlay();
     }
 
     public void saveGame() {
 
     }
 
-    PauseMenu(Gameplay game) {
+    PauseMenu(Gameplay game, Scene gameplayScene, GameplayController gpc) {
         super(game);
+        this.gameplayScene = gameplayScene;
+        this.gpc = gpc;
     }
 }
