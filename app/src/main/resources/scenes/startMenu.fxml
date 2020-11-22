@@ -47,12 +47,12 @@
                   <Arc fill="#00315200" layoutX="20.0" layoutY="33.0" length="90.0" radiusX="25.0" radiusY="25.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="9.0" />
                </children>
             </Group>
-            <Group fx:id="exitBtn" layoutX="466.0" onMouseClicked="#exitBtnClicked" layoutY="34.0" scaleX="0.75" scaleY="0.75">
+            <Group fx:id="exitBtn" layoutX="466.0" layoutY="34.0" onMouseClicked="#exitBtnClicked" scaleX="0.75" scaleY="0.75">
                <children>
-                  <Circle fill="#cd0909" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Text fill="WHITE" layoutX="-13.0" layoutY="13.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="×">
+                  <Circle fill="#cd0909" radius="28.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Text fill="WHITE" layoutX="-14.0" layoutY="15.0" stroke="WHITE" strokeWidth="3.0" text="×" textAlignment="CENTER" wrappingWidth="28.35347270965576">
                      <font>
-                        <Font size="43.0" />
+                        <Font name="Andale Mono" size="43.0" />
                      </font>
                   </Text>
                </children>
@@ -81,23 +81,23 @@
                   <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="135.0" radiusY="135.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="20.0" />
                </children>
             </Group>
-            <Group fx:id="playBtn" layoutX="251.0" layoutY="355.0" rotate="90.0" scaleX="0.75" scaleY="0.75" onMouseClicked="#playBtnClicked" styleClass="animate-rotate">
+            <Group fx:id="playBtn" layoutX="251.0" layoutY="355.0" rotate="90.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate" onMouseClicked="#playBtnClicked">
                <children>
                   <Circle centerX="-1.0" centerY="7.0" fill="#666666" radius="115.0" stroke="BLACK" strokeType="INSIDE" />
                   <SVGPath content="M3 30 A3 3 0 0 1 0.4 25.5 L13.4 2.5 A3 3 0 0 1 18.6 2.5 L31.6 25.5 A3 3 0 0 1 29 30 ZM3 30 A3 3 0 0 1 0.4 25.5 L13.4 2.5 A3 3 0 0 1 18.6 2.5 L31.6 25.5 A3 3 0 0 1 29 30 Z" fill="WHITE" layoutX="-14.0" layoutY="-16.0" scaleX="3.0" scaleY="3.0" />
                </children>
             </Group>
-            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="542.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-border-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#savedGamesBtnClicked">
+            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="542.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#savedGamesBtnClicked">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Button fx:id="leaderboardBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="595.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-border-radius: 20px;" text="LEADERBOARD" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#leaderboardBtnClicked">
+            <Button fx:id="leaderboardBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="595.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="LEADERBOARD" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#leaderboardBtnClicked">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Button fx:id="statsBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="648.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-border-radius: 20px;" text="STATISTICS" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#statsBtnClicked">
+            <Button fx:id="statsBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="648.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="STATISTICS" textAlignment="CENTER" textFill="WHITE" onMouseClicked="#statsBtnClicked">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
@@ -118,10 +118,24 @@
             </Group>
             <Group fx:id="helpBtn" layoutX="207.0" layoutY="638.0" scaleX="0.65" scaleY="0.65" onMouseClicked="#helpBtnClicked">
                <children>
-                  <Circle fill="#666666" layoutX="237.0" layoutY="102.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Text fill="WHITE" layoutX="215.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+                  <Circle fill="#666666" layoutX="237.0" layoutY="102.0" radius="50.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Text fill="WHITE" layoutX="215.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" textAlignment="CENTER" wrappingWidth="43.23431396484375">
                      <font>
                         <Font name="Arial Bold" size="70.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="14.0" layoutY="52.0">
+               <children>
+                  <Text fill="#ffe62b" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★" textAlignment="CENTER" wrappingWidth="47.845703125">
+                     <font>
+                        <Font name="Blissful Thinking" size="43.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="score" fill="WHITE" layoutX="3.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="40.857421875">
+                     <font>
+                        <Font name="Menlo Regular" size="28.0" />
                      </font>
                   </Text>
                </children>
@@ -130,6 +144,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
-      </AnchorPane>
-   </children>
+    </AnchorPane>
+  </children>
 </VBox>
