@@ -1,0 +1,4 @@
+Button,
+.clickable {
+  -fx-cursor: hand;
+}
