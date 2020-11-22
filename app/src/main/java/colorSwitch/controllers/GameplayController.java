@@ -7,14 +7,16 @@ import java.io.*;
 import javafx.scene.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import java.io.*;
-import javafx.fxml.FXML;
+import javafx.util.Duration;
+import javafx.animation.*;
 
 public class GameplayController {
     private Gameplay gameplay;
     private Stage stage;
     private static final int DURATION = 3000;
     private static final int ANGLE = 360;
+    private static final int BALL_JUMP_SIZE = 100;
+    private static final int BALL_FLIGHT_DURATION = 500;
 
     @FXML
     private Circle ball, colorChanger;
@@ -31,6 +33,31 @@ public class GameplayController {
     public void initialize() {
         Utils.rotate(obs1, DURATION, ANGLE);
         Utils.rotate(obs2, DURATION, -ANGLE);
+
+        moveBall();
+    }
+
+    Interpolator gravityInterpolator = new Interpolator() {
+        @Override
+        protected double curve​(double t) {
+            return t * (2 - t);
+        }
+    };
+
+    public void moveBall() {
+        double ballY = ball.getTranslateY();
+
+        KeyValue kv1 = new KeyValue(ball.translateYProperty(), ballY, gravityInterpolator);
+        KeyValue kv2 = new KeyValue(ball.translateYProperty(), ballY - BALL_JUMP_SIZE, gravityInterpolator);
+
+        Timeline timeline = new Timeline(
+            new KeyFrame(Duration.ZERO, kv1),
+            new KeyFrame(Duration.millis(BALL_FLIGHT_DURATION), kv2)
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
+        timeline.play();
     }
 
     public void initData(Gameplay gameplay, Stage stage) {
