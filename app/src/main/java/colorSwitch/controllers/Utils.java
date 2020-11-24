@@ -1,7 +1,7 @@
 import javafx.util.Duration;
 import javafx.animation.*;
 import javafx.scene.Group;
-
+import javafx.scene.Node;
 
 public class Utils {
     public static RotateTransition rotate(Group c, int duration, int angle) {
@@ -11,5 +11,9 @@ public class Utils {
         rt.setInterpolator(Interpolator.LINEAR);
         rt.play();
         return rt;
+    }
+
+    public static double getAbsoluteY(Node node) {
+        return node.getTranslateY() + node.getLayoutY();
     }
 }

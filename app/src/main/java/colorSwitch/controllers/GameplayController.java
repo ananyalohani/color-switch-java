@@ -21,13 +21,14 @@ public class GameplayController {
     private static final double BALL_INITIAL_VELOCITY = (double) BALL_JUMP_SIZE / BALL_JUMP_DURATION * 1000;
     private static final double GRAVITY_ACCN = -Math.pow(BALL_INITIAL_VELOCITY, 2)  / (2 * BALL_JUMP_SIZE);
 
+    private boolean paused = false;
+    private long pausedNow;
     private long lastTapNs;
     private Gameplay gameplay;
     private Stage stage;
     private Scene scene;
     private Timeline ballTimeline;
     private RotateTransition obsRT1, obsRT2;
-    int i = 0;
 
     @FXML
     private Circle ball, colorChanger;
@@ -44,62 +45,56 @@ public class GameplayController {
     public void initialize() {
         obsRT1 = Utils.rotate(obs1, DURATION, ANGLE);
         obsRT2 = Utils.rotate(obs2, DURATION, -ANGLE);
-
-        moveBall();
-    }
-
-    public void animPlay() {
-        // ballTimeline.play();
-        obsRT1.play();
-        obsRT2.play();
-    }
-
-    private void animPause() {
-        // ballTimeline.pause();
-        obsRT1.pause();
-        obsRT2.pause();
-    }
-
-    public void moveBall() {
-    }
-
-    public void initData(Gameplay gameplay, Stage stage, Scene scene) {
-        this.gameplay = gameplay;
-        this.stage = stage;
-        this.scene = scene;
-        this.lastTapNs = System.nanoTime();
-
-        // Space bar key event handlers
-        scene.setOnKeyPressed(event -> {
-            String codeString = event.getCode().toString();
-            if (codeString.equals("SPACE")) {
-                lastTapNs = System.nanoTime();
-                double newY = ball.getLayoutY() + ball.getTranslateY();
-                ball.setLayoutY(newY);
-            }
-        });
-
-        scene.setOnKeyReleased(event -> {});
+        lastTapNs = System.nanoTime();
 
         new AnimationTimer() {
-            private long lastUpdated = 0;
-
             @Override
             public void handle(long now) {
-                if (now - lastUpdated >= FPS_NS_PERIOD) {
+                if (!paused) {
+                    System.out.println(now);
                     double duration = (double) (now - lastTapNs) / 1_000_000_000;
-
-                    double displacement =
-                        BALL_INITIAL_VELOCITY * duration + 0.5 * GRAVITY_ACCN * Math.pow(duration, 2);
+                    double displacement = BALL_INITIAL_VELOCITY * duration + 0.5 * GRAVITY_ACCN * Math.pow(duration, 2);
                     ball.setTranslateY(-displacement);
                 }
             }
         }.start();
     }
 
+    public void gameplayPlay() {
+        obsRT1.play();
+        obsRT2.play();
+        paused = false;
+        lastTapNs += System.nanoTime() - pausedNow;
+    }
+
+    private void gameplayPause() {
+        obsRT1.pause();
+        obsRT2.pause();
+        paused = true;
+        pausedNow = System.nanoTime();
+    }
+
+    public void initData(Gameplay gameplay, Stage stage, Scene scene) {
+        this.gameplay = gameplay;
+        this.stage = stage;
+        this.scene = scene;
+
+        // Space bar key event handlers
+        scene.setOnKeyPressed(event -> {
+            String codeString = event.getCode().toString();
+            if (codeString.equals("SPACE")) {
+                lastTapNs = System.nanoTime();
+                double newY = Utils.getAbsoluteY(ball);
+                ball.setLayoutY(newY);
+            }
+        });
+
+        scene.setOnKeyReleased(event -> {});
+    }
+
     @FXML
     private void pauseBtnClicked() {
-        animPause();
+        gameplayPause();
         PauseMenu pm = new PauseMenu(gameplay, pauseBtn.getScene(), this);
         pm.setStage(stage);
         pm.displayMenu();

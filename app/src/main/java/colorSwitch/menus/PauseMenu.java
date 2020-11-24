@@ -29,7 +29,7 @@ public class PauseMenu extends Menu {
 
     public void resumeGame() {
         stage.setScene(gameplayScene);
-        gpc.animPlay();
+        gpc.gameplayPlay();
     }
 
     public void saveGame() {
