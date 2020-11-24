@@ -18,8 +18,10 @@ public class GameplayController {
     private static final int ANGLE = 360;
     private static final int BALL_JUMP_SIZE = 100; // pixels
     private static final int BALL_JUMP_DURATION = 200; // milliseconds
-    private static final double BALL_INITIAL_VELOCITY = (double) BALL_JUMP_SIZE / BALL_JUMP_DURATION * 1000;
-    private static final double GRAVITY_ACCN = -Math.pow(BALL_INITIAL_VELOCITY, 2)  / (2 * BALL_JUMP_SIZE);
+    private static final double BALL_INITIAL_VELOCITY
+        = (double) BALL_JUMP_SIZE / BALL_JUMP_DURATION * 1000;
+    private static final double GRAVITY_ACCN
+        = -Math.pow(BALL_INITIAL_VELOCITY, 2)  / (2 * BALL_JUMP_SIZE);
 
     private boolean paused = false;
     private long pausedNow;
@@ -50,12 +52,11 @@ public class GameplayController {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (!paused) {
-                    System.out.println(now);
-                    double duration = (double) (now - lastTapNs) / 1_000_000_000;
-                    double displacement = BALL_INITIAL_VELOCITY * duration + 0.5 * GRAVITY_ACCN * Math.pow(duration, 2);
-                    ball.setTranslateY(-displacement);
-                }
+                if (paused) return;
+                double duration = (double) (now - lastTapNs) / 1_000_000_000;
+                double displacement =
+                    BALL_INITIAL_VELOCITY * duration + 0.5 * GRAVITY_ACCN * Math.pow(duration, 2);
+                ball.setTranslateY(-displacement);
             }
         }.start();
     }
