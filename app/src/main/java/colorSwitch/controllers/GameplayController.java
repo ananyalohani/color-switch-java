@@ -5,6 +5,7 @@ import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import java.io.*;
 import javafx.scene.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.util.Duration;
@@ -26,11 +27,17 @@ public class GameplayController {
     private boolean paused = false;
     private long pausedNow;
     private long lastTapNs;
+    private double translateHalfway;
+    private double translateOffset;
+    private double farthestDistance;
     private Gameplay gameplay;
     private Stage stage;
     private Scene scene;
     private Timeline ballTimeline;
     private RotateTransition obsRT1, obsRT2;
+
+    @FXML
+    private AnchorPane gameTrack;
 
     @FXML
     private Circle ball, colorChanger;
@@ -53,10 +60,20 @@ public class GameplayController {
             @Override
             public void handle(long now) {
                 if (paused) return;
-                double duration = (double) (now - lastTapNs) / 1_000_000_000;
+                double duration = (double) (now - lastTapNs) / 1_000_000_000; 
                 double displacement =
                     BALL_INITIAL_VELOCITY * duration + 0.5 * GRAVITY_ACCN * Math.pow(duration, 2);
-                ball.setTranslateY(-displacement);
+                double resolvedDisplacement = displacement - translateOffset;
+
+                ball.setTranslateY(-resolvedDisplacement);
+
+                if (resolvedDisplacement > farthestDistance) {
+                    double delta = resolvedDisplacement - farthestDistance;
+                    farthestDistance = resolvedDisplacement;
+                    if (resolvedDisplacement > translateHalfway) {
+                        gameTrack.setTranslateY(gameTrack.getTranslateY() + delta);
+                    }
+                }
             }
         }.start();
     }
@@ -79,14 +96,14 @@ public class GameplayController {
         this.gameplay = gameplay;
         this.stage = stage;
         this.scene = scene;
+        translateHalfway = Utils.getAbsoluteY(ball) - scene.getHeight() / 2;
 
         // Space bar key event handlers
         scene.setOnKeyPressed(event -> {
             String codeString = event.getCode().toString();
             if (codeString.equals("SPACE")) {
                 lastTapNs = System.nanoTime();
-                double newY = Utils.getAbsoluteY(ball);
-                ball.setLayoutY(newY);
+                translateOffset = ball.getTranslateY();
             }
         });
 

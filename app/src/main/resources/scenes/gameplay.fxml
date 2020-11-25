@@ -14,33 +14,34 @@
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Group fx:id="obs2" layoutX="-160.0" layoutY="119.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+            <AnchorPane fx:id="gameTrack" prefHeight="800.0" prefWidth="500.0">
                <children>
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
-                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
+                  <Group fx:id="obs2" layoutX="-156.0" layoutY="143.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
+                     <children>
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
+                        <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
+                        <Text fill="WHITE" layoutX="391.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★">
+                           <font>
+                              <Font size="47.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Group>
+                  <Group fx:id="obs1" layoutX="225.0" layoutY="-122.0" rotate="45.0" styleClass="animate-rotate">
+                     <children>
+                        <Line endX="100.0" layoutX="19.5" layoutY="0.5" startX="-81.0" stroke="TURQUOISE" strokeWidth="20.0" />
+                        <Line endX="100.0" layoutX="19.5" layoutY="181.5" startX="-81.0" stroke="#ff1dce" strokeWidth="20.0" />
+                        <Line endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
+                        <Line endX="100.0" layoutX="-90.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#4d4df8" strokeWidth="20.0" />
+                     </children>
+                  </Group>
+                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Group layoutX="134.91704559326172" layoutY="544.7905731201172" styleClass="star" />
+                  <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="254.0" layoutY="207.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
                </children>
-            </Group>
-            <Group fx:id="obs1" layoutX="220.0" layoutY="-105.0" rotate="45.0" styleClass="animate-rotate">
-               <children>
-                  <Line endX="100.0" layoutX="19.5" layoutY="0.5" startX="-81.0" stroke="TURQUOISE" strokeWidth="20.0" />
-                  <Line endX="100.0" layoutX="19.5" layoutY="181.5" startX="-81.0" stroke="#ff1dce" strokeWidth="20.0" />
-                  <Line endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
-                  <Line endX="100.0" layoutX="-90.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#4d4df8" strokeWidth="20.0" />
-               </children>
-            </Group>
-            <Circle fx:id="ball" fill="#4d4df8" layoutX="252.0" layoutY="710.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Group layoutX="130.0" layoutY="181.0" styleClass="star">
-               <children>
-                  <Text fill="WHITE" layoutX="98.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★">
-                     <font>
-                        <Font size="47.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Group>
-            <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="252.0" layoutY="204.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
+            </AnchorPane>
             <Group layoutX="15.0" layoutY="38.0">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
