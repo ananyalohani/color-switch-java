@@ -5,16 +5,21 @@ import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class PauseMenu extends Menu {
-    private Scene gameplayScene;
-    private GameplayController gpc;
+    @Override
+    public void display() {
+        displayMenu();
+    }
 
     @Override
     public void displayMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/pauseMenu.fxml"));
-            stage.setScene(new Scene(loader.load()));
-            PauseMenuController cont = loader.getController();
-            cont.initData(this, stage);
+
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            PauseMenuController pmController = loader.getController();
+            pmController.setup(this);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -22,22 +27,25 @@ public class PauseMenu extends Menu {
 
     @Override
     public void exit() {
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.displayMenu();
+        StartMenu startMenu = new StartMenu(null);
+        startMenu.setStage(stage);
+        startMenu.display();
     }
 
     public void resumeGame() {
-        stage.setScene(gameplayScene);
+        stage.setScene(game.getScene());
         game.playGame();
     }
 
     public void saveGame() {
-
+        game.saveGame();
     }
 
-    PauseMenu(Gameplay game, Scene gameplayScene) {
+    public void endGame() {
+        game.endGame();
+    }
+
+    PauseMenu(Gameplay game) {
         super(game);
-        this.gameplayScene = gameplayScene;
     }
 }

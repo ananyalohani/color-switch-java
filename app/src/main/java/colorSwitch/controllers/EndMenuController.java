@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 
 public class EndMenuController {
     private EndMenu endMenu;
-    private Stage stage;
 
     @FXML
     private Text scoreCount;
@@ -22,12 +21,8 @@ public class EndMenuController {
 
     public EndMenuController() {}
 
-    @FXML
-    private void initialize() {}
-
-    public void initData(EndMenu endMenu, Stage stage) {
+    public void setup(EndMenu endMenu) {
         this.endMenu = endMenu;
-        this.stage = stage;
     }
 
     @FXML
@@ -42,6 +37,6 @@ public class EndMenuController {
 
     @FXML
     private void saveToLBBtnClicked() {
-
+        endmenu.saveToLBBtn();
     }
 }

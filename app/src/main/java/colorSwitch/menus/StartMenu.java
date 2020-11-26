@@ -8,12 +8,20 @@ public class StartMenu extends Menu {
     private ColorSwitch mainGame;
 
     @Override
+    public void display() {
+        displayMenu();
+    }
+
+    @Override
     public void displayMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/startMenu.fxml"));
-            stage.setScene(new Scene(loader.load()));
-            StartMenuController cont = loader.getController();
-            cont.initData(this);
+
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            StartMenuController smController = loader.getController();
+            smController.setup(this);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -29,31 +37,14 @@ public class StartMenu extends Menu {
     }
 
     public void newGame() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/gameplay.fxml"));
-
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-
-            GameplayController cont = loader.getController();
-
-            Gameplay newGameGameplay = new Gameplay(stage, scene);
-            cont.init(newGameGameplay);
-            newGameGameplay.start();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        Gameplay newGameGameplay = new Gameplay(stage);
+        newGameGameplay.display();
+        newGameGameplay.startGame();
     }
 
     public void displaySavedGames() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/savedGames.fxml"));
-            stage.setScene(new Scene(loader.load()));
-            SavedGamesController cont = loader.getController();
-            cont.setStage(stage);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        SavedGamesScene savedGamesScene = new SavedGamesScene(stage);
+        savedGamesScene.display();
     }
 
     StartMenu(ColorSwitch game) {

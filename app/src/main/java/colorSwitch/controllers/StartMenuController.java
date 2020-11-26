@@ -39,7 +39,7 @@ public class StartMenuController {
         Utils.rotate(o2, DURATION, -ANGLE);
     }
 
-    public void initData(StartMenu startMenu) {
+    public void setup(StartMenu startMenu) {
         this.startMenu = startMenu;
     }
 

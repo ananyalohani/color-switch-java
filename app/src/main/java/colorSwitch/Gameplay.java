@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Gameplay {
+public class Gameplay implements IScene {
     // Constants
     private static final int FPS = 60;
     private static final long FPS_NS_PERIOD = 1_000_000_000 / FPS;
@@ -29,7 +29,6 @@ public class Gameplay {
     private double translateHalfway;
     private double translateOffset;
     private double farthestDistance;
-    private Timeline ballTimeline;
     private RotateTransition obsRT1, obsRT2;
     private AnimationTimer renderLoop;
 
@@ -45,15 +44,45 @@ public class Gameplay {
     private GameState currentState;
     private PauseMenu pauseMenu;
     private EndMenu endMenu;
+    private GameplayController gpController;
 
-    public Gameplay(SavedGame savedGame, Stage stage, Scene scene) {
-        this.stage = stage;
-        this.scene = scene;
+    public Gameplay(SavedGame savedGame, Stage stage) {
+        // DO GAMESTATE THING HERE
+        commonSetup(stage);
     }
 
-    public Gameplay(Stage stage, Scene scene) {
+    public Gameplay(Stage stage) {
+        commonSetup(stage);
+    }
+
+    // Setting menus
+    private void commonSetup(Stage stage) {
         this.stage = stage;
-        this.scene = scene;
+        pauseMenu = new PauseMenu(this);
+        endMenu = new EndMenu(this);
+    }
+
+    @Override
+    public void display() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/gameplay.fxml"));
+
+            scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            gpController = loader.getController();
+            gpController.setup(this); // Set the fxml nodes
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
+    public Stage getStage() {
+        return this.stage;
     }
 
     public void initNodes(
@@ -74,7 +103,7 @@ public class Gameplay {
         this.obs2 = obs2;
     }
 
-    public void start() {
+    public void startGame() {
         // Halfway point of frame w.r.t. ball y-tranlate
         translateHalfway = Utils.getAbsoluteY(ball) - scene.getHeight() / 2;
 
@@ -135,9 +164,8 @@ public class Gameplay {
         pausedNow = System.nanoTime();
 
         // Pause menu setup
-        PauseMenu pm = new PauseMenu(this, pauseBtn.getScene());
-        pm.setStage(stage);
-        pm.displayMenu();
+        pauseMenu.setStage(stage);
+        pauseMenu.display();
     }
 
     public void playGame() {
@@ -148,6 +176,6 @@ public class Gameplay {
     }
 
     public void endGame() {
-
+        endMenu.display();
     }
 }

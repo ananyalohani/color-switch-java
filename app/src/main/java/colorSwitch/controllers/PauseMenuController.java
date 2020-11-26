@@ -3,16 +3,9 @@ import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
-import java.io.*;
-import javafx.scene.*;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import java.io.*;
-import javafx.fxml.FXML;
 
 public class PauseMenuController {
     private PauseMenu pauseMenu;
-    private Stage stage;
 
     @FXML
     private Text scoreCount;
@@ -23,15 +16,11 @@ public class PauseMenuController {
     @FXML
     private Group resumeBtn;
 
-    public void initData(PauseMenu pauseMenu, Stage stage) {
-        this.pauseMenu = pauseMenu;
-        this.stage = stage;
-    }
-    
     public PauseMenuController() {}
 
-    @FXML
-    private void initialize() {}
+    public void setup(PauseMenu pauseMenu) {
+        this.pauseMenu = pauseMenu;
+    }
 
     @FXML
     private void resumeBtnClicked() {
@@ -39,18 +28,17 @@ public class PauseMenuController {
     }
 
     @FXML
-    private void mainMenuBtnClicked() {
-        pauseMenu.exit();
-    }
-
-    @FXML
     public void saveGameBtnClicked() {
-
+        pauseMenu.saveGame();
     }
 
     @FXML
     private void endGameBtnClicked() {
-        EndMenu em = new EndMenu(null, stage);
-        em.displayMenu();
+        pauseMenu.endGame();
+    }
+
+    @FXML
+    private void mainMenuBtnClicked() {
+        pauseMenu.exit();
     }
 }

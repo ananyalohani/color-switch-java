@@ -1,5 +1,8 @@
-import java.io.Serializable;
 import java.util.Date;
+import javafx.scene.*;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import java.io.*;
 
 public class SavedGame implements Serializable {
     private Integer id;
@@ -26,5 +29,33 @@ public class SavedGame implements Serializable {
 
     public Date getTimestamp() {
         return this.timestamp;
+    }
+}
+
+class SavedGamesScene implements IScene {
+    private Stage stage;
+
+    public void display() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/savedGames.fxml"));
+
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            SavedGamesController sgController = loader.getController();
+            sgController.setup(this);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goBack() {
+        StartMenu startMenu = new StartMenu(null);
+        startMenu.setStage(stage);
+        startMenu.display();
+    }
+
+    public SavedGamesScene(Stage stage) {
+        this.stage = stage;
     }
 }

@@ -8,12 +8,20 @@ public class EndMenu extends Menu {
     private Stage stage;
 
     @Override
+    public void display() {
+        displayMenu();
+    }
+
+    @Override
     public void displayMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/endMenu.fxml"));
-            stage.setScene(new Scene(loader.load()));
-            EndMenuController cont = loader.getController();
-            cont.initData(this, stage);
+
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            EndMenuController emController = loader.getController();
+            emController.setup(this);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -21,23 +29,23 @@ public class EndMenu extends Menu {
 
     @Override
     public void exit() {
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.displayMenu();
+        StartMenu startMenu = new StartMenu(null);
+        startMenu.setStage(stage);
+        startMenu.display();
+    }
+
+    public void newGame() {
+        StartMenu startMenu = new StartMenu(null);
+        startMenu.setStage(stage);
+        startMenu.newGame();
     }
 
     public void saveToLeaderboard() {
 
     }
 
-    public void newGame() {
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.newGame();
-    }
-
-    EndMenu(Gameplay game, Stage stage) {
+    EndMenu(Gameplay game) {
         super(game);
-        this.stage = stage;
+        this.stage = game.getStage();
     }
 }

@@ -11,8 +11,7 @@ import java.io.*;
 import javafx.fxml.FXML;
 
 public class SavedGamesController {
-    // private SavedGame savedGame;
-    private Stage stage;
+    private SavedGamesScene savedGamesScene;
 
     @FXML
     private Button resumeBtn, deleteBtn;
@@ -25,14 +24,12 @@ public class SavedGamesController {
 
     @FXML
     private void backBtnClicked() {
-        StartMenu sm = new StartMenu(null);
-        sm.setStage(stage);
-        sm.displayMenu();
+        savedGamesScene.goBack();
+    }
+
+    public void setup(SavedGamesScene savedGamesScene) {
+        this.savedGamesScene = savedGamesScene;
     }
 
     public SavedGamesController() {}
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 }

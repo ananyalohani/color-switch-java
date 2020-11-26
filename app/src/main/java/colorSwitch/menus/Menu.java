@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public abstract class Menu {
+public abstract class Menu implements IScene {
     protected Gameplay game;
     protected Stage stage;
 

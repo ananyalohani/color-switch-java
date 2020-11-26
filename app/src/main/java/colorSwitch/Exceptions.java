@@ -1,4 +1,3 @@
-
 class LabelExistsException extends Exception {
     LabelExistsException(String message) {
         super(message);
