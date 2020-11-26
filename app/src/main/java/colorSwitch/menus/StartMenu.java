@@ -31,10 +31,15 @@ public class StartMenu extends Menu {
     public void newGame() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/gameplay.fxml"));
+
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
+
             GameplayController cont = loader.getController();
-            cont.initData(new Gameplay(), stage, scene);
+
+            Gameplay newGameGameplay = new Gameplay(stage, scene);
+            cont.init(newGameGameplay);
+            newGameGameplay.start();
         } catch(IOException e) {
             e.printStackTrace();
         }

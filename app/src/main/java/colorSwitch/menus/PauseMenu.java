@@ -29,16 +29,15 @@ public class PauseMenu extends Menu {
 
     public void resumeGame() {
         stage.setScene(gameplayScene);
-        gpc.gameplayPlay();
+        game.playGame();
     }
 
     public void saveGame() {
 
     }
 
-    PauseMenu(Gameplay game, Scene gameplayScene, GameplayController gpc) {
+    PauseMenu(Gameplay game, Scene gameplayScene) {
         super(game);
         this.gameplayScene = gameplayScene;
-        this.gpc = gpc;
     }
 }
