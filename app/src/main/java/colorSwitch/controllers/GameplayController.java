@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.Group;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;

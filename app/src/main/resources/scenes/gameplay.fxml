@@ -34,12 +34,11 @@
                      <children>
                         <Line endX="100.0" layoutX="19.5" layoutY="0.5" startX="-81.0" stroke="TURQUOISE" strokeWidth="20.0" />
                         <Line endX="100.0" layoutX="19.5" layoutY="181.5" startX="-81.0" stroke="#ff1dce" strokeWidth="20.0" />
-                        <Line endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
+                        <Line fx:id="comp" endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
                         <Line endX="100.0" layoutX="-90.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#4d4df8" strokeWidth="20.0" />
                      </children>
                   </Group>
                   <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Group layoutX="134.91704559326172" layoutY="544.7905731201172" styleClass="star" />
                   <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="254.0" layoutY="207.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
                </children>
             </AnchorPane>

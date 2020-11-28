@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.Group;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -81,6 +81,7 @@ public class GameState implements Serializable {
         ball.setNode(ballNode);
         gameTrack.setNode(gameTrackNode);
         colorChanger.setNode(colorChangerNode);
+        
         this.scoreCountNode = scoreCountNode;
         this.obs1Node = obs1Node;
         this.obs2Node = obs2Node;
