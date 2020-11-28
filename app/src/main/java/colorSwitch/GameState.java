@@ -13,10 +13,6 @@ import javafx.util.Duration;
 public class GameState implements Serializable {
     private static final transient int DURATION = 3000;
     private static final transient int ANGLE = 360;
-    private static final transient int BALL_JUMP_SIZE = 100; // pixels
-    private static final transient int BALL_JUMP_DURATION = 200; // milliseconds
-    private static final transient double BALL_VELOCITY = Physics.velocity(BALL_JUMP_SIZE, BALL_JUMP_DURATION);
-    private static final transient double BALL_DOWNWARD_ACCN = Physics.acceleration(BALL_VELOCITY, BALL_JUMP_SIZE);
 
     private Ball ball;
     private Integer score;
@@ -43,6 +39,7 @@ public class GameState implements Serializable {
         this.gameplay = gameplay;
         this.score = 0;
         this.stateSaved = false;
+        this.ball = new Ball();
         this.obstacles = new ArrayList<Obstacle>();
         this.stars = new ArrayList<Star>();
     }
@@ -51,9 +48,9 @@ public class GameState implements Serializable {
         // Setup the FXML nodes
         gameplay.getController().setup(gameplay, this);
 
-        // Setup the ball
+        // Setup the ball and scene
+        ball.setNode(ballNode);
         scene = gameplay.getScene();
-        ball = new Ball(ballNode, BALL_VELOCITY, BALL_DOWNWARD_ACCN);
 
         // Halfway point of frame w.r.t. ball y-tranlate
         translateHalfway = Utils.getAbsoluteY(ball.getNode()) - scene.getHeight() / 2;
