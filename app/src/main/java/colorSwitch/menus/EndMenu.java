@@ -15,7 +15,7 @@ public class EndMenu extends Menu {
     @Override
     public void displayMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/endMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Scenes.END_MENU));
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);

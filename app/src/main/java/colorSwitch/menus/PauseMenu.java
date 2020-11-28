@@ -15,7 +15,7 @@ public class PauseMenu extends Menu {
     @Override
     public void displayMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/pauseMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Scenes.PAUSE_MENU));
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);

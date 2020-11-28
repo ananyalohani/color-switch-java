@@ -15,6 +15,8 @@ public class GameState implements Serializable {
     private static final transient int ANGLE = 360;
 
     private Ball ball;
+    private Track gameTrack;
+    private ColorChanger colorChanger;
     private Integer score;
     private Boolean stateSaved;
     private ArrayList<Obstacle> obstacles;
@@ -29,8 +31,6 @@ public class GameState implements Serializable {
     private double maxDisplacement;
 
     // FXML Nodes
-    private AnchorPane gameTrackNode;
-    private Circle ballNode, colorChangerNode;
     private Text scoreCountNode;
     private Group obs1Node, obs2Node;
     private Scene scene;
@@ -40,6 +40,8 @@ public class GameState implements Serializable {
         this.score = 0;
         this.stateSaved = false;
         this.ball = new Ball();
+        this.gameTrack = new Track();
+        this.colorChanger = new ColorChanger();
         this.obstacles = new ArrayList<Obstacle>();
         this.stars = new ArrayList<Star>();
     }
@@ -49,7 +51,6 @@ public class GameState implements Serializable {
         gameplay.getController().setup(gameplay, this);
 
         // Setup the ball and scene
-        ball.setNode(ballNode);
         scene = gameplay.getScene();
 
         // Halfway point of frame w.r.t. ball y-tranlate
@@ -70,19 +71,19 @@ public class GameState implements Serializable {
     }
 
     public void initNodes(
-        AnchorPane gameTrack,
-        Circle ball,
-        Circle colorChanger,
-        Text scoreCount,
-        Group obs1,
-        Group obs2
+        AnchorPane gameTrackNode,
+        Circle ballNode,
+        Circle colorChangerNode,
+        Text scoreCountNode,
+        Group obs1Node,
+        Group obs2Node
     ) {
-        this.gameTrackNode = gameTrack;
-        this.ballNode = ball;
-        this.colorChangerNode = colorChanger;
-        this.scoreCountNode = scoreCount;
-        this.obs1Node = obs1;
-        this.obs2Node = obs2;
+        ball.setNode(ballNode);
+        gameTrack.setNode(gameTrackNode);
+        colorChanger.setNode(colorChangerNode);
+        this.scoreCountNode = scoreCountNode;
+        this.obs1Node = obs1Node;
+        this.obs2Node = obs2Node;
     }
 
     public void pauseState() {
@@ -123,7 +124,7 @@ public class GameState implements Serializable {
 
             // If ball has reached halfway point, move track down
             if (displacement > translateHalfway) {
-                gameTrackNode.setTranslateY(gameTrackNode.getTranslateY() + delta);
+                gameTrack.shiftUp(delta);
             }
         }
     }
