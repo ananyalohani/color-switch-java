@@ -75,12 +75,12 @@ public class Gameplay implements IScene {
         return this.stage;
     }
 
-    public Boolean getPaused() {
-        return this.paused;
-    }
-
     public GameplayController getController() {
         return this.gpController;
+    }
+
+    public Boolean getPaused() {
+        return this.paused;
     }
 
     public void playGame() {
