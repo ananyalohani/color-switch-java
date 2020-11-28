@@ -93,9 +93,6 @@ public class Gameplay implements IScene {
         paused = true;
         renderLoop.stop();
         currentState.pauseState();
-
-        // Pause menu setup
-        pauseMenu.setStage(stage);
         pauseMenu.display();
     }
 

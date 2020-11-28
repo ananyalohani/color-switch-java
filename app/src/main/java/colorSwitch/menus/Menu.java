@@ -13,10 +13,6 @@ public abstract class Menu implements IScene {
         this.game = game;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     public abstract void displayMenu();
     public abstract void exit();
 }

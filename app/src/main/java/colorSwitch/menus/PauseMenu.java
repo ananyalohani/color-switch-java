@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class PauseMenu extends Menu {
+    private Stage stage;
+
     @Override
     public void display() {
         displayMenu();
@@ -47,5 +49,6 @@ public class PauseMenu extends Menu {
 
     PauseMenu(Gameplay game) {
         super(game);
+        this.stage = game.getStage();
     }
 }

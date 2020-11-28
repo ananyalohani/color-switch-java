@@ -47,6 +47,10 @@ public class StartMenu extends Menu {
         savedGamesScene.display();
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     StartMenu(ColorSwitch game) {
         super(null);
         this.mainGame = game;
