@@ -39,7 +39,7 @@ public class StartMenu extends Menu {
     public void newGame() {
         Gameplay newGameGameplay = new Gameplay(stage);
         newGameGameplay.display();
-        newGameGameplay.startGame();
+        newGameGameplay.playGame();
     }
 
     public void displaySavedGames() {

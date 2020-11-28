@@ -31,9 +31,9 @@ public class GameplayController {
         gameplay.pauseGame();
     }
 
-    public void setup(Gameplay gameplay) {
+    public void setup(Gameplay gameplay, GameState gameState) {
         this.gameplay = gameplay;
-        gameplay.initNodes(gameTrack, ball, colorChanger, scoreCount, pauseBtn, obs1, obs2);
+        gameState.initNodes(gameTrack, ball, colorChanger, scoreCount, obs1, obs2);
     }
 
     public GameplayController() {}

@@ -37,6 +37,6 @@ public class EndMenuController {
 
     @FXML
     private void saveToLBBtnClicked() {
-        endmenu.saveToLBBtn();
+        endMenu.saveToLeaderboard();
     }
 }
