@@ -55,7 +55,7 @@ class Track extends GameObject {
     public void addStar() {
         Node starNode;
         if(++starCounter % 5 == 0) starNode = Utils.loadObject(Star.THREE_STAR);
-        else starNode = Utils.loadObject(Star.THREE_STAR);
+        else starNode = Utils.loadObject(Star.ONE_STAR);
         ((AnchorPane)node).getChildren().add(starNode);
     }
 
