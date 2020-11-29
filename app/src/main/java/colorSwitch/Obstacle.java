@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 
 public abstract class Obstacle extends GameObject {
+    public static final transient String CIRCLE = "game-objects/circleObstacle.fxml";
+    public static final transient String TRIANGLE = "game-objects/triangleObstacle.fxml";
+    public static final transient String SQUARE = "game-objects/squareObstacle.fxml";
+    public static final transient String BAR = "game-objects/barObstacle.fxml";
+    public static final transient String OBSTACLES[] = { CIRCLE, TRIANGLE, SQUARE, BAR };
+
     protected ObstacleShape shape;
     protected Double velocity;
     private ArrayList<ObstacleComponent> components;

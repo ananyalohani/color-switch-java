@@ -8,6 +8,9 @@ import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
 public class GameState implements Serializable {
@@ -117,6 +120,7 @@ public class GameState implements Serializable {
 
         // Move ball to new position and get position
         double displacement = ball.move(duration, translateOffset);
+        // if(checkForCollision()) gameplay.endGame();
 
         // Get and set highest point reached by ball
         if (displacement > maxDisplacement) {
@@ -125,6 +129,7 @@ public class GameState implements Serializable {
 
             // If ball has reached halfway point, move track down
             if (displacement > translateHalfway) {
+                gameTrack.addObstacle();
                 gameTrack.shiftUp(delta);
             }
         }
@@ -135,7 +140,25 @@ public class GameState implements Serializable {
     }
 
     private Boolean checkForCollision() {
-        return null;
+        // ObservableList<Node> components = obs1Node.getChildren();
+        // Shape inside = null;
+        // for(int i = 0; i < components.size(); i++) {
+        //     if(components.get(i).getId().equals("inside")) {
+        //         inside = (Shape)components.get(i);
+        //     }
+        // }
+        // for (int i = 0; i < components.size(); i++) {
+        //     Shape comp = (Shape) components.get(i);
+        //     if(comp.getId().equals("inside")) continue;
+        //     Shape ballNode = (Shape) ball.getNode();
+        //     if(Utils.intersects(comp, ballNode) && !Utils.intersects(inside, ballNode)) {
+        //         if(!comp.getFill().equals(ballNode.getFill())) {
+        //             System.out.println("COLLISION");
+        //             return true;
+        //         }
+        //     }
+        // }
+        return false;
     }
 
     private void collisionWithStar() {

@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -29,17 +30,16 @@
                         </Text>
                      </children>
                   </Group>
-                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="254.0" layoutY="207.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
-                  <Group fx:id="obs1" layoutX="152.0" layoutY="-73.0">
+                  <Group fx:id="obs1" layoutX="225.0" layoutY="-122.0" rotate="45.0" styleClass="animate-rotate">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="106.0" layoutY="103.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="4.0" layoutY="209.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-103.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle id="inside" fill="#117ed600" height="189.0" layoutX="7.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
+                        <Line endX="100.0" layoutX="19.5" layoutY="0.5" startX="-81.0" stroke="TURQUOISE" strokeWidth="20.0" />
+                        <Line endX="100.0" layoutX="19.5" layoutY="181.5" startX="-81.0" stroke="#ff1dce" strokeWidth="20.0" />
+                        <Line fx:id="comp" endX="100.0" layoutX="130.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#ff8300" strokeWidth="20.0" />
+                        <Line endX="100.0" layoutX="-90.0" layoutY="91.0" rotate="90.0" startX="-81.0" stroke="#4d4df8" strokeWidth="20.0" />
                      </children>
                   </Group>
+                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="254.0" layoutY="207.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
                </children>
             </AnchorPane>
             <Group layoutX="15.0" layoutY="38.0">

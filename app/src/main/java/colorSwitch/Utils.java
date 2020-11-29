@@ -3,6 +3,9 @@ import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.geometry.Bounds;
+import javafx.scene.Parent;
+import javafx.fxml.*;
+import javafx.scene.layout.AnchorPane;
 
 public class Utils {
     public static RotateTransition rotate(Group c, int duration, int angle) {
@@ -22,5 +25,14 @@ public class Utils {
         Bounds boundsA = a.localToScene(a.getBoundsInLocal());
         Bounds boundsB = b.localToScene(b.getBoundsInLocal());
         return boundsA.intersects(boundsB) && boundsB.intersects(boundsA);
+    }
+
+    public static Node loadObject(String file) {
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(Utils.class.getResource(file));
+            return root.getChildren().get(0);
+        } catch(Exception e) {
+            return null;
+        }
     }
 }
