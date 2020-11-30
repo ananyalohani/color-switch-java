@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import javafx.scene.Node;
+import javafx.scene.layout.*;
 
 public abstract class GameObject implements Serializable {
 
