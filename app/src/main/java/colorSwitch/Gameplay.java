@@ -56,7 +56,7 @@ public class Gameplay implements IScene {
     @Override
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Scenes.GAMEPLAY));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.TEST));
             scene = new Scene(loader.load());
             stage.setScene(scene);
             gpController = loader.getController();

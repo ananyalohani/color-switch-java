@@ -15,7 +15,7 @@ public class StartMenu extends Menu {
     @Override
     public void displayMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Scenes.START_MENU));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.START_MENU));
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);

@@ -28,7 +28,7 @@ public class Ball extends GameObject {
     public double move(double duration, double translateOffset) {
         double displacement = Physics.displacement(VELOCITY, duration, DOWNWARD_ACCN);
         double resolvedDisplacement = displacement - translateOffset;
-        node.setTranslateY(-resolvedDisplacement);
+        node.setTranslateY(-resolvedDisplacement > 0 ? 0 : -resolvedDisplacement);
         return resolvedDisplacement;
     }
 }

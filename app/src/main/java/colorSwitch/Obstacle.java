@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import javafx.util.Duration;
+import javafx.animation.*;
+import javafx.scene.*;
 
 public abstract class Obstacle extends GameObject {
-    public static final transient String CIRCLE = "game-objects/circleObstacle.fxml";
-    public static final transient String TRIANGLE = "game-objects/triangleObstacle.fxml";
-    public static final transient String SQUARE = "game-objects/squareObstacle.fxml";
-    public static final transient String BAR = "game-objects/barObstacle.fxml";
-    public static final transient String OBSTACLES[] = { CIRCLE, TRIANGLE, SQUARE, BAR };
+    protected static final transient String OBSTACLES[] = {
+        FXMLs.Obstacle.CIRCLE,
+        FXMLs.Obstacle.TRIANGLE,
+        FXMLs.Obstacle.SQUARE,
+        FXMLs.Obstacle.BAR
+    };
 
     protected ObstacleShape shape;
     protected Double velocity;
@@ -22,33 +26,118 @@ public abstract class Obstacle extends GameObject {
     protected Double getVelocity() {
         return this.velocity;
     }
+
+    public abstract void move();
+
+    public abstract void updateSpeed(int score);
+
+    public abstract Boolean isColliding(Ball ball);
+
+    Obstacle(Node node) {
+        this.node = node;
+    }
 }
 
 class CircleObstacle extends Obstacle {
-    CircleObstacle() {
+    private final int INITIAL_DURATION = 1000;
+    private final int ANGLE = 360;
+    RotateTransition transition;
 
+    @Override
+    public void move() {
+        transition = Utils.rotate(node, INITIAL_DURATION, ANGLE);
+    }
+
+    @Override
+    public void updateSpeed(int score) {
+        // double newDuration = score; // TODO
+        // transition.setDuration(newDuration);
+    }
+
+    @Override
+    public Boolean isColliding(Ball ball) {
+        return null;
+    }
+
+    CircleObstacle(Node node) {
+        super(node);
     }
 }
 
 class BarObstacle extends Obstacle {
-    BarObstacle() {
+    private final int INITIAL_DURATION = 1000;
+    private final double TRANSITION_BY_X = -500;
+    TranslateTransition transition;
 
+    @Override
+    public void move() {
+        transition = new TranslateTransition(Duration.millis(INITIAL_DURATION), node);
+        transition.setByX(TRANSITION_BY_X);
+        transition.setInterpolator(Interpolator.LINEAR);
+        transition.setCycleCount(Animation.INDEFINITE);
+        transition.setAutoReverse(true);
+        transition.play();
+    }
+
+    @Override
+    public void updateSpeed(int score) {
+        double newDuration = score; // TODO
+        // transition.setDuration(newDuration);
+    }
+
+    @Override
+    public Boolean isColliding(Ball ball) {
+        return false;
+    }
+
+    BarObstacle(Node node) {
+        super(node);
     }
 }
 
 class SquareObstacle extends Obstacle {
-    SquareObstacle() {
-        
+    @Override
+    public void move() {
+
+    }
+
+    @Override
+    public void updateSpeed(int Score) {
+
+    }
+
+    @Override
+    public Boolean isColliding(Ball ball) {
+        return false;
+    }
+
+    SquareObstacle(Node node) {
+        super(node);
     }
 }
 
-class TriangleObstacle extends Obstacle {
-    TriangleObstacle() {
+class GearObstacle extends Obstacle {
+    @Override
+    public void move() {
 
+    }
+
+    @Override
+    public void updateSpeed(int Score) {
+
+    }
+
+    @Override
+    public Boolean isColliding(Ball ball) {
+        return false;
+    }
+
+    GearObstacle(Node node) {
+        super(node);
     }
 }
 
-class ObstacleComponent {
+class ObstacleComponent extends GameObject {
     private Obstacle obstacle;
     private Color color;
 

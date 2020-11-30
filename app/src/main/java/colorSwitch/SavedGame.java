@@ -37,7 +37,7 @@ class SavedGamesScene implements IScene {
 
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Scenes.SAVED_GAMES));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SAVED_GAMES));
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);

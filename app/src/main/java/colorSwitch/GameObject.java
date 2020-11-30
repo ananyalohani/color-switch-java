@@ -25,8 +25,6 @@ public abstract class GameObject implements Serializable {
 }
 
 class Star extends GameObject {
-    public static final transient String ONE_STAR = "game-objects/oneStar.fxml";
-    public static final transient String THREE_STAR = "game-objects/threeStar.fxml";
 
     private Integer value;
 
@@ -35,9 +33,7 @@ class Star extends GameObject {
     }
 }
 
-class ColorChanger extends GameObject {
-    public static final transient String COLOR_CHANGER = "game-objects/colorChanger.fxml";
-}
+class ColorChanger extends GameObject {}
 
 class Track extends GameObject {
     private static transient int starCounter = 0;
@@ -47,20 +43,21 @@ class Track extends GameObject {
     }
 
     public void addObstacle() {
-        int ind = (int) (Math.random() * 4);
-        String file = Obstacle.OBSTACLES[ind];
-        Node obsNode = Utils.loadObject(file);
-        ((AnchorPane)node).getChildren().add(obsNode);
+        // int ind = (int) (Math.random() * 4);
+        String file = FXMLs.Obstacle.BAR;
+        Obstacle obs = new BarObstacle(Utils.loadObject(file));
+        obs.move();
+        ((AnchorPane)node).getChildren().add(obs.getNode());
     }
 
     public void addStar() {
         Node starNode;
-        if(++starCounter % 5 == 0) starNode = Utils.loadObject(Star.THREE_STAR);
-        else starNode = Utils.loadObject(Star.ONE_STAR);
+        if(++starCounter % 5 == 0) starNode = Utils.loadObject(FXMLs.GameObject.THREE_STAR);
+        else starNode = Utils.loadObject(FXMLs.GameObject.ONE_STAR);
         ((AnchorPane)node).getChildren().add(starNode);
     }
 
     public void addColorChanger() {
-        ((AnchorPane)node).getChildren().add(Utils.loadObject(ColorChanger.COLOR_CHANGER));
+        ((AnchorPane)node).getChildren().add(Utils.loadObject(FXMLs.GameObject.COLOR_CHANGER));
     }
 }

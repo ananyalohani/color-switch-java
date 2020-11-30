@@ -8,8 +8,8 @@ import javafx.fxml.*;
 import javafx.scene.layout.AnchorPane;
 
 public class Utils {
-    public static RotateTransition rotate(Group c, int duration, int angle) {
-        RotateTransition rt = new RotateTransition(Duration.millis(duration), c);
+    public static RotateTransition rotate(Node node, int duration, int angle) {
+        RotateTransition rt = new RotateTransition(Duration.millis(duration), node);
         rt.setByAngle(angle);
         rt.setCycleCount(Animation.INDEFINITE);
         rt.setInterpolator(Interpolator.LINEAR);

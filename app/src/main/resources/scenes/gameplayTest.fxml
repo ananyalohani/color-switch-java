@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" stylesheets="@../css/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameplayController">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane fx:id="gameTrack" prefHeight="800.0" prefWidth="500.0">
+               <children>
+                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
+            <Group layoutX="15.0" layoutY="38.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE">
+                     <font>
+                        <Font name="Blissful Thinking" size="28.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="scoreCount" fill="WHITE" layoutX="31.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Menlo Regular" size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group fx:id="pauseBtn" layoutX="458.0" layoutY="45.0" onMouseClicked="#pauseBtnClicked" scaleX="0.75" scaleY="0.75" styleClass="clickable">
+               <children>
+                  <Circle fill="#666666" radius="36.0" stroke="#610b0b00" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="36.0" layoutX="-14.0" layoutY="-19.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="8.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="36.0" layoutX="5.0" layoutY="-18.0" stroke="TRANSPARENT" strokeType="INSIDE" width="8.0" />
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

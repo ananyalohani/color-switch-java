@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group layoutX="-225.0" layoutY="-95.0">
+         <children>
+            <Group fx:id="obs2" layoutX="154.0" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
+               <children>
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
+               </children>
+            </Group>
+            <Group fx:id="obs21" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
+               <children>
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
+               </children>
+            </Group>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
