@@ -11,7 +11,7 @@ public class FXMLs {
 
     class Obstacle {
         public static final String CIRCLE = "game-objects/circleObstacle.fxml";
-        public static final String TRIANGLE = "game-objects/triangleObstacle.fxml";
+        public static final String GEARS = "game-objects/gearsObstacle.fxml";
         public static final String SQUARE = "game-objects/squareObstacle.fxml";
         public static final String BAR = "game-objects/barObstacle.fxml";
     }

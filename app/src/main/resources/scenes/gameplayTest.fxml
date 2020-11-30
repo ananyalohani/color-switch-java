@@ -14,7 +14,7 @@
          <children>
             <AnchorPane fx:id="gameTrack" prefHeight="800.0" prefWidth="500.0">
                <children>
-                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="ball" fill="#4d4df8" layoutX="250.0" layoutY="677.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                </children>
             </AnchorPane>
             <Group layoutX="15.0" layoutY="38.0">

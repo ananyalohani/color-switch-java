@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Arc?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group layoutX="-225.0" layoutY="-95.0">
+      <Group layoutX="-332.0" layoutY="-231.0">
          <children>
             <Group fx:id="obs2" layoutX="154.0" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
                <children>

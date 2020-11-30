@@ -1,13 +1,14 @@
 import java.util.*;
 import javafx.util.Duration;
 import javafx.animation.*;
+import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.transform.Rotate;
 
 public abstract class Obstacle extends GameObject {
     protected static final transient String OBSTACLES[] = {
         FXMLs.Obstacle.CIRCLE,
-        FXMLs.Obstacle.TRIANGLE,
+        FXMLs.Obstacle.GEARS,
         FXMLs.Obstacle.SQUARE,
         FXMLs.Obstacle.BAR
     };
@@ -99,9 +100,9 @@ class BarObstacle extends Obstacle {
 class SquareObstacle extends Obstacle {
     private final int INITIAL_DURATION = 1000;
     private final int ANGLE = 90;
+    private final int WIDTH = 202;
     private final int OFFSET_X = 12;
     private final int OFFSET_Y = -16;
-    private final int WIDTH = 202;
     private final double PIVOT_X = WIDTH / 2 - OFFSET_X;
     private final double PIVOT_Y = WIDTH / 2 - OFFSET_Y;
     RotateTransition transition;
@@ -136,9 +137,20 @@ class SquareObstacle extends Obstacle {
 }
 
 class GearObstacle extends Obstacle {
+    private final int INITIAL_DURATION = 4000;
+    private final int ANGLE = 360;
+    private final int WIDTH = 310;
+    private final int OFFSET_X = -332;
+    private final int OFFSET_Y = -231;
+    RotateTransition transitionLeft, transitionRight;
+
     @Override
     public void move() {
-
+        ObservableList<Node> children = ((Group) node).getChildren();
+        Node leftGear = children.get(0);
+        Node rightGear = children.get(1);
+        transitionLeft = Utils.rotate(leftGear, INITIAL_DURATION, -ANGLE);
+        transitionRight = Utils.rotate(rightGear, INITIAL_DURATION, ANGLE);
     }
 
     @Override
@@ -153,6 +165,7 @@ class GearObstacle extends Obstacle {
 
     GearObstacle(Node node) {
         super(node);
+        node.setLayoutX(250 - node.getBoundsInLocal().getWidth() / 2 + OFFSET_X);
     }
 }
 

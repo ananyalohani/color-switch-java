@@ -44,20 +44,20 @@ class Track extends GameObject {
 
     public void addObstacle() {
         // int ind = (int) (Math.random() * 4);
-        String file = FXMLs.Obstacle.SQUARE;
-        Obstacle obs = new SquareObstacle(Utils.loadObject(file));
+        String file = FXMLs.Obstacle.GEARS;
+        Obstacle obs = new GearObstacle(Utils.loadObject(file));
+        ((AnchorPane) node).getChildren().add(obs.getNode());
         obs.move();
-        ((AnchorPane)node).getChildren().add(obs.getNode());
     }
 
     public void addStar() {
         Node starNode;
         if(++starCounter % 5 == 0) starNode = Utils.loadObject(FXMLs.GameObject.THREE_STAR);
         else starNode = Utils.loadObject(FXMLs.GameObject.ONE_STAR);
-        ((AnchorPane)node).getChildren().add(starNode);
+        ((AnchorPane) node).getChildren().add(starNode);
     }
 
     public void addColorChanger() {
-        ((AnchorPane)node).getChildren().add(Utils.loadObject(FXMLs.GameObject.COLOR_CHANGER));
+        ((AnchorPane) node).getChildren().add(Utils.loadObject(FXMLs.GameObject.COLOR_CHANGER));
     }
 }
