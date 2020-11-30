@@ -65,7 +65,7 @@ class CircleObstacle extends Obstacle {
 }
 
 class BarObstacle extends Obstacle {
-    private final int INITIAL_DURATION = 1000;
+    private final int INITIAL_DURATION = 2000;
     private final double TRANSITION_BY_X = -500;
     TranslateTransition transition;
 

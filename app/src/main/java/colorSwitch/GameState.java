@@ -58,6 +58,7 @@ public class GameState implements Serializable {
 
         // Halfway point of frame w.r.t. ball y-tranlate
         translateHalfway = Utils.getAbsoluteY(ball.getNode()) - scene.getHeight() / 2;
+        gameTrack.addObstacle();
 
         // Set spacebar key event handler
         scene.setOnKeyPressed(event -> {
@@ -129,7 +130,6 @@ public class GameState implements Serializable {
 
             // If ball has reached halfway point, move track down
             if (displacement > translateHalfway) {
-                gameTrack.addObstacle();
                 gameTrack.shiftUp(delta);
             }
         }
