@@ -7,13 +7,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="obs2" layoutX="-110.0" layoutY="-91.0" styleClass="animate-rotate">
+      <Group fx:id="obs2" layoutX="-110.0" layoutY="-91.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
          <children>
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="125.0" radiusY="125.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="125.0" radiusY="125.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="125.0" radiusY="125.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
-            <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="125.0" radiusY="125.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
-            <Circle fill="#4d78a100" layoutX="410.0" layoutY="281.0" radius="112.5" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
+            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
+            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
+            <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
+            <Circle fill="#4d78a100" layoutX="410.0" layoutY="281.0" radius="152.5" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Group>
    </children>
