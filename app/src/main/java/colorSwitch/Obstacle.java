@@ -1,7 +1,10 @@
-import java.util.ArrayList;
+import java.util.*;
 import javafx.util.Duration;
 import javafx.animation.*;
 import javafx.scene.*;
+import javafx.scene.transform.Rotate;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 
 public abstract class Obstacle extends GameObject {
     protected static final transient String OBSTACLES[] = {
@@ -96,14 +99,28 @@ class BarObstacle extends Obstacle {
 }
 
 class SquareObstacle extends Obstacle {
+    private final int INITIAL_DURATION = 1000;
+    private final int ANGLE = 90;
+    private final double PIVOTX = node.getBoundsInLocal().getWidth() / 2;
+    private final double PIVOTY = node.getBoundsInLocal().getWidth() / 2;
+    RotateTransition transition;
+
     @Override
     public void move() {
+        Timer timer = new Timer();
 
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                node.getTransforms().add(new Rotate(ANGLE, PIVOTX, PIVOTY));
+            }
+        }, 0, INITIAL_DURATION);
     }
 
     @Override
     public void updateSpeed(int Score) {
-
+        // double newDuration = score; // TODO
+        // transition.setDuration(newDuration);
     }
 
     @Override
@@ -113,6 +130,9 @@ class SquareObstacle extends Obstacle {
 
     SquareObstacle(Node node) {
         super(node);
+        Circle circ = new Circle(0, 0, 5);
+        circ.setFill(Color.RED);
+        ((Group)node).getChildren().add(circ);
     }
 }
 

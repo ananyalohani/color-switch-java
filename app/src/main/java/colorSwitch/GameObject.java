@@ -44,8 +44,8 @@ class Track extends GameObject {
 
     public void addObstacle() {
         // int ind = (int) (Math.random() * 4);
-        String file = FXMLs.Obstacle.BAR;
-        Obstacle obs = new BarObstacle(Utils.loadObject(file));
+        String file = FXMLs.Obstacle.SQUARE;
+        Obstacle obs = new SquareObstacle(Utils.loadObject(file));
         obs.move();
         ((AnchorPane)node).getChildren().add(obs.getNode());
     }

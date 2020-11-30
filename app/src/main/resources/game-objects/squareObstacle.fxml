@@ -4,15 +4,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="451.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group layoutX="123.0" layoutY="111.0">
+      <Group>
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="106.0" layoutY="103.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="4.0" layoutY="209.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="79.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" layoutX="-12.0" layoutY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-103.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle fill="#117ed600" height="189.0" layoutX="7.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="-12.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
          </children>
       </Group>
    </children>
