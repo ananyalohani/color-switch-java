@@ -57,7 +57,7 @@ public abstract class Obstacle extends GameObject {
         this.WIDTH = bounds.getWidth();
         this.OFFSET = new Point(bounds.getMinX(), bounds.getMinY());
 
-        components = Utils.convertToList(this, ((Group) node).getChildren());
+        components = Utils.getComponents(this, ((Group) node).getChildren());
     }
 }
 
@@ -232,23 +232,34 @@ class GearsObstacle extends Obstacle {
     RotateTransition transitionLeft, transitionRight;
     private Timer quarterTimer;
     private int timerCount = 0;
+    private ArrayList<Paint> colors;
     private Paint middleColor;
+    private Rectangle criticalRegion;
+    private Group leftGear, rightGear;
 
     @Override
     public void move() {
-        ArrayList<ObstacleComponent> children = Utils.convertToList(this, ((Group) node).getChildren());
-        Node leftGear = children.get(0).getNode();
-        Node rightGear = children.get(1).getNode();
-        transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, -ANGLE);
-        transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, ANGLE);
+        transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, ANGLE);
+        transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, -ANGLE);
 
         TimerTask changeMiddleColor = new TimerTask() {
             @Override
             public void run() {
                 middleColor = colors.get(timerCount++ % 4);
             }
-        }
-        quarterTimer.scheduleAtFixedRate(changeMiddleColor, 0, (int) INITIAL_DURATION / 4);
+        };
+
+        TimerTask changeColorToNull = new TimerTask() {
+            @Override
+            public void run() {
+                middleColor = null;
+            }
+        };
+
+        quarterTimer.scheduleAtFixedRate(
+            changeMiddleColor, 0, (long) INITIAL_DURATION / 4);
+        quarterTimer.scheduleAtFixedRate(
+            changeColorToNull, (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
     }
 
     @Override
@@ -258,13 +269,30 @@ class GearsObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        // TODO
+        if (Utils.intersects(ball.getNode(), criticalRegion)) {
+            Paint ballColor = ball.getNode().getFill();
+            return !ballColor.equals(middleColor);
+        }
+
         return false;
     }
 
     GearsObstacle(Node node) {
-        super(node, 6000);
+        super(node, 10000);
         positionSelf();
+
+        this.criticalRegion = (Rectangle) components.get(0).getNode();
+
+        Group rings = (Group) components.get(1).getNode();
+        this.leftGear = (Group) rings.getChildren().get(0);
+        this.rightGear = (Group) rings.getChildren().get(1);
+
+        this.colors = new ArrayList<Paint>();
+        for (Node arc : leftGear.getChildren()) {
+            colors.add(((Arc) arc).getStroke());
+        }
+
+        this.quarterTimer = new Timer();
     }
 }
 

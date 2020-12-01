@@ -56,9 +56,12 @@ public class Utils {
         }
     }
 
-    public static ArrayList<ObstacleComponent> convertToList(Obstacle obstacle, ObservableList<Node> children) {
-        ArrayList<ObstacleComponent> components = new ArrayList<>();
-        for(Node node: children) {
+    public static ArrayList<ObstacleComponent> getComponents(
+        Obstacle obstacle,
+        ObservableList<Node> children
+    ) {
+        ArrayList<ObstacleComponent> components = new ArrayList<ObstacleComponent>();
+        for (Node node : children) {
             ObstacleComponent obsComp = new ObstacleComponent(obstacle);
             obsComp.setNode(node);
             components.add(obsComp);

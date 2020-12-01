@@ -3,29 +3,35 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group layoutX="-332.0" layoutY="-231.0">
+      <Group layoutX="-333.0" layoutY="-223.0">
          <children>
-            <Group fx:id="obs2" layoutX="154.0" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
+            <Rectangle fill="#8d929600" height="72.0" layoutX="474.0" layoutY="264.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="28.0" />
+            <Group layoutX="1.0" layoutY="-8.0">
                <children>
-                  <!-- TURQUOISE -->
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <!-- MAGENTA -->
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <!-- ORANGE -->
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <!-- DARK BLUE -->
-                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
-               </children>
-            </Group>
-            <Group fx:id="obs21" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
-               <children>
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
-                  <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <Group fx:id="obs21" layoutY="28.0" rotate="35.0" styleClass="animate-rotate">
+                     <children>
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
+                     </children>
+                  </Group>
+                  <Group fx:id="obs2" layoutX="154.0" layoutY="28.0" rotate="55.0" styleClass="animate-rotate">
+                     <children>
+                        <!-- TURQUOISE -->
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <!-- MAGENTA -->
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <!-- ORANGE -->
+                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
+                        <!-- DARK BLUE -->
+                        <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
+                     </children>
+                  </Group>
                </children>
             </Group>
          </children>
