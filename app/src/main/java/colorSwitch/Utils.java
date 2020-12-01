@@ -21,10 +21,31 @@ public class Utils {
         return node.getTranslateY() + node.getLayoutY();
     }
 
+    public static Bounds getBounds(Node node) {
+        return node.localToScene(node.getBoundsInLocal());
+    }
+
     public static Boolean intersects(Node a, Node b) {
-        Bounds boundsA = a.localToScene(a.getBoundsInLocal());
-        Bounds boundsB = b.localToScene(b.getBoundsInLocal());
+        Bounds boundsA = getBounds(a);
+        Bounds boundsB = getBounds(b);
         return boundsA.intersects(boundsB) && boundsB.intersects(boundsA);
+    }
+
+    public static Boolean intersects(Bounds a, Bounds b) {
+        return a.intersects(b) && b.intersects(a);
+    }
+
+    public static Boolean isInside(Node a, Node b) {
+        Bounds boundsA = getBounds(a);
+        Bounds boundsB = getBounds(b);
+        return (
+            boundsA.getMinY() > boundsB.getMinY() &&
+            boundsA.getMaxY() < boundsB.getMaxY()
+        );
+    }
+
+    public static Boolean isInside(Bounds a, Bounds b) {
+        return a.getMinY() > b.getMinY() && a.getMaxY() < b.getMaxY();
     }
 
     public static Node loadObject(String file) {

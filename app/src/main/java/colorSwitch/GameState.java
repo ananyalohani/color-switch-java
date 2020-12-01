@@ -24,7 +24,6 @@ public class GameState implements Serializable {
     private Boolean stateSaved;
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Star> stars;
-    private RotateTransition obsRT1, obsRT2;
     private Gameplay gameplay;
 
     private double lastTapNs;
@@ -36,7 +35,6 @@ public class GameState implements Serializable {
 
     // FXML Nodes
     private Text scoreCountNode;
-    private Group obs1Node, obs2Node;
     private Scene scene;
 
     public GameState(Gameplay gameplay) {
@@ -70,39 +68,27 @@ public class GameState implements Serializable {
                 translateOffset = ball.getNode().getTranslateY();
             }
         });
-
-        // Start animations
-        obsRT1 = Utils.rotate(obs1Node, DURATION, ANGLE);
-        obsRT2 = Utils.rotate(obs2Node, DURATION, -ANGLE);
     }
 
     public void initNodes(
         AnchorPane gameTrackNode,
         Circle ballNode,
         Circle colorChangerNode,
-        Text scoreCountNode,
-        Group obs1Node,
-        Group obs2Node
+        Text scoreCountNode
     ) {
         ball.setNode(ballNode);
         gameTrack.setNode(gameTrackNode);
         colorChanger.setNode(colorChangerNode);
-        
+
         this.scoreCountNode = scoreCountNode;
-        this.obs1Node = obs1Node;
-        this.obs2Node = obs2Node;
     }
 
     public void pauseState() {
         pausedNow = System.nanoTime();
-        obsRT1.pause();
-        obsRT2.pause();
     }
 
     public void playState() {
         lastTapNs += System.nanoTime() - pausedNow;
-        obsRT1.play();
-        obsRT2.play();
     }
 
     public Integer getScore() {
@@ -125,7 +111,6 @@ public class GameState implements Serializable {
 
         // Move ball to new position and get position
         double displacement = ball.move(duration, translateOffset);
-        // if(checkForCollision()) gameplay.endGame();
 
         // Get and set highest point reached by ball
         if (displacement > maxDisplacement) {
@@ -139,7 +124,7 @@ public class GameState implements Serializable {
         }
 
         // Check for collision with updated states
-        checkForCollision();
+        if (checkForCollision()) gameplay.endGame();
     }
 
     private void setScore(Integer delta) {

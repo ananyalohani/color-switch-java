@@ -24,7 +24,7 @@ public class GameplayController {
     private Text scoreCount;
 
     @FXML
-    private Group pauseBtn, obs1, obs2;
+    private Group pauseBtn;
 
     @FXML
     private void pauseBtnClicked() {
@@ -33,7 +33,7 @@ public class GameplayController {
 
     public void setup(Gameplay gameplay, GameState gameState) {
         this.gameplay = gameplay;
-        gameState.initNodes(gameTrack, ball, colorChanger, scoreCount, obs1, obs2);
+        gameState.initNodes(gameTrack, ball, colorChanger, scoreCount);
     }
 
     public GameplayController() {}

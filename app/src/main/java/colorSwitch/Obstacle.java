@@ -62,11 +62,27 @@ public abstract class Obstacle extends GameObject {
 
 class CircleObstacle extends Obstacle {
     private final int ANGLE = 360;
-    RotateTransition transition;
+    private RotateTransition transition;
+    private Rectangle outerBoundingBox;
+    private Rectangle innerBoundingBox;
+    private Group ring;
+    private Timer quarterTimer;
+    private int timerCount = 0;
+    private ArrayList<Paint> colors;
+    private Paint topColor;
+    private Paint bottomColor;
 
     @Override
     public void move() {
-        transition = Utils.rotate(node, (int) INITIAL_DURATION, ANGLE);
+        transition = Utils.rotate(ring, (int) INITIAL_DURATION, ANGLE);
+        TimerTask changeTopColor = new TimerTask() {
+            @Override
+            public void run() {
+                topColor = colors.get(timerCount % 4);
+                bottomColor = colors.get((2 + timerCount++) % 4);
+            }
+        };
+        quarterTimer.scheduleAtFixedRate(changeTopColor, 0, (int) INITIAL_DURATION / 4);
     }
 
     @Override
@@ -77,12 +93,39 @@ class CircleObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        return null;
+        Paint ballColor = ball.getNode().getFill();
+        Bounds ballBounds = Utils.getBounds(ball.getNode());
+        Bounds outerBounds = Utils.getBounds(outerBoundingBox);
+        Bounds innerBounds = Utils.getBounds(innerBoundingBox);
+
+        if (
+            Utils.intersects(ballBounds, outerBounds) &&
+            !Utils.isInside(ballBounds, innerBounds)
+        ) {
+            return ballBounds.getMaxY() > innerBounds.getMaxY()
+                ? !ballColor.equals(bottomColor)
+                : !ballColor.equals(topColor);
+        }
+
+        return false;
     }
 
     CircleObstacle(Node node) {
-        super(node, 1000);
+        super(node, 3000);
+
         positionSelf();
+
+        ObservableList<Node> children = ((Group) node).getChildren();
+        this.outerBoundingBox = (Rectangle) children.get(0);
+        this.innerBoundingBox = (Rectangle) children.get(1);
+        this.ring = (Group) children.get(2);
+
+        this.colors = new ArrayList<Paint>();
+        for (Node arc : ring.getChildren()) {
+            colors.add(((Arc) arc).getStroke());
+        }
+
+        this.quarterTimer = new Timer();
     }
 }
 

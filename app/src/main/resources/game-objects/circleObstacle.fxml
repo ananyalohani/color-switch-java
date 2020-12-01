@@ -3,17 +3,22 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Arc?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.25" prefWidth="267.25" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="obs2" layoutX="-277.0" layoutY="-148.0" styleClass="animate-rotate">
+      <Group fx:id="obs2" layoutX="-143.0" layoutY="-14.0" styleClass="animate-rotate">
          <children>
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="18.75" />
-            <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="18.75" />
-            <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
-            <Circle fill="#4d78a100" layoutX="410.0" layoutY="281.0" radius="114.375" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="267.25" layoutX="143.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="267.25" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="228.75" layoutX="153.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.75" x="9.0" y="9.0" />
+            <Group layoutX="276.375" layoutY="147.375">
+               <children>
+                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="18.75" />
+                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
+                  <Arc fill="#00315200" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
+                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="18.75" />
+               </children>
+            </Group>
          </children>
       </Group>
    </children>
