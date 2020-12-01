@@ -40,10 +40,7 @@ public class Utils {
     public static Boolean isInside(Node a, Node b) {
         Bounds boundsA = getBounds(a);
         Bounds boundsB = getBounds(b);
-        return (
-            boundsA.getMinY() > boundsB.getMinY() &&
-            boundsA.getMaxY() < boundsB.getMaxY()
-        );
+        return isInside(boundsA, boundsB);
     }
 
     public static Boolean isInside(Bounds a, Bounds b) {
