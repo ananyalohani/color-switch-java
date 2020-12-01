@@ -16,14 +16,24 @@ public abstract class Obstacle extends GameObject {
         FXMLs.Obstacle.BAR
     };
 
+    private static transient double lastObstacleY;
+
+    private static final transient double FIXED_GAP = 300;
     protected final double INITIAL_DURATION;
     protected final double WIDTH;
+    protected final double HEIGHT;
     protected final Point OFFSET;
-    protected final double SCENE_WIDTH;
+    protected final double SCENE_WIDTH = 500;
+    protected final double SCENE_HEIGHT = 800;
+    protected final double INITIAL_OFFSET_Y;
 
     protected ObstacleShape shape;
     protected Double velocity;
     protected ArrayList<ObstacleComponent> components;
+
+    public static void setLastObstacleY(double val) {
+        lastObstacleY = val;
+    }
 
     public void calculateVelocity(Integer score) {
 
@@ -37,9 +47,13 @@ public abstract class Obstacle extends GameObject {
         return this.velocity;
     }
 
-    protected void positionSelf() {
-        node.setLayoutX((SCENE_WIDTH - WIDTH) / 2 - OFFSET.getX());
-        node.setLayoutY(0);
+    protected void positionSelf(Boolean positionCenter) {
+        if (positionCenter) {
+            node.setLayoutX((SCENE_WIDTH - WIDTH) / 2 - OFFSET.getX());
+        }
+
+        node.setTranslateY(INITIAL_OFFSET_Y + lastObstacleY);
+        this.lastObstacleY -= FIXED_GAP + HEIGHT / 2;
     }
 
     public abstract void move();
@@ -50,12 +64,15 @@ public abstract class Obstacle extends GameObject {
 
     Obstacle(Node node, double duration) {
         Bounds bounds = node.getBoundsInLocal();
+        Bounds absoluteBounds = Utils.getBounds(node);
 
         this.node = node;
         this.INITIAL_DURATION = duration;
-        this.SCENE_WIDTH = 500;
         this.WIDTH = bounds.getWidth();
+        this.HEIGHT = bounds.getHeight();
         this.OFFSET = new Point(bounds.getMinX(), bounds.getMinY());
+        this.INITIAL_OFFSET_Y =
+            SCENE_HEIGHT / 2 - absoluteBounds.getMinY() - (absoluteBounds.getHeight() / 2) - 100;
 
         components = Utils.getComponents(this, ((Group) node).getChildren());
     }
@@ -114,7 +131,7 @@ class CircleObstacle extends Obstacle {
     CircleObstacle(Node node) {
         super(node, 3000);
 
-        positionSelf();
+        positionSelf(true);
 
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
@@ -169,6 +186,7 @@ class BarObstacle extends Obstacle {
 
     BarObstacle(Node node) {
         super(node, 2000);
+        positionSelf(false);
     }
 }
 
@@ -217,7 +235,7 @@ class SquareObstacle extends Obstacle {
 
     SquareObstacle(Node node) {
         super(node, 1000);
-        positionSelf();
+        positionSelf(true);
 
         this.timer = new Timer();
         this.rotationPivot = new Point(
@@ -278,8 +296,8 @@ class GearsObstacle extends Obstacle {
     }
 
     GearsObstacle(Node node) {
-        super(node, 10000);
-        positionSelf();
+        super(node, 6000);
+        positionSelf(true);
 
         this.criticalRegion = (Rectangle) components.get(0).getNode();
 

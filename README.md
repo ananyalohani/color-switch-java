@@ -18,3 +18,24 @@ For development:
 - Clean `gradle clean`
 
 The JAR files can be found in `app/build/libs/` directory.
+
+## TODO
+
+- [] Add collision detections
+  - [x] w/ obstacles
+  - [] w/ stars
+  - [] w/ color changer
+- [] obstacles pause on pause menu (and timertask)
+- [] dynamically add new objects
+  - [] stars
+  - [] obstacles
+  - [] color changer
+- [] update score
+- [] implement serializable
+- [] statistics !!
+- [] leaderboard !!
+- [] help scene !!
+- [] settings scene !!
+  - [] turn music on/off (if dark/light mode)
+  - [] dark/light mode (if time remains)
+- [] adding music/sound (that old banger) !!

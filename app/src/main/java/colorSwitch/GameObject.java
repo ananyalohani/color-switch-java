@@ -48,9 +48,28 @@ class Track extends GameObject {
     }
 
     public void addObstacle() {
-        // int ind = (int) (Math.random() * 4);
-        String file = FXMLs.Obstacle.GEARS;
-        Obstacle obstacle = new GearsObstacle(Utils.loadObject(file));
+        int randomIndex = (int) (Math.random() * 4);
+        String file = Obstacle.OBSTACLES[randomIndex];
+
+        Obstacle obstacle = null;
+        switch (randomIndex) {
+            case 0: {
+                obstacle = new CircleObstacle(Utils.loadObject(file));
+                break;
+            }
+            case 1: {
+                obstacle = new GearsObstacle(Utils.loadObject(file));
+                break;
+            }
+            case 2: {
+                obstacle = new SquareObstacle(Utils.loadObject(file));
+                break;
+            }
+            case 3: {
+                obstacle = new BarObstacle(Utils.loadObject(file));
+                break;
+            }
+        }
 
         // Add to game state arraylist
         gameState.addObstacle(obstacle);

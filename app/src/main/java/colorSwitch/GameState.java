@@ -31,7 +31,6 @@ public class GameState implements Serializable {
     private double translateHalfway;
     private double translateOffset;
     private double maxDisplacement;
-    private Boolean collided;
 
     // FXML Nodes
     private Text scoreCountNode;
@@ -41,7 +40,6 @@ public class GameState implements Serializable {
         this.gameplay = gameplay;
         this.score = 0;
         this.stateSaved = false;
-        this.collided = false;
         this.ball = new Ball();
         this.gameTrack = new Track(this);
         this.colorChanger = new ColorChanger();
@@ -58,6 +56,8 @@ public class GameState implements Serializable {
 
         // Halfway point of frame w.r.t. ball y-tranlate
         translateHalfway = Utils.getAbsoluteY(ball.getNode()) - scene.getHeight() / 2;
+        gameTrack.addObstacle();
+        gameTrack.addObstacle();
         gameTrack.addObstacle();
 
         // Set spacebar key event handler
@@ -104,8 +104,6 @@ public class GameState implements Serializable {
     }
 
     public void updateState(double now) {
-        if (collided) return;
-
         // Calculate state vars
         double duration = (double) (now - lastTapNs) / 1_000_000_000;
 
@@ -136,24 +134,8 @@ public class GameState implements Serializable {
     }
 
     private Boolean checkForCollision() {
-        // ObservableList<Node> components = obs1Node.getChildren();
-        // Shape inside = null;
-        // for(int i = 0; i < components.size(); i++) {
-        //     if(components.get(i).getId().equals("inside")) {
-        //         inside = (Shape)components.get(i);
-        //     }
-        // }
-        // for (int i = 0; i < components.size(); i++) {
-        //     Shape comp = (Shape) components.get(i);
-        //     if(comp.getId().equals("inside")) continue;
-        //     Shape ballNode = (Shape) ball.getNode();
-        //     if(Utils.intersects(comp, ballNode) && !Utils.intersects(inside, ballNode)) {
-        //         if(!comp.getFill().equals(ballNode.getFill())) {
-        //             System.out.println("COLLISION");
-        //             return true;
-        //         }
-        //     }
-        // }
+        Boolean collided = false;
+
         for (Obstacle obstacle : obstacles) {
             if (obstacle.isColliding(ball)) {
                 collided = true;
@@ -161,7 +143,7 @@ public class GameState implements Serializable {
             }
         }
 
-        return false;
+        return collided;
     }
 
     private void collisionWithStar() {

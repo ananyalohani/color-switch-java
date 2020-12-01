@@ -45,6 +45,8 @@ public class Gameplay implements IScene {
         pauseMenu = new PauseMenu(this);
         endMenu = new EndMenu(this);
 
+        Obstacle.setLastObstacleY(0);
+
         renderLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
