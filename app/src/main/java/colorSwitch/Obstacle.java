@@ -1,9 +1,13 @@
+import java.time.OffsetDateTime;
 import java.util.*;
 import javafx.util.Duration;
 import javafx.animation.*;
 import javafx.collections.*;
+import javafx.scene.shape.*;
+import javafx.scene.paint.*;
 import javafx.scene.*;
 import javafx.scene.transform.Rotate;
+import javafx.geometry.Bounds;
 
 public abstract class Obstacle extends GameObject {
     protected static final transient String OBSTACLES[] = {
@@ -12,6 +16,11 @@ public abstract class Obstacle extends GameObject {
         FXMLs.Obstacle.SQUARE,
         FXMLs.Obstacle.BAR
     };
+
+    protected final double INITIAL_DURATION;
+    protected final double WIDTH;
+    protected final Point OFFSET;
+    protected final double SCENE_WIDTH;
 
     protected ObstacleShape shape;
     protected Double velocity;
@@ -29,25 +38,35 @@ public abstract class Obstacle extends GameObject {
         return this.velocity;
     }
 
+    protected void positionSelf() {
+        node.setLayoutX((SCENE_WIDTH - WIDTH) / 2 - OFFSET.getX());
+        node.setLayoutY(0);
+    }
+
     public abstract void move();
 
     public abstract void updateSpeed(int score);
 
     public abstract Boolean isColliding(Ball ball);
 
-    Obstacle(Node node) {
+    Obstacle(Node node, double duration) {
+        Bounds bounds = node.getBoundsInLocal();
+
         this.node = node;
+        this.INITIAL_DURATION = duration;
+        this.SCENE_WIDTH = 500;
+        this.WIDTH = bounds.getWidth();
+        this.OFFSET = new Point(bounds.getMinX(), bounds.getMinY());
     }
 }
 
 class CircleObstacle extends Obstacle {
-    private final int INITIAL_DURATION = 1000;
     private final int ANGLE = 360;
     RotateTransition transition;
 
     @Override
     public void move() {
-        transition = Utils.rotate(node, INITIAL_DURATION, ANGLE);
+        transition = Utils.rotate(node, (int) INITIAL_DURATION, ANGLE);
     }
 
     @Override
@@ -62,12 +81,12 @@ class CircleObstacle extends Obstacle {
     }
 
     CircleObstacle(Node node) {
-        super(node);
+        super(node, 1000);
+        positionSelf();
     }
 }
 
 class BarObstacle extends Obstacle {
-    private final int INITIAL_DURATION = 2000;
     private final double TRANSITION_BY_X = -500;
     TranslateTransition transition;
 
@@ -89,34 +108,45 @@ class BarObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        return false;
+        ObservableList<Node> components = ((Group) node).getChildren();
+        Boolean collision = false;
+
+        for (Node component : components) {
+            if (Utils.intersects(ball.getNode(), component)) {
+                Paint ballColor = ball.getNode().getFill();
+                Paint compColor = ((Rectangle) component).getFill();
+                if (!ballColor.equals(compColor)) {
+                    collision = true;
+                    break;
+                }
+            }
+        }
+
+        return collision;
     }
 
     BarObstacle(Node node) {
-        super(node);
+        super(node, 2000);
     }
 }
 
 class SquareObstacle extends Obstacle {
-    private final int INITIAL_DURATION = 1000;
     private final int ANGLE = 90;
-    private final int WIDTH = 202;
-    private final int OFFSET_X = 12;
-    private final int OFFSET_Y = -16;
-    private final double PIVOT_X = WIDTH / 2 - OFFSET_X;
-    private final double PIVOT_Y = WIDTH / 2 - OFFSET_Y;
-    RotateTransition transition;
+    private final Point rotationPivot;
+    private Timer timer;
 
     @Override
     public void move() {
-        Timer timer = new Timer();
+        Rotate rotation = new Rotate(ANGLE, rotationPivot.getX(), rotationPivot.getY());
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        TimerTask discreteRotation = new TimerTask() {
             @Override
             public void run() {
-                node.getTransforms().add(new Rotate(ANGLE, PIVOT_X, PIVOT_Y));
+                node.getTransforms().add(rotation);
             }
-        }, 0, INITIAL_DURATION);
+        };
+
+        timer.scheduleAtFixedRate(discreteRotation, 0, (long) INITIAL_DURATION);
     }
 
     @Override
@@ -131,17 +161,19 @@ class SquareObstacle extends Obstacle {
     }
 
     SquareObstacle(Node node) {
-        super(node);
-        node.setLayoutX(250 - WIDTH / 2 + OFFSET_X);
+        super(node, 1000);
+        positionSelf();
+
+        this.timer = new Timer();
+        this.rotationPivot = new Point(
+            WIDTH / 2 + OFFSET.getX(),
+            WIDTH / 2 + OFFSET.getY()
+        );
     }
 }
 
-class GearObstacle extends Obstacle {
-    private final int INITIAL_DURATION = 4000;
+class GearsObstacle extends Obstacle {
     private final int ANGLE = 360;
-    private final int WIDTH = 310;
-    private final int OFFSET_X = -332;
-    private final int OFFSET_Y = -231;
     RotateTransition transitionLeft, transitionRight;
 
     @Override
@@ -149,8 +181,8 @@ class GearObstacle extends Obstacle {
         ObservableList<Node> children = ((Group) node).getChildren();
         Node leftGear = children.get(0);
         Node rightGear = children.get(1);
-        transitionLeft = Utils.rotate(leftGear, INITIAL_DURATION, -ANGLE);
-        transitionRight = Utils.rotate(rightGear, INITIAL_DURATION, ANGLE);
+        transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, -ANGLE);
+        transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, ANGLE);
     }
 
     @Override
@@ -163,9 +195,9 @@ class GearObstacle extends Obstacle {
         return false;
     }
 
-    GearObstacle(Node node) {
-        super(node);
-        node.setLayoutX(250 - node.getBoundsInLocal().getWidth() / 2 + OFFSET_X);
+    GearsObstacle(Node node) {
+        super(node, 6000);
+        positionSelf();
     }
 }
 

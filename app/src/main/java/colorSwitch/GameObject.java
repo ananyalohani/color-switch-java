@@ -25,7 +25,6 @@ public abstract class GameObject implements Serializable {
 }
 
 class Star extends GameObject {
-
     private Integer value;
 
     public Integer getValue() {
@@ -37,6 +36,7 @@ class ColorChanger extends GameObject {}
 
 class Track extends GameObject {
     private static transient int starCounter = 0;
+    private GameState gameState;
 
     public void shiftUp(double delta) {
         node.setTranslateY(node.getTranslateY() + delta);
@@ -44,10 +44,14 @@ class Track extends GameObject {
 
     public void addObstacle() {
         // int ind = (int) (Math.random() * 4);
-        String file = FXMLs.Obstacle.GEARS;
-        Obstacle obs = new GearObstacle(Utils.loadObject(file));
-        ((AnchorPane) node).getChildren().add(obs.getNode());
-        obs.move();
+        String file = FXMLs.Obstacle.BAR;
+        Obstacle obstacle = new BarObstacle(Utils.loadObject(file));
+
+        // Add to game state arraylist
+        gameState.addObstacle(obstacle);
+
+        ((AnchorPane) node).getChildren().add(obstacle.getNode());
+        obstacle.move();
     }
 
     public void addStar() {
@@ -59,5 +63,9 @@ class Track extends GameObject {
 
     public void addColorChanger() {
         ((AnchorPane) node).getChildren().add(Utils.loadObject(FXMLs.GameObject.COLOR_CHANGER));
+    }
+
+    Track(GameState gameState) {
+        this.gameState = gameState;
     }
 }

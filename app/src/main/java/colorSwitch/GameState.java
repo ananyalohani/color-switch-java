@@ -32,6 +32,7 @@ public class GameState implements Serializable {
     private double translateHalfway;
     private double translateOffset;
     private double maxDisplacement;
+    private Boolean collided;
 
     // FXML Nodes
     private Text scoreCountNode;
@@ -42,8 +43,9 @@ public class GameState implements Serializable {
         this.gameplay = gameplay;
         this.score = 0;
         this.stateSaved = false;
+        this.collided = false;
         this.ball = new Ball();
-        this.gameTrack = new Track();
+        this.gameTrack = new Track(this);
         this.colorChanger = new ColorChanger();
         this.obstacles = new ArrayList<Obstacle>();
         this.stars = new ArrayList<Star>();
@@ -116,6 +118,8 @@ public class GameState implements Serializable {
     }
 
     public void updateState(double now) {
+        if (collided) return;
+
         // Calculate state vars
         double duration = (double) (now - lastTapNs) / 1_000_000_000;
 
@@ -133,10 +137,17 @@ public class GameState implements Serializable {
                 gameTrack.shiftUp(delta);
             }
         }
+
+        // Check for collision with updated states
+        checkForCollision();
     }
 
     private void setScore(Integer delta) {
         this.score += delta;
+    }
+
+    public void addObstacle(Obstacle obstacle) {
+        this.obstacles.add(obstacle);
     }
 
     private Boolean checkForCollision() {
@@ -158,6 +169,13 @@ public class GameState implements Serializable {
         //         }
         //     }
         // }
+        for (Obstacle obstacle : obstacles) {
+            if (obstacle.isColliding(ball)) {
+                collided = true;
+                break;
+            }
+        }
+
         return false;
     }
 
