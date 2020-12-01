@@ -30,7 +30,7 @@ public class Utils {
     public static Boolean intersects(Node a, Node b) {
         Bounds boundsA = getBounds(a);
         Bounds boundsB = getBounds(b);
-        return boundsA.intersects(boundsB) && boundsB.intersects(boundsA);
+        return intersects(boundsA, boundsB);
     }
 
     public static Boolean intersects(Bounds a, Bounds b) {
