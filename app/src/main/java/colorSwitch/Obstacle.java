@@ -178,6 +178,7 @@ class SquareObstacle extends Obstacle {
     private final int ANGLE = 90;
     private final Point rotationPivot;
     private Timer timer;
+    ObservableList<Node> components;
 
     @Override
     public void move() {
@@ -201,7 +202,20 @@ class SquareObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        return false;
+        Boolean collision = false;
+
+        for (Node component : components) {
+            if (Utils.intersects(ball.getNode(), component)) {
+                Paint ballColor = ball.getNode().getFill();
+                Paint compColor = ((Rectangle) component).getFill();
+                if (!ballColor.equals(compColor)) {
+                    collision = true;
+                    break;
+                }
+            }
+        }
+
+        return collision;
     }
 
     SquareObstacle(Node node) {
@@ -213,6 +227,8 @@ class SquareObstacle extends Obstacle {
             WIDTH / 2 + OFFSET.getX(),
             WIDTH / 2 + OFFSET.getY()
         );
+
+        components = ((Group) node).getChildren();
     }
 }
 
