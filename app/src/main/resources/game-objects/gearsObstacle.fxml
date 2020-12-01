@@ -10,9 +10,13 @@
          <children>
             <Group fx:id="obs2" layoutX="154.0" layoutY="28.0" rotate="45.0" styleClass="animate-rotate">
                <children>
+                  <!-- TURQUOISE -->
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <!-- MAGENTA -->
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <!-- ORANGE -->
                   <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="15.0" />
+                  <!-- DARK BLUE -->
                   <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="70.0" radiusY="70.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="15.0" />
                </children>
             </Group>

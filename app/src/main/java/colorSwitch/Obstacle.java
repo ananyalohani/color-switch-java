@@ -230,6 +230,9 @@ class SquareObstacle extends Obstacle {
 class GearsObstacle extends Obstacle {
     private final int ANGLE = 360;
     RotateTransition transitionLeft, transitionRight;
+    private Timer quarterTimer;
+    private int timerCount = 0;
+    private Paint middleColor;
 
     @Override
     public void move() {
@@ -238,6 +241,14 @@ class GearsObstacle extends Obstacle {
         Node rightGear = children.get(1).getNode();
         transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, -ANGLE);
         transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, ANGLE);
+
+        TimerTask changeMiddleColor = new TimerTask() {
+            @Override
+            public void run() {
+                middleColor = colors.get(timerCount++ % 4);
+            }
+        }
+        quarterTimer.scheduleAtFixedRate(changeMiddleColor, 0, (int) INITIAL_DURATION / 4);
     }
 
     @Override
@@ -247,6 +258,7 @@ class GearsObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
+        // TODO
         return false;
     }
 
