@@ -49,8 +49,8 @@ class Track extends GameObject {
 
     public void addObstacle() {
         // int ind = (int) (Math.random() * 4);
-        String file = FXMLs.Obstacle.CIRCLE;
-        Obstacle obstacle = new CircleObstacle(Utils.loadObject(file));
+        String file = FXMLs.Obstacle.BAR;
+        Obstacle obstacle = new BarObstacle(Utils.loadObject(file));
 
         // Add to game state arraylist
         gameState.addObstacle(obstacle);

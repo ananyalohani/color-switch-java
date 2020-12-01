@@ -132,6 +132,7 @@ class CircleObstacle extends Obstacle {
 class BarObstacle extends Obstacle {
     private final double TRANSITION_BY_X = -500;
     TranslateTransition transition;
+    ObservableList<Node> components;
 
     @Override
     public void move() {
@@ -151,7 +152,6 @@ class BarObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        ObservableList<Node> components = ((Group) node).getChildren();
         Boolean collision = false;
 
         for (Node component : components) {
@@ -170,6 +170,7 @@ class BarObstacle extends Obstacle {
 
     BarObstacle(Node node) {
         super(node, 2000);
+        components = ((Group) node).getChildren();
     }
 }
 
