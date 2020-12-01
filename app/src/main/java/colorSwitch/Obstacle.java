@@ -2,7 +2,6 @@ import java.time.OffsetDateTime;
 import java.util.*;
 import javafx.util.Duration;
 import javafx.animation.*;
-import javafx.collections.*;
 import javafx.scene.shape.*;
 import javafx.scene.paint.*;
 import javafx.scene.*;
@@ -24,7 +23,7 @@ public abstract class Obstacle extends GameObject {
 
     protected ObstacleShape shape;
     protected Double velocity;
-    private ArrayList<ObstacleComponent> components;
+    protected ArrayList<ObstacleComponent> components;
 
     public void calculateVelocity(Integer score) {
 
@@ -57,6 +56,8 @@ public abstract class Obstacle extends GameObject {
         this.SCENE_WIDTH = 500;
         this.WIDTH = bounds.getWidth();
         this.OFFSET = new Point(bounds.getMinX(), bounds.getMinY());
+
+        components = Utils.convertToList(this, ((Group) node).getChildren());
     }
 }
 
@@ -115,10 +116,9 @@ class CircleObstacle extends Obstacle {
 
         positionSelf();
 
-        ObservableList<Node> children = ((Group) node).getChildren();
-        this.outerBoundingBox = (Rectangle) children.get(0);
-        this.innerBoundingBox = (Rectangle) children.get(1);
-        this.ring = (Group) children.get(2);
+        this.outerBoundingBox = (Rectangle) components.get(0).getNode();
+        this.innerBoundingBox = (Rectangle) components.get(1).getNode();
+        this.ring = (Group) components.get(2).getNode();
 
         this.colors = new ArrayList<Paint>();
         for (Node arc : ring.getChildren()) {
@@ -132,7 +132,6 @@ class CircleObstacle extends Obstacle {
 class BarObstacle extends Obstacle {
     private final double TRANSITION_BY_X = -500;
     TranslateTransition transition;
-    ObservableList<Node> components;
 
     @Override
     public void move() {
@@ -154,10 +153,10 @@ class BarObstacle extends Obstacle {
     public Boolean isColliding(Ball ball) {
         Boolean collision = false;
 
-        for (Node component : components) {
-            if (Utils.intersects(ball.getNode(), component)) {
+        for (ObstacleComponent component : components) {
+            if (Utils.intersects(ball.getNode(), component.getNode())) {
                 Paint ballColor = ball.getNode().getFill();
-                Paint compColor = ((Rectangle) component).getFill();
+                Paint compColor = ((Rectangle) component.getNode()).getFill();
                 if (!ballColor.equals(compColor)) {
                     collision = true;
                     break;
@@ -170,7 +169,6 @@ class BarObstacle extends Obstacle {
 
     BarObstacle(Node node) {
         super(node, 2000);
-        components = ((Group) node).getChildren();
     }
 }
 
@@ -178,7 +176,6 @@ class SquareObstacle extends Obstacle {
     private final int ANGLE = 90;
     private final Point rotationPivot;
     private Timer timer;
-    ObservableList<Node> components;
 
     @Override
     public void move() {
@@ -204,10 +201,10 @@ class SquareObstacle extends Obstacle {
     public Boolean isColliding(Ball ball) {
         Boolean collision = false;
 
-        for (Node component : components) {
-            if (Utils.intersects(ball.getNode(), component)) {
+        for (ObstacleComponent component : components) {
+            if (Utils.intersects(ball.getNode(), component.getNode())) {
                 Paint ballColor = ball.getNode().getFill();
-                Paint compColor = ((Rectangle) component).getFill();
+                Paint compColor = ((Rectangle) component.getNode()).getFill();
                 if (!ballColor.equals(compColor)) {
                     collision = true;
                     break;
@@ -227,8 +224,6 @@ class SquareObstacle extends Obstacle {
             WIDTH / 2 + OFFSET.getX(),
             WIDTH / 2 + OFFSET.getY()
         );
-
-        components = ((Group) node).getChildren();
     }
 }
 
@@ -238,9 +233,9 @@ class GearsObstacle extends Obstacle {
 
     @Override
     public void move() {
-        ObservableList<Node> children = ((Group) node).getChildren();
-        Node leftGear = children.get(0);
-        Node rightGear = children.get(1);
+        ArrayList<ObstacleComponent> children = Utils.convertToList(this, ((Group) node).getChildren());
+        Node leftGear = children.get(0).getNode();
+        Node rightGear = children.get(1).getNode();
         transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, -ANGLE);
         transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, ANGLE);
     }
@@ -263,13 +258,17 @@ class GearsObstacle extends Obstacle {
 
 class ObstacleComponent extends GameObject {
     private Obstacle obstacle;
-    private Color color;
+    private Paint color;
 
-    public void setColor(Color color) {
+    public void setColor(Paint color) {
         this.color = color;
     }
 
-    public Color getColor() {
+    public Paint getColor() {
         return this.color;
+    }
+
+    ObstacleComponent(Obstacle obstacle) {
+        this.obstacle = obstacle;
     }
 }

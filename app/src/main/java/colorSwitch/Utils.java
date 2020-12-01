@@ -3,6 +3,8 @@ import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.geometry.Bounds;
+import javafx.collections.*;
+import java.util.*;
 import javafx.scene.Parent;
 import javafx.fxml.*;
 import javafx.scene.layout.AnchorPane;
@@ -55,5 +57,15 @@ public class Utils {
         } catch(Exception e) {
             return null;
         }
+    }
+
+    public static ArrayList<ObstacleComponent> convertToList(Obstacle obstacle, ObservableList<Node> children) {
+        ArrayList<ObstacleComponent> components = new ArrayList<>();
+        for(Node node: children) {
+            ObstacleComponent obsComp = new ObstacleComponent(obstacle);
+            obsComp.setNode(node);
+            components.add(obsComp);
+        }
+        return components;
     }
 }
