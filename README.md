@@ -25,17 +25,17 @@ The JAR files can be found in `app/build/libs/` directory.
   - [x] w/ obstacles
   - [x] w/ stars
   - [x] w/ color changer
-- [] obstacles pause on pause menu (and timertask)
+- [ ] obstacles pause on pause menu (and timertask)
 - [x] dynamically add new objects
   - [x] stars
   - [x] obstacles
   - [x] color changer
 - [x] update score
-- [] implement serializable
-- [] statistics !!
-- [] leaderboard !!
-- [] help scene !!
-- [] settings scene !!
-  - [] turn music on/off (if dark/light mode)
-  - [] dark/light mode (if time remains)
-- [] adding music/sound (that old banger) !!
+- [ ] implement serializable
+- [ ] statistics !!
+- [ ] leaderboard !!
+- [ ] help scene !!
+- [ ] settings scene !!
+  - [ ] turn music on/off (if dark/light mode)
+  - [ ] dark/light mode (if time remains)
+- [ ] adding music/sound (that old banger) !!
