@@ -21,16 +21,16 @@ The JAR files can be found in `app/build/libs/` directory.
 
 ## TODO
 
-- [] Add collision detections
+- [x] Add collision detections
   - [x] w/ obstacles
-  - [] w/ stars
-  - [] w/ color changer
+  - [x] w/ stars
+  - [x] w/ color changer
 - [] obstacles pause on pause menu (and timertask)
-- [] dynamically add new objects
-  - [] stars
-  - [] obstacles
-  - [] color changer
-- [] update score
+- [x] dynamically add new objects
+  - [x] stars
+  - [x] obstacles
+  - [x] color changer
+- [x] update score
 - [] implement serializable
 - [] statistics !!
 - [] leaderboard !!
