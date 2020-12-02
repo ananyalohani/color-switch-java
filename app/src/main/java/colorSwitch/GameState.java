@@ -17,7 +17,7 @@ import javafx.util.Duration;
 public class GameState implements Serializable {
     private static final transient int DURATION = 3000;
     private static final transient int ANGLE = 360;
-    private static final transient int MAX_NUMBER = 15;
+    private static final transient int MAX_NUMBER = 5;
 
     private Ball ball;
     private Track gameTrack;
@@ -132,7 +132,7 @@ public class GameState implements Serializable {
             // Add new obstacle once screen moves half height
             if (shifted > sceneHalfHeight) {
                 shifted = 0;
-                gameTrack.addObstacle();
+                // gameTrack.addObstacle();
             }
 
             // If ball has reached halfway point, move track down
@@ -219,6 +219,7 @@ public class GameState implements Serializable {
             if((Paint.valueOf(color)).equals(prevColor) == false) break;
         }
         ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
+        gameTrack.addObstacle();
         Utils.deleteNode(colorChanger.getNode());
     }
 }
