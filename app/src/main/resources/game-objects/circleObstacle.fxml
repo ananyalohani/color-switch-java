@@ -4,23 +4,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.25" prefWidth="267.25" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="obs2" layoutX="-143.0" layoutY="-14.0" styleClass="animate-rotate">
+      <Group layoutX="-142.625" layoutY="21.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="267.25" layoutX="143.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="267.25" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="228.75" layoutX="153.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.75" x="9.0" y="9.0" />
-            <Group layoutX="276.375" layoutY="147.375">
+            <Group fx:id="obs2" layoutY="78.375" styleClass="animate-rotate">
                <children>
-                  <!-- MAGENTA -->
-                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="18.75" />
-                  <!-- TURQUOISE -->
-                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
-                  <!-- DARK BLUE -->
-                  <Arc fill="#00315200" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
-                  <!-- ORANGE -->
-                  <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="18.75" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="267.25" layoutX="143.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="267.25" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="228.75" layoutX="153.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.75" x="9.0" y="9.0" />
+                  <Group layoutX="276.0" layoutY="147.0">
+                     <children>
+                        <!-- MAGENTA -->
+                        <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="18.75" />
+                        <!-- TURQUOISE -->
+                        <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
+                        <!-- DARK BLUE -->
+                        <Arc fill="#00315200" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
+                        <!-- ORANGE -->
+                        <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="18.75" />
+                     </children>
+                  </Group>
+               </children>
+            </Group>
+            <Text boundsType="VISUAL" fill="WHITE" layoutX="255.0" layoutY="238.37353515625" strokeType="OUTSIDE" strokeWidth="0.0" text="★" wrappingWidth="40.484375">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Text>
+            <Group layoutX="124.625">
+               <children>
+                  <Arc fill="#ff1dce" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="#ff8300" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="#4d4df8" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="270.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="TURQUOISE" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="180.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
                </children>
             </Group>
          </children>

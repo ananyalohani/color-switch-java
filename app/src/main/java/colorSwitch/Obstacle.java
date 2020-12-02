@@ -20,12 +20,6 @@ public abstract class Obstacle extends GameObject {
 
     private static final transient double FIXED_GAP = 300;
     protected final double INITIAL_DURATION;
-    protected final double WIDTH;
-    protected final double HEIGHT;
-    protected final Point OFFSET;
-    protected final double SCENE_WIDTH = 500;
-    protected final double SCENE_HEIGHT = 800;
-    protected final double INITIAL_OFFSET_Y;
 
     protected ObstacleShape shape;
     protected Double velocity;
@@ -47,12 +41,14 @@ public abstract class Obstacle extends GameObject {
         return this.velocity;
     }
 
-    protected void positionSelf(Boolean positionCenter) {
+    public void positionSelf(Boolean positionCenter, Node obstacleContainer) {
         if (positionCenter) {
-            node.setLayoutX((SCENE_WIDTH - WIDTH) / 2 - OFFSET.getX());
+            obstacleContainer.setLayoutX(
+                (SCENE_WIDTH - WIDTH) / 2 - obstacleContainer.getBoundsInLocal().getMinX()
+            );
         }
 
-        node.setTranslateY(INITIAL_OFFSET_Y + lastObstacleY);
+        obstacleContainer.setTranslateY(INITIAL_OFFSET_Y + lastObstacleY);
         this.lastObstacleY -= FIXED_GAP + HEIGHT / 2;
     }
 
@@ -60,20 +56,9 @@ public abstract class Obstacle extends GameObject {
 
     public abstract void updateSpeed(int score);
 
-    public abstract Boolean isColliding(Ball ball);
-
     Obstacle(Node node, double duration) {
-        Bounds bounds = node.getBoundsInLocal();
-        Bounds absoluteBounds = Utils.getBounds(node);
-
-        this.node = node;
+        super(node);
         this.INITIAL_DURATION = duration;
-        this.WIDTH = bounds.getWidth();
-        this.HEIGHT = bounds.getHeight();
-        this.OFFSET = new Point(bounds.getMinX(), bounds.getMinY());
-        this.INITIAL_OFFSET_Y =
-            SCENE_HEIGHT / 2 - absoluteBounds.getMinY() - (absoluteBounds.getHeight() / 2) - 100;
-
         components = Utils.getComponents(this, ((Group) node).getChildren());
     }
 }
@@ -111,7 +96,7 @@ class CircleObstacle extends Obstacle {
 
     @Override
     public Boolean isColliding(Ball ball) {
-        Paint ballColor = ball.getNode().getFill();
+        Paint ballColor = ((Circle) ball.getNode()).getFill();
         Bounds ballBounds = Utils.getBounds(ball.getNode());
         Bounds outerBounds = Utils.getBounds(outerBoundingBox);
         Bounds innerBounds = Utils.getBounds(innerBoundingBox);
@@ -131,7 +116,6 @@ class CircleObstacle extends Obstacle {
     CircleObstacle(Node node) {
         super(node, 3000);
 
-        positionSelf(true);
 
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
@@ -172,7 +156,7 @@ class BarObstacle extends Obstacle {
 
         for (ObstacleComponent component : components) {
             if (Utils.intersects(ball.getNode(), component.getNode())) {
-                Paint ballColor = ball.getNode().getFill();
+                Paint ballColor = ((Circle) ball.getNode()).getFill();
                 Paint compColor = ((Rectangle) component.getNode()).getFill();
                 if (!ballColor.equals(compColor)) {
                     collision = true;
@@ -186,7 +170,6 @@ class BarObstacle extends Obstacle {
 
     BarObstacle(Node node) {
         super(node, 2000);
-        positionSelf(false);
     }
 }
 
@@ -221,7 +204,7 @@ class SquareObstacle extends Obstacle {
 
         for (ObstacleComponent component : components) {
             if (Utils.intersects(ball.getNode(), component.getNode())) {
-                Paint ballColor = ball.getNode().getFill();
+                Paint ballColor = ((Circle) ball.getNode()).getFill();
                 Paint compColor = ((Rectangle) component.getNode()).getFill();
                 if (!ballColor.equals(compColor)) {
                     collision = true;
@@ -235,7 +218,6 @@ class SquareObstacle extends Obstacle {
 
     SquareObstacle(Node node) {
         super(node, 1000);
-        positionSelf(true);
 
         this.timer = new Timer();
         this.rotationPivot = new Point(
@@ -288,7 +270,7 @@ class GearsObstacle extends Obstacle {
     @Override
     public Boolean isColliding(Ball ball) {
         if (Utils.intersects(ball.getNode(), criticalRegion)) {
-            Paint ballColor = ball.getNode().getFill();
+            Paint ballColor = ((Circle) ball.getNode()).getFill();
             return !ballColor.equals(middleColor);
         }
 
@@ -296,8 +278,7 @@ class GearsObstacle extends Obstacle {
     }
 
     GearsObstacle(Node node) {
-        super(node, 6000);
-        positionSelf(true);
+        super(node, 10000);
 
         this.criticalRegion = (Rectangle) components.get(0).getNode();
 
@@ -314,9 +295,10 @@ class GearsObstacle extends Obstacle {
     }
 }
 
-class ObstacleComponent extends GameObject {
+class ObstacleComponent {
     private Obstacle obstacle;
     private Paint color;
+    private Node node;
 
     public void setColor(Paint color) {
         this.color = color;
@@ -324,6 +306,14 @@ class ObstacleComponent extends GameObject {
 
     public Paint getColor() {
         return this.color;
+    }
+
+    public Node getNode() {
+        return this.node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
     }
 
     ObstacleComponent(Obstacle obstacle) {

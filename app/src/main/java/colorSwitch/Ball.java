@@ -1,4 +1,5 @@
 import javafx.scene.shape.Circle;
+import javafx.scene.Node;
 
 public class Ball extends GameObject {
     private static final transient int JUMP_SIZE = 100; // pixels
@@ -7,7 +8,6 @@ public class Ball extends GameObject {
     private static final transient double DOWNWARD_ACCN = Physics.acceleration(VELOCITY, JUMP_SIZE);
 
     private Color ballColor;
-    private Circle node;
 
     public Color getBallColor() {
         return this.ballColor;
@@ -17,18 +17,17 @@ public class Ball extends GameObject {
         this.ballColor = newColor;
     }
 
-    public Circle getNode() {
-        return this.node;
-    }
-
-    public void setNode(Circle node) {
-        this.node = node;
-    }
-
     public double move(double duration, double translateOffset) {
         double displacement = Physics.displacement(VELOCITY, duration, DOWNWARD_ACCN);
         double resolvedDisplacement = displacement - translateOffset;
         node.setTranslateY(-resolvedDisplacement > 0 ? 0 : -resolvedDisplacement);
         return resolvedDisplacement;
+    }
+
+    @Override
+    public Boolean isColliding(Ball ball) { return null; }
+
+    Ball(Node node) {
+        super(node);
     }
 }

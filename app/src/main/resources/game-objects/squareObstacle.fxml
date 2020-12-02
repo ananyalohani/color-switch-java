@@ -2,16 +2,36 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group layoutX="12.0" layoutY="-16.0">
+      <Group layoutX="-0.5" layoutY="-81.0">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="79.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" layoutX="-12.0" layoutY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-103.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="-12.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+            <Group layoutX="13.0" layoutY="182.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="79.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" layoutX="-12.0" layoutY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-103.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="-12.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+               </children>
+            </Group>
+            <Text boundsType="VISUAL" fill="WHITE" layoutX="80.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★" wrappingWidth="42.234375">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Text>
+            <Group layoutX="-50.0" layoutY="101.0">
+               <children>
+                  <Arc fill="#ff1dce" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="#ff8300" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="#4d4df8" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="270.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+                  <Arc fill="TURQUOISE" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" startAngle="180.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+               </children>
+            </Group>
          </children>
       </Group>
    </children>

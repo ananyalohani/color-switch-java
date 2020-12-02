@@ -18,7 +18,7 @@ public class GameplayController {
     private AnchorPane gameTrack;
 
     @FXML
-    private Circle ball, colorChanger;
+    private Circle ball;
 
     @FXML
     private Text scoreCount;
@@ -33,7 +33,7 @@ public class GameplayController {
 
     public void setup(Gameplay gameplay, GameState gameState) {
         this.gameplay = gameplay;
-        gameState.initNodes(gameTrack, ball, colorChanger, scoreCount);
+        gameState.initNodes(gameTrack, ball, scoreCount);
     }
 
     public GameplayController() {}
