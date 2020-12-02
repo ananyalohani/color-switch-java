@@ -16,6 +16,7 @@ import javafx.util.Duration;
 public class GameState implements Serializable {
     private static final transient int DURATION = 3000;
     private static final transient int ANGLE = 360;
+    private static final transient int MAX_NUMBER = 15;
 
     private Ball ball;
     private Track gameTrack;
@@ -144,7 +145,7 @@ public class GameState implements Serializable {
     }
 
     public void addObstacle(Obstacle obstacle) {
-        if (obstacles.size() > 3) {
+        if (obstacles.size() > MAX_NUMBER) {
             Obstacle oldestObstacle = obstacles.get(0);
             Group oldestObstacleContainer = (Group) oldestObstacle.getNode().getParent();
 
@@ -157,12 +158,12 @@ public class GameState implements Serializable {
     }
 
     public void addStar(Star star) {
-        if (stars.size() > 3) stars.remove(0);
+        if (stars.size() > MAX_NUMBER) stars.remove(0);
         stars.add(star);
     }
 
     public void addColorChanger(ColorChanger colorChanger) {
-        if (colorChangers.size() > 3) colorChangers.remove(0);
+        if (colorChangers.size() > MAX_NUMBER) colorChangers.remove(0);
         colorChangers.add(colorChanger);
     }
 
