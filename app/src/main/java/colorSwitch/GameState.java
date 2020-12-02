@@ -10,6 +10,7 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.paint.Paint;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
@@ -206,7 +207,18 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithColorChanger(ColorChanger colorChanger) {
-        // TODO
+        // ???? DOESN'T WORK SOMETIMES?
+        // ? Obstacle collision is detected even when the ball is the
+        // ? same color as obstacle component
+        String color;
+        Paint prevColor = ((Circle) ball.getNode()).getFill();
+        while(true) {
+            int randomIndex = (int) (Math.random() * 4);
+            color = Color.values()[randomIndex].colorCode;
+            // System.out.println(color);
+            if((Paint.valueOf(color)).equals(prevColor) == false) break;
+        }
+        ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
         Utils.deleteNode(colorChanger.getNode());
     }
 }
