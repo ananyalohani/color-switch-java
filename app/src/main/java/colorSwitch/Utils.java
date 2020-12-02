@@ -68,4 +68,8 @@ public class Utils {
         }
         return components;
     }
+
+    public static void deleteNode(Node node) {
+        ((Group) node.getParent()).getChildren().remove(node);
+    }
 }

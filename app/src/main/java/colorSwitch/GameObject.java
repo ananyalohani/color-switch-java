@@ -91,5 +91,6 @@ class ColorChanger extends GameObject {
 
     ColorChanger(Node node) {
         super(node);
+        Utils.rotate(node, 3000, 360);
     }
 }

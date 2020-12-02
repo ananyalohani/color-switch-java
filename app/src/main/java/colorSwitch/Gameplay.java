@@ -103,6 +103,11 @@ public class Gameplay implements IScene {
     }
 
     public void endGame() {
+        // Stop all transitions and timers
+        for (Obstacle obstacle : currentState.getObstacles()) {
+            obstacle.stop();
+        }
+
         endMenu.display();
     }
 }

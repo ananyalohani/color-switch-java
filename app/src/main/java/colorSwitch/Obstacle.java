@@ -18,27 +18,14 @@ public abstract class Obstacle extends GameObject {
 
     private static transient double lastObstacleY;
 
-    private static final transient double FIXED_GAP = 300;
+    private static final transient double FIXED_GAP = 400;
     protected final double INITIAL_DURATION;
 
     protected ObstacleShape shape;
-    protected Double velocity;
     protected ArrayList<ObstacleComponent> components;
 
     public static void setLastObstacleY(double val) {
         lastObstacleY = val;
-    }
-
-    public void calculateVelocity(Integer score) {
-
-    }
-
-    public void setVelocity(Double velocity) {
-        this.velocity = velocity;
-    }
-
-    protected Double getVelocity() {
-        return this.velocity;
     }
 
     public void positionSelf(Boolean positionCenter, Node obstacleContainer) {
@@ -55,6 +42,8 @@ public abstract class Obstacle extends GameObject {
     public abstract void move();
 
     public abstract void updateSpeed(int score);
+
+    public abstract void stop();
 
     Obstacle(Node node, double duration) {
         super(node);
@@ -113,9 +102,15 @@ class CircleObstacle extends Obstacle {
         return false;
     }
 
+    @Override
+    public void stop() {
+        quarterTimer.cancel();
+        quarterTimer.purge();
+        transition.stop();
+    }
+
     CircleObstacle(Node node) {
         super(node, 3000);
-
 
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
@@ -168,6 +163,11 @@ class BarObstacle extends Obstacle {
         return collision;
     }
 
+    @Override
+    public void stop() {
+        transition.stop();
+    }
+
     BarObstacle(Node node) {
         super(node, 2000);
     }
@@ -176,7 +176,7 @@ class BarObstacle extends Obstacle {
 class SquareObstacle extends Obstacle {
     private final int ANGLE = 90;
     private final Point rotationPivot;
-    private Timer timer;
+    private Timer quarterTimer;
 
     @Override
     public void move() {
@@ -189,7 +189,7 @@ class SquareObstacle extends Obstacle {
             }
         };
 
-        timer.scheduleAtFixedRate(discreteRotation, 0, (long) INITIAL_DURATION);
+        quarterTimer.scheduleAtFixedRate(discreteRotation, 0, (long) INITIAL_DURATION);
     }
 
     @Override
@@ -216,10 +216,16 @@ class SquareObstacle extends Obstacle {
         return collision;
     }
 
+    @Override
+    public void stop() {
+        quarterTimer.cancel();
+        quarterTimer.purge();
+    }
+
     SquareObstacle(Node node) {
         super(node, 1000);
 
-        this.timer = new Timer();
+        this.quarterTimer = new Timer();
         this.rotationPivot = new Point(
             WIDTH / 2 + OFFSET.getX(),
             WIDTH / 2 + OFFSET.getY()
@@ -275,6 +281,12 @@ class GearsObstacle extends Obstacle {
         }
 
         return false;
+    }
+
+    @Override
+    public void stop() {
+        quarterTimer.cancel();
+        quarterTimer.purge();
     }
 
     GearsObstacle(Node node) {

@@ -82,7 +82,6 @@ public class GameState implements Serializable {
     ) {
         ball = new Ball(ballNode);
         gameTrack = new Track(this, gameTrackNode);
-
         this.scoreCountNode = scoreCountNode;
     }
 
@@ -94,8 +93,17 @@ public class GameState implements Serializable {
         lastTapNs += System.nanoTime() - pausedNow;
     }
 
+    public ArrayList<Obstacle> getObstacles() {
+        return this.obstacles;
+    }
+
     public Integer getScore() {
         return this.score;
+    }
+
+    private void setScore(Integer delta) {
+        this.score += delta;
+        scoreCountNode.setText(score.toString());
     }
 
     public void setSavedState(Boolean newState) {
@@ -135,34 +143,26 @@ public class GameState implements Serializable {
         checkForCollision();
     }
 
-    private void setScore(Integer delta) {
-        this.score += delta;
-    }
-
     public void addObstacle(Obstacle obstacle) {
         if (obstacles.size() > 3) {
             Obstacle oldestObstacle = obstacles.get(0);
-            ((AnchorPane) gameTrack.getNode()).getChildren().remove(oldestObstacle.getNode());
+            Group oldestObstacleContainer = (Group) oldestObstacle.getNode().getParent();
+
+            oldestObstacle.stop();
+            ((AnchorPane) gameTrack.getNode()).getChildren().remove(oldestObstacleContainer);
+
             obstacles.remove(0);
         }
         obstacles.add(obstacle);
     }
 
     public void addStar(Star star) {
-        if (stars.size() > 3) {
-            Star oldestStar = stars.get(0);
-            ((AnchorPane) gameTrack.getNode()).getChildren().remove(oldestStar.getNode());
-            stars.remove(0);
-        }
+        if (stars.size() > 3) stars.remove(0);
         stars.add(star);
     }
 
     public void addColorChanger(ColorChanger colorChanger) {
-        if (colorChangers.size() > 3) {
-            ColorChanger oldestColorChanger = colorChangers.get(0);
-            ((AnchorPane) gameTrack.getNode()).getChildren().remove(oldestColorChanger.getNode());
-            colorChangers.remove(0);
-        }
+        if (colorChangers.size() > 3) colorChangers.remove(0);
         colorChangers.add(colorChanger);
     }
 
@@ -186,7 +186,7 @@ public class GameState implements Serializable {
         // Checking collisions with color changer
         for (ColorChanger colorChanger : colorChangers) {
             if (colorChanger.isColliding(ball)) {
-                collisionWithColorChanger();
+                collisionWithColorChanger(colorChanger);
                 return;
             }
         }
@@ -200,12 +200,12 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithStar(Star star) {
-        this.score += star.getValue();
-        ((Group) star.getNode().getParent()).getChildren().remove(star.getNode());
+        setScore(star.getValue());
+        Utils.deleteNode(star.getNode());
     }
 
-    private void collisionWithColorChanger() {
+    private void collisionWithColorChanger(ColorChanger colorChanger) {
         // TODO
-        
+        Utils.deleteNode(colorChanger.getNode());
     }
 }
