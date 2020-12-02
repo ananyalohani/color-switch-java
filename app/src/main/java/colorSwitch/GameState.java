@@ -33,8 +33,6 @@ public class GameState implements Serializable {
     private double translateHalfway;
     private double translateOffset;
     private double maxDisplacement;
-    private double shifted;
-    private double sceneHalfHeight;
     private Boolean hasEnded;
 
     // FXML Nodes
@@ -59,8 +57,7 @@ public class GameState implements Serializable {
         scene = gameplay.getScene();
 
         // Halfway point of frame w.r.t. ball y-tranlate
-        sceneHalfHeight = scene.getHeight() / 2;
-        translateHalfway = Utils.getAbsoluteY(ball.getNode()) - sceneHalfHeight;
+        translateHalfway = Utils.getAbsoluteY(ball.getNode()) - scene.getHeight() / 2;
         hasEnded = false;
 
         // Set spacebar key event handler
@@ -130,13 +127,6 @@ public class GameState implements Serializable {
         if (displacement > maxDisplacement) {
             double delta = displacement - maxDisplacement;
             maxDisplacement = displacement;
-            shifted += delta;
-
-            // Add new obstacle once screen moves half height
-            if (shifted > sceneHalfHeight) {
-                shifted = 0;
-                // gameTrack.addObstacle();
-            }
 
             // If ball has reached halfway point, move track down
             if (displacement > translateHalfway) {
@@ -198,10 +188,10 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithObstacle() {
-        // if (!hasEnded) {
-        //     hasEnded = true;
-        //     gameplay.endGame();
-        // }
+        if (!hasEnded) {
+            hasEnded = true;
+            gameplay.endGame();
+        }
     }
 
     private void collisionWithStar(Star star) {
