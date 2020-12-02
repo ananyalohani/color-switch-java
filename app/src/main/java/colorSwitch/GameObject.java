@@ -53,6 +53,8 @@ class Star extends GameObject {
     private Integer value;
     private Obstacle obstacle;
     private final Paint YELLOW = Color.web("#FFF873");
+    private static int starCount = 0;
+    private static int prevStarValue = 1;
 
     public Integer getValue() {
         return this.value;
@@ -63,6 +65,11 @@ class Star extends GameObject {
         node.setLayoutY(position.getY());
     }
 
+    public static void reset() {
+        starCount = 0;
+        prevStarValue = 1;
+    }
+
     @Override
     public Boolean isColliding(Ball ball) {
         return Utils.intersects(ball.getNode(), node);
@@ -71,13 +78,18 @@ class Star extends GameObject {
     Star(Node node) {
         super(node);
 
-        // Regular one-pointer star // 80% chance
-        if (Math.random() < 0.8) {
-            this.value = 1;
+        starCount++;
+
+        // 1 pointer star if:
+        // * one of the first five
+        // * it is the star after a three-pointer
+        // * 70% chance
+        if (starCount < 5 || prevStarValue == 3 || Math.random() < 0.7) {
+            this.value = prevStarValue = 1;
         }
-        // 3 pointer star // 20% chance
+        // 3 pointer star // 30% chance
         else {
-            this.value = 3;
+            this.value = prevStarValue = 3;
             ((Text) node).setFill(YELLOW);
         }
     }

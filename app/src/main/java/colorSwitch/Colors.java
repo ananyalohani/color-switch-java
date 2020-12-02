@@ -1,4 +1,4 @@
-public enum Color {
+public enum Colors {
     TURQUOISE("TURQUOISE"),
     MAGENTA("#ff1dce"),
     ORANGE("#ff8300"),
@@ -6,7 +6,7 @@ public enum Color {
 
     public final String colorCode;
 
-    private Color(String colorCode) {
+    private Colors(String colorCode) {
         this.colorCode = colorCode;
     }
 }

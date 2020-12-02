@@ -19,12 +19,12 @@
                      <children>
                         <!-- MAGENTA -->
                         <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="18.75" />
-                        <!-- TURQUOISE -->
-                        <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
-                        <!-- DARK BLUE -->
-                        <Arc fill="#00315200" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
                         <!-- ORANGE -->
                         <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="18.75" />
+                        <!-- DARK BLUE -->
+                        <Arc fill="#00315200" length="90.0" radiusX="123.75" radiusY="123.75" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="18.75" />
+                        <!-- TURQUOISE -->
+                        <Arc fill="#1f93ff00" length="90.0" radiusX="123.75" radiusY="123.75" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="18.75" />
                      </children>
                   </Group>
                </children>

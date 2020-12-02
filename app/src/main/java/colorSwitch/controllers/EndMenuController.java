@@ -23,6 +23,7 @@ public class EndMenuController {
 
     public void setup(EndMenu endMenu) {
         this.endMenu = endMenu;
+        endMenu.initNodes(scoreCount);
     }
 
     @FXML

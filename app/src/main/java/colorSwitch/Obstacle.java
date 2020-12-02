@@ -24,8 +24,8 @@ public abstract class Obstacle extends GameObject {
     protected ObstacleShape shape;
     protected ArrayList<ObstacleComponent> components;
 
-    public static void setLastObstacleY(double val) {
-        lastObstacleY = val;
+    public static void reset() {
+        lastObstacleY = 0;
     }
 
     public void positionSelf(Boolean positionCenter, Node obstacleContainer) {
@@ -63,6 +63,8 @@ class CircleObstacle extends Obstacle {
     private ArrayList<Paint> colors;
     private Paint topColor;
     private Paint bottomColor;
+    private int id;
+    private static int count = 0;
 
     @Override
     public void move() {
@@ -112,6 +114,7 @@ class CircleObstacle extends Obstacle {
     CircleObstacle(Node node) {
         super(node, 3000);
 
+        id = count++;
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
         this.ring = (Group) components.get(2).getNode();

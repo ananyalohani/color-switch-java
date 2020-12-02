@@ -20,6 +20,7 @@ public class PauseMenuController {
 
     public void setup(PauseMenu pauseMenu) {
         this.pauseMenu = pauseMenu;
+        pauseMenu.initNodes(scoreCount);
     }
 
     @FXML

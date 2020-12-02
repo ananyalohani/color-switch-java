@@ -2,10 +2,12 @@ import javafx.scene.*;
 import java.io.*;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EndMenu extends Menu {
     private Stage stage;
+    private Text scoreCountNode;
 
     @Override
     public void display() {
@@ -25,6 +27,8 @@ public class EndMenu extends Menu {
         } catch(IOException e) {
             e.printStackTrace();
         }
+
+        scoreCountNode.setText(game.getState().getScore().toString());
     }
 
     @Override
@@ -32,6 +36,10 @@ public class EndMenu extends Menu {
         StartMenu startMenu = new StartMenu(null);
         startMenu.setStage(stage);
         startMenu.display();
+    }
+
+    public void initNodes(Text scoreCountNode) {
+        this.scoreCountNode = scoreCountNode;
     }
 
     public void newGame() {

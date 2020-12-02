@@ -72,6 +72,9 @@ public class GameState implements Serializable {
             }
         });
 
+        Obstacle.reset();
+        Star.reset();
+
         // Set 2 new obstacles on start
         gameTrack.addObstacle();
         gameTrack.addObstacle();
@@ -195,10 +198,10 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithObstacle() {
-        if (!hasEnded) {
-            hasEnded = true;
-            gameplay.endGame();
-        }
+        // if (!hasEnded) {
+        //     hasEnded = true;
+        //     gameplay.endGame();
+        // }
     }
 
     private void collisionWithStar(Star star) {
@@ -207,16 +210,13 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithColorChanger(ColorChanger colorChanger) {
-        // ???? DOESN'T WORK SOMETIMES?
-        // ? Obstacle collision is detected even when the ball is the
-        // ? same color as obstacle component
         String color;
         Paint prevColor = ((Circle) ball.getNode()).getFill();
-        while(true) {
+        while (true) {
             int randomIndex = (int) (Math.random() * 4);
-            color = Color.values()[randomIndex].colorCode;
+            color = Colors.values()[randomIndex].colorCode;
             // System.out.println(color);
-            if((Paint.valueOf(color)).equals(prevColor) == false) break;
+            if (!Paint.valueOf(color).equals(prevColor)) break;
         }
         ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
         gameTrack.addObstacle();

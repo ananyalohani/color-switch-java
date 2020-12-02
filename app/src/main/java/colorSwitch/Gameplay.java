@@ -45,8 +45,6 @@ public class Gameplay implements IScene {
         pauseMenu = new PauseMenu(this);
         endMenu = new EndMenu(this);
 
-        Obstacle.setLastObstacleY(0);
-
         renderLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -58,7 +56,7 @@ public class Gameplay implements IScene {
     @Override
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.TEST));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.GAMEPLAY));
             scene = new Scene(loader.load());
             stage.setScene(scene);
             gpController = loader.getController();
@@ -67,6 +65,10 @@ public class Gameplay implements IScene {
         }
 
         currentState.setup();
+    }
+
+    public GameState getState() {
+        return this.currentState;
     }
 
     public Scene getScene() {

@@ -3,7 +3,6 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -15,31 +14,7 @@
          <children>
             <AnchorPane fx:id="gameTrack" prefHeight="800.0" prefWidth="500.0">
                <children>
-                  <Group fx:id="obs2" layoutX="-156.0" layoutY="143.0" scaleX="0.75" scaleY="0.75" styleClass="animate-rotate">
-                     <children>
-                        <Circle fill="#1f93ff00" layoutX="410.0" layoutY="281.0" radius="152.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" stroke="TURQUOISE" strokeLineCap="BUTT" strokeWidth="25.0" />
-                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="90.0" stroke="#ff1dce" strokeLineCap="BUTT" strokeWidth="25.0" />
-                        <Arc fill="#1f93ff00" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="180.0" stroke="#ff8300" strokeLineCap="BUTT" strokeWidth="25.0" />
-                        <Arc fill="#00315200" layoutX="410.0" layoutY="281.0" length="90.0" radiusX="165.0" radiusY="165.0" startAngle="270.0" stroke="#4d4df8" strokeLineCap="BUTT" strokeWidth="25.0" />
-                        <Text fill="WHITE" layoutX="391.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★">
-                           <font>
-                              <Font size="47.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Group>
-                  <Circle fx:id="ball" fill="#4d4df8" layoutX="254.0" layoutY="678.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Circle fx:id="colorChanger" fill="#ff1dce" layoutX="254.0" layoutY="207.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="color-changer" />
-                  <Group fx:id="obs1" layoutX="152.0" layoutY="-73.0">
-                     <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff8300" height="20.0" layoutX="106.0" layoutY="103.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="4.0" layoutY="209.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-103.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                        <Rectangle id="inside" fill="#117ed600" height="189.0" layoutX="7.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
-                     </children>
-                  </Group>
+                  <Circle fx:id="ball" fill="#4d4df8" layoutX="250.0" layoutY="677.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                </children>
             </AnchorPane>
             <Group layoutX="15.0" layoutY="38.0">
@@ -49,7 +24,7 @@
                         <Font name="Blissful Thinking" size="28.0" />
                      </font>
                   </Text>
-                  <Text fx:id="scoreCount" fill="WHITE" layoutX="31.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                  <Text fx:id="scoreCount" fill="WHITE" layoutX="-1.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="81.857421875">
                      <font>
                         <Font name="Menlo Regular" size="28.0" />
                      </font>
