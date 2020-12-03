@@ -16,6 +16,9 @@ import javafx.util.Duration;
 import javafx.geometry.Bounds;
 
 public class GameState implements Serializable {
+    private static final long serialVersionUID = 1;
+
+    // Constants
     private static final transient int DURATION = 3000;
     private static final transient int ANGLE = 360;
     private static final transient int MAX_NUMBER = 5;
@@ -37,8 +40,8 @@ public class GameState implements Serializable {
     private Boolean hasEnded;
 
     // FXML Nodes
-    private Text scoreCountNode;
-    private Scene scene;
+    private transient Text scoreCountNode;
+    private transient Scene scene;
 
     public GameState(Gameplay gameplay) {
         this.gameplay = gameplay;
@@ -71,12 +74,7 @@ public class GameState implements Serializable {
                 return;
             }
 
-            if (codeString.equals("P") && !gameplay.getPaused()) {
-                gameplay.pauseGame();
-                return;
-            }
-
-            if (codeString.equals("ENTER")) {
+            if (codeString.equals("P")) {
                 gameplay.pauseGame();
             }
         });

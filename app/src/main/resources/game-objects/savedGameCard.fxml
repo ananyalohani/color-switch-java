@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="183.0" prefWidth="456.0" style="-fx-background-color: #444; -fx-background-radius: 20;" styleClass="saved-game-card" stylesheets="@../css/savedGames.css">
+         <children>
+            <Text fx:id="gameName" layoutX="22.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAVEDGAME1" wrappingWidth="150.21630859375">
+               <font>
+                  <Font name="Blissful Thinking" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="date" layoutX="22.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DD/MM/YYYY" wrappingWidth="150.21630859375">
+               <font>
+                  <Font name="Blissful Thinking" size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="resumeBtn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 5;" text="RESUME" textFill="WHITE">
+               <font>
+                  <Font name="Blissful Thinking" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteBtn" layoutX="171.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #cd0909#cd0909 #cd0909#cd0909; -fx-background-radius: 5;" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="Blissful Thinking" size="18.0" />
+               </font>
+            </Button>
+            <Text layoutX="22.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE : " wrappingWidth="76.21630859375">
+               <font>
+                  <Font name="Blissful Thinking" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreCount" fill="#00e9ff" layoutX="97.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="score-count" text="0" wrappingWidth="33.21630859375">
+               <font>
+                  <Font name="Menlo Regular" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

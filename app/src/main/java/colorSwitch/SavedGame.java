@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import java.io.*;
 
 public class SavedGame implements Serializable {
+    private static final long serialVersionUID = 1;
+    
     private Integer id;
     private String label;
     private String gameStateFile;

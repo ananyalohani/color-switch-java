@@ -29,12 +29,12 @@
                      <children>
                         <AnchorPane prefHeight="183.0" prefWidth="456.0" style="-fx-background-color: #444; -fx-background-radius: 20;" styleClass="saved-game-card" stylesheets="@../css/savedGames.css">
                            <children>
-                              <Text layoutX="22.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAVEDGAME1" wrappingWidth="150.21630859375">
+                              <Text fx:id="gameName" layoutX="22.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAVEDGAME1" wrappingWidth="150.21630859375">
                                  <font>
                                     <Font name="Blissful Thinking" size="25.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="22.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20/11/2020" wrappingWidth="150.21630859375">
+                              <Text fx:id="date" layoutX="22.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20/11/2020" wrappingWidth="150.21630859375">
                                  <font>
                                     <Font name="Blissful Thinking" size="20.0" />
                                  </font>
@@ -54,7 +54,7 @@
                                     <Font name="Blissful Thinking" size="20.0" />
                                  </font>
                               </Text>
-                              <Text fill="#00e9ff" layoutX="97.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="score-count" text="16" wrappingWidth="33.21630859375">
+                              <Text fx:id="scoreCount" fill="#00e9ff" layoutX="97.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="score-count" text="16" wrappingWidth="33.21630859375">
                                  <font>
                                     <Font name="Menlo Regular" size="20.0" />
                                  </font>

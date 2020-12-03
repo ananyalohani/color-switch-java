@@ -11,8 +11,10 @@ import javafx.scene.Scene;
 import java.util.*;
 
 public abstract class GameObject implements Serializable {
+    private static final long serialVersionUID = 1;
+
     protected Point position;
-    protected Node node;
+    protected transient Node node;
     protected final double WIDTH;
     protected final double HEIGHT;
     protected final Point OFFSET;
@@ -52,7 +54,7 @@ public abstract class GameObject implements Serializable {
 class Star extends GameObject {
     private Integer value;
     private Obstacle obstacle;
-    private final Paint YELLOW = Color.web("#FFF873");
+    private final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
     private static int starCount = 0;
     private static int prevStarValue = 1;
 

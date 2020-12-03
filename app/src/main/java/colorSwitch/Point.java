@@ -1,4 +1,8 @@
-public class Point {
+import java.io.*;
+
+public class Point implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private Double x;
     private Double y;
 
