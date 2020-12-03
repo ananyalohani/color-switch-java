@@ -20,12 +20,12 @@
                   <Font name="Blissful Thinking" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="resumeBtn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #30bf4d#30bf4d; -fx-background-radius: 5;" text="RESUME" textFill="WHITE">
+            <Button fx:id="resumeBtn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #30bf4d; -fx-background-radius: 5;" text="RESUME" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="deleteBtn" layoutX="171.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #cd0909#cd0909 #cd0909#cd0909; -fx-background-radius: 5;" text="DELETE" textFill="WHITE">
+            <Button fx:id="deleteBtn" layoutX="171.0" layoutY="125.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #cd0909; -fx-background-radius: 5;" text="DELETE" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="18.0" />
                </font>

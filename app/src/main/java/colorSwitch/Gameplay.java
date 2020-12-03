@@ -13,8 +13,7 @@ import javafx.util.Duration;
 
 public class Gameplay implements IScene {
     // Constants
-    private static final int FPS = 60;
-    private static final long FPS_NS_PERIOD = 1_000_000_000 / FPS;
+    private static transient Integer count = 1;
 
     // State and variables
     private boolean paused = false;
@@ -31,6 +30,7 @@ public class Gameplay implements IScene {
     public Gameplay(SavedGame savedGame, Stage stage) {
         commonSetup(stage);
         // DO GAMESTATE THING HERE
+        deserialize(savedGame.getGameStateFile());
     }
 
     public Gameplay(Stage stage) {
@@ -101,6 +101,9 @@ public class Gameplay implements IScene {
     }
 
     public void saveGame() {
+        String label = "Game " + count.toString();
+        count++;
+        SavedGame savedGame = new SavedGame(currentState, label);
 
     }
 
@@ -111,5 +114,25 @@ public class Gameplay implements IScene {
         }
 
         endMenu.display();
+    }
+
+    public void serialize() throws IOException {
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("file"));
+            out.writeObject(currentState);
+        } finally {
+            out.close();
+        }
+    }
+
+    public void deserialize(String filename) throws IOException {
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream(filename));
+            currentState = (GameState) in.readObject();
+        } finally {
+            in.close();
+        }
     }
 }

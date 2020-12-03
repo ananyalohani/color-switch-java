@@ -6,6 +6,7 @@ public class FXMLs {
         public static final String GAMEPLAY = "scenes/gameplay.fxml";
         public static final String LEADERBOARD = "scenes/leaderboard.fxml";
         public static final String SAVED_GAMES = "scenes/savedGames.fxml";
+        public static final String GAME_CARD = "scenes/savedGameCard.fxml";
     }
 
     class Obstacle {

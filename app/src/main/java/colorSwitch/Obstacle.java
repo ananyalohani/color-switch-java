@@ -66,18 +66,16 @@ public abstract class Obstacle extends GameObject {
 }
 
 class CircleObstacle extends Obstacle {
-    private final int ANGLE = 360;
-    transient RotateTransition transition; // ?
+    private transient final int ANGLE = 360;
+    private transient RotateTransition transition; // ?
     private transient Rectangle outerBoundingBox;
     private transient Rectangle innerBoundingBox;
     private transient Group ring;
     private transient Timer quarterTimer;
     private transient int timerCount = 0;
-    private ArrayList<Paint> colors; // ?
-    private Paint topColor; // ?
-    private Paint bottomColor; // ?
-    private int id;
-    private static int count = 0;
+    private transient ArrayList<Paint> colors; // ?
+    private transient Paint topColor; // ?
+    private transient Paint bottomColor; // ?
 
     private TimerTask getTimerTask() {
         return new TimerTask() {
@@ -164,8 +162,8 @@ class CircleObstacle extends Obstacle {
 }
 
 class BarObstacle extends Obstacle {
-    private final double TRANSITION_BY_X = -500;
-    transient TranslateTransition transition; // ?
+    private transient final double TRANSITION_BY_X = -500;
+    private transient TranslateTransition transition;
 
     @Override
     public void move() {
@@ -222,9 +220,9 @@ class BarObstacle extends Obstacle {
 }
 
 class SquareObstacle extends Obstacle {
-    private final int ANGLE = 90;
-    private final Point rotationPivot;
-    private transient Timer quarterTimer; // ?
+    private transient final int ANGLE = 90;
+    private transient final Point rotationPivot;
+    private transient Timer quarterTimer;
 
     private TimerTask getTimerTask() {
         return new TimerTask() {
@@ -297,12 +295,12 @@ class SquareObstacle extends Obstacle {
 }
 
 class GearsObstacle extends Obstacle {
-    private final int ANGLE = 360;
-    transient RotateTransition transitionLeft, transitionRight; // ?
-    private transient Timer quarterTimer; // ?
-    private int timerCount = 0;
-    private transient ArrayList<Paint> colors; // ?
-    private transient Paint middleColor; // ?
+    private transient final int ANGLE = 360;
+    private transient RotateTransition transitionLeft, transitionRight;
+    private transient Timer quarterTimer;
+    private transient int timerCount = 0;
+    private transient ArrayList<Paint> colors;
+    private transient Paint middleColor;
     private transient Rectangle criticalRegion;
     private transient Group leftGear, rightGear;
 
@@ -396,7 +394,7 @@ class GearsObstacle extends Obstacle {
 
 class ObstacleComponent {
     private Obstacle obstacle;
-    private transient Paint color; // ?
+    private transient Paint color;
     private transient Node node;
 
     public void setColor(Paint color) {
