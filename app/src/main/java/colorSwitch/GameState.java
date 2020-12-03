@@ -63,9 +63,15 @@ public class GameState implements Serializable {
         // Set spacebar key event handler
         scene.setOnKeyPressed(event -> {
             String codeString = event.getCode().toString();
+
             if (codeString.equals("SPACE") && !gameplay.getPaused()) {
                 lastTapNs = System.nanoTime();
                 translateOffset = ball.getNode().getTranslateY();
+                return;
+            }
+
+            if (codeString.equals("ENTER")) {
+                gameplay.pauseGame();
             }
         });
 
@@ -209,6 +215,7 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithColorChanger(ColorChanger colorChanger) {
+        // Change the color of the ball
         String color;
         Paint prevColor = ((Circle) ball.getNode()).getFill();
         while (true) {
@@ -218,7 +225,11 @@ public class GameState implements Serializable {
             if (!Paint.valueOf(color).equals(prevColor)) break;
         }
         ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
-        gameTrack.addObstacle();
+
+        // Delete the colorChanger node
         Utils.deleteNode(colorChanger.getNode());
+
+        // Add a new obstacle to the track
+        gameTrack.addObstacle();
     }
 }

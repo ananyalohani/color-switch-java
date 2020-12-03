@@ -19,13 +19,18 @@ public abstract class Obstacle extends GameObject {
     private static transient double lastObstacleY;
 
     private static final transient double FIXED_GAP = 400;
-    protected final double INITIAL_DURATION;
+    protected final double INITIAL_PERIOD;
+    protected double lastTaskNs;
+    protected double expectedNextTaskNs;
 
     protected ObstacleShape shape;
     protected ArrayList<ObstacleComponent> components;
+    protected int count = 0;
 
-    protected long getDelay(double period, double pausedNow, double lastTaskRunNs) {
-        return (long) (period * 1_000_000 - (pausedNow - lastTaskRunNs)) / 1_000_000;
+    protected long getDelay(double period, double pausedNs) {
+        double delay = period * 1_000_000 - (pausedNs - lastTaskNs);
+        while (delay < 0) delay += period * 1_000_000;
+        return (long) delay / 1_000_000;
     }
 
     public static void reset() {
@@ -51,11 +56,11 @@ public abstract class Obstacle extends GameObject {
 
     public abstract void pause();
 
-    public abstract void play(double pausedNow);
+    public abstract void play(double pausedNs);
 
     Obstacle(Node node, double duration) {
         super(node);
-        this.INITIAL_DURATION = duration;
+        this.INITIAL_PERIOD = duration;
         components = Utils.getComponents(this, ((Group) node).getChildren());
     }
 }
@@ -73,7 +78,6 @@ class CircleObstacle extends Obstacle {
     private Paint bottomColor;
     private int id;
     private static int count = 0;
-    private double lastTaskRunNs;
 
     private TimerTask getTimerTask() {
         return new TimerTask() {
@@ -81,15 +85,16 @@ class CircleObstacle extends Obstacle {
             public void run() {
                 topColor = colors.get(timerCount % 4);
                 bottomColor = colors.get((2 + timerCount++) % 4);
-                lastTaskRunNs = System.nanoTime();
+                lastTaskNs = System.nanoTime();
             }
         };
     }
 
     @Override
     public void move() {
-        transition = Utils.rotate(ring, (int) INITIAL_DURATION, ANGLE);
-        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (int) INITIAL_DURATION / 4);
+        transition = Utils.rotate(ring, (int) INITIAL_PERIOD, ANGLE);
+        expectedNextTaskNs = System.nanoTime() + (INITIAL_PERIOD / 4) * 1_000_000;
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (int) INITIAL_PERIOD / 4);
     }
 
     @Override
@@ -99,15 +104,15 @@ class CircleObstacle extends Obstacle {
     }
 
     @Override
-    public void play(double pausedNow) {
+    public void play(double pausedNs) {
         // After a timer is paused, we must initiate new timer and timertask
         quarterTimer = new Timer();
         transition.play(); // Play the transition
 
         // Calculate the delay
-        long delay = getDelay(INITIAL_DURATION / 4, pausedNow, lastTaskRunNs);
+        long delay = getDelay(INITIAL_PERIOD / 4, pausedNs);
         // Scehdule that timer again with that delay
-        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_DURATION / 4);
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_PERIOD / 4);
     }
 
     @Override
@@ -164,7 +169,7 @@ class BarObstacle extends Obstacle {
 
     @Override
     public void move() {
-        transition = new TranslateTransition(Duration.millis(INITIAL_DURATION), node);
+        transition = new TranslateTransition(Duration.millis(INITIAL_PERIOD), node);
         transition.setByX(TRANSITION_BY_X);
         transition.setInterpolator(Interpolator.LINEAR);
         transition.setCycleCount(Animation.INDEFINITE);
@@ -178,7 +183,7 @@ class BarObstacle extends Obstacle {
     }
 
     @Override
-    public void play(double pausedNow) {
+    public void play(double pausedNs) {
         transition.play();
     }
 
@@ -220,7 +225,6 @@ class SquareObstacle extends Obstacle {
     private final int ANGLE = 90;
     private final Point rotationPivot;
     private Timer quarterTimer;
-    private double lastTaskRunNs;
 
     private TimerTask getTimerTask() {
         return new TimerTask() {
@@ -229,14 +233,14 @@ class SquareObstacle extends Obstacle {
             @Override
             public void run() {
                 node.getTransforms().add(rotation);
-                lastTaskRunNs = System.nanoTime();
+                lastTaskNs = System.nanoTime();
             }
         };
     }
 
     @Override
     public void move() {
-        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (long) INITIAL_DURATION);
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (long) INITIAL_PERIOD);
     }
 
     @Override
@@ -245,10 +249,10 @@ class SquareObstacle extends Obstacle {
     }
 
     @Override
-    public void play(double pausedNow) {
-        long delay = getDelay(INITIAL_DURATION, pausedNow, lastTaskRunNs);
+    public void play(double pausedNs) {
+        long delay = getDelay(INITIAL_PERIOD, pausedNs);
         quarterTimer = new Timer();
-        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_DURATION);
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_PERIOD);
     }
 
     @Override
@@ -301,13 +305,12 @@ class GearsObstacle extends Obstacle {
     private Paint middleColor;
     private Rectangle criticalRegion;
     private Group leftGear, rightGear;
-    private double lastTaskRunNs;
 
     private TimerTask getMiddleColorTimerTask() {
         return new TimerTask() {
             @Override
             public void run() {
-                lastTaskRunNs = System.nanoTime();
+                lastTaskNs = System.nanoTime();
                 middleColor = colors.get(timerCount++ % 4);
             }
         };
@@ -324,13 +327,13 @@ class GearsObstacle extends Obstacle {
 
     @Override
     public void move() {
-        transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, ANGLE);
-        transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, -ANGLE);
+        transitionLeft = Utils.rotate(leftGear, (int) INITIAL_PERIOD, ANGLE);
+        transitionRight = Utils.rotate(rightGear, (int) INITIAL_PERIOD, -ANGLE);
 
         quarterTimer.scheduleAtFixedRate(
-            getMiddleColorTimerTask(), 0, (long) INITIAL_DURATION / 4);
+            getMiddleColorTimerTask(), 0, (long) INITIAL_PERIOD / 4);
         quarterTimer.scheduleAtFixedRate(
-            getNullerTimerTask(), (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
+            getNullerTimerTask(), (long) INITIAL_PERIOD / 18, (long) INITIAL_PERIOD / 4);
     }
 
     @Override
@@ -341,16 +344,16 @@ class GearsObstacle extends Obstacle {
     }
 
     @Override
-    public void play(double pausedNow) {
+    public void play(double pausedNs) {
         transitionLeft.play();
         transitionRight.play();
 
-        long delay = getDelay(INITIAL_DURATION / 4, pausedNow, lastTaskRunNs);
+        long delay = getDelay(INITIAL_PERIOD / 4, pausedNs);
         quarterTimer = new Timer();
         quarterTimer.scheduleAtFixedRate(
-            getMiddleColorTimerTask(), delay, (long) INITIAL_DURATION / 4);
+            getMiddleColorTimerTask(), delay, (long) INITIAL_PERIOD / 4);
         quarterTimer.scheduleAtFixedRate(
-            getNullerTimerTask(), delay + (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
+            getNullerTimerTask(), delay + (long) INITIAL_PERIOD / 18, (long) INITIAL_PERIOD / 4);
     }
 
     @Override
