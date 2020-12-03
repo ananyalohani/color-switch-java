@@ -24,6 +24,10 @@ public abstract class Obstacle extends GameObject {
     protected ObstacleShape shape;
     protected ArrayList<ObstacleComponent> components;
 
+    protected long getDelay(double period, double pausedNow, double lastTaskRunNs) {
+        return (long) (period * 1_000_000 - (pausedNow - lastTaskRunNs)) / 1_000_000;
+    }
+
     public static void reset() {
         lastObstacleY = 0;
     }
@@ -45,6 +49,10 @@ public abstract class Obstacle extends GameObject {
 
     public abstract void stop();
 
+    public abstract void pause();
+
+    public abstract void play(double pausedNow);
+
     Obstacle(Node node, double duration) {
         super(node);
         this.INITIAL_DURATION = duration;
@@ -65,18 +73,41 @@ class CircleObstacle extends Obstacle {
     private Paint bottomColor;
     private int id;
     private static int count = 0;
+    private double lastTaskRunNs;
 
-    @Override
-    public void move() {
-        transition = Utils.rotate(ring, (int) INITIAL_DURATION, ANGLE);
-        TimerTask changeTopColor = new TimerTask() {
+    private TimerTask getTimerTask() {
+        return new TimerTask() {
             @Override
             public void run() {
                 topColor = colors.get(timerCount % 4);
                 bottomColor = colors.get((2 + timerCount++) % 4);
+                lastTaskRunNs = System.nanoTime();
             }
         };
-        quarterTimer.scheduleAtFixedRate(changeTopColor, 0, (int) INITIAL_DURATION / 4);
+    }
+
+    @Override
+    public void move() {
+        transition = Utils.rotate(ring, (int) INITIAL_DURATION, ANGLE);
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (int) INITIAL_DURATION / 4);
+    }
+
+    @Override
+    public void pause() {
+        transition.pause();
+        quarterTimer.cancel();
+    }
+
+    @Override
+    public void play(double pausedNow) {
+        // After a timer is paused, we must initiate new timer and timertask
+        quarterTimer = new Timer();
+        transition.play(); // Play the transition
+
+        // Calculate the delay
+        long delay = getDelay(INITIAL_DURATION / 4, pausedNow, lastTaskRunNs);
+        // Scehdule that timer again with that delay
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_DURATION / 4);
     }
 
     @Override
@@ -107,7 +138,6 @@ class CircleObstacle extends Obstacle {
     @Override
     public void stop() {
         quarterTimer.cancel();
-        quarterTimer.purge();
         transition.stop();
     }
 
@@ -139,6 +169,16 @@ class BarObstacle extends Obstacle {
         transition.setInterpolator(Interpolator.LINEAR);
         transition.setCycleCount(Animation.INDEFINITE);
         transition.setAutoReverse(true);
+        transition.play();
+    }
+
+    @Override
+    public void pause() {
+        transition.pause();
+    }
+
+    @Override
+    public void play(double pausedNow) {
         transition.play();
     }
 
@@ -180,19 +220,35 @@ class SquareObstacle extends Obstacle {
     private final int ANGLE = 90;
     private final Point rotationPivot;
     private Timer quarterTimer;
+    private double lastTaskRunNs;
 
-    @Override
-    public void move() {
-        Rotate rotation = new Rotate(ANGLE, rotationPivot.getX(), rotationPivot.getY());
+    private TimerTask getTimerTask() {
+        return new TimerTask() {
+            Rotate rotation = new Rotate(ANGLE, rotationPivot.getX(), rotationPivot.getY());
 
-        TimerTask discreteRotation = new TimerTask() {
             @Override
             public void run() {
                 node.getTransforms().add(rotation);
+                lastTaskRunNs = System.nanoTime();
             }
         };
+    }
 
-        quarterTimer.scheduleAtFixedRate(discreteRotation, 0, (long) INITIAL_DURATION);
+    @Override
+    public void move() {
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), 0, (long) INITIAL_DURATION);
+    }
+
+    @Override
+    public void pause() {
+        quarterTimer.cancel();
+    }
+
+    @Override
+    public void play(double pausedNow) {
+        long delay = getDelay(INITIAL_DURATION, pausedNow, lastTaskRunNs);
+        quarterTimer = new Timer();
+        quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_DURATION);
     }
 
     @Override
@@ -222,17 +278,17 @@ class SquareObstacle extends Obstacle {
     @Override
     public void stop() {
         quarterTimer.cancel();
-        quarterTimer.purge();
     }
 
     SquareObstacle(Node node) {
         super(node, 1000);
 
-        this.quarterTimer = new Timer();
         this.rotationPivot = new Point(
             WIDTH / 2 + OFFSET.getX(),
             WIDTH / 2 + OFFSET.getY()
         );
+
+        this.quarterTimer = new Timer();
     }
 }
 
@@ -245,30 +301,56 @@ class GearsObstacle extends Obstacle {
     private Paint middleColor;
     private Rectangle criticalRegion;
     private Group leftGear, rightGear;
+    private double lastTaskRunNs;
+
+    private TimerTask getMiddleColorTimerTask() {
+        return new TimerTask() {
+            @Override
+            public void run() {
+                lastTaskRunNs = System.nanoTime();
+                middleColor = colors.get(timerCount++ % 4);
+            }
+        };
+    }
+
+    private TimerTask getNullerTimerTask() {
+        return new TimerTask() {
+            @Override
+            public void run() {
+                middleColor = null;
+            }
+        };
+    }
 
     @Override
     public void move() {
         transitionLeft = Utils.rotate(leftGear, (int) INITIAL_DURATION, ANGLE);
         transitionRight = Utils.rotate(rightGear, (int) INITIAL_DURATION, -ANGLE);
 
-        TimerTask changeMiddleColor = new TimerTask() {
-            @Override
-            public void run() {
-                middleColor = colors.get(timerCount++ % 4);
-            }
-        };
-
-        TimerTask changeColorToNull = new TimerTask() {
-            @Override
-            public void run() {
-                middleColor = null;
-            }
-        };
-
         quarterTimer.scheduleAtFixedRate(
-            changeMiddleColor, 0, (long) INITIAL_DURATION / 4);
+            getMiddleColorTimerTask(), 0, (long) INITIAL_DURATION / 4);
         quarterTimer.scheduleAtFixedRate(
-            changeColorToNull, (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
+            getNullerTimerTask(), (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
+    }
+
+    @Override
+    public void pause() {
+        transitionLeft.pause();
+        transitionRight.pause();
+        quarterTimer.cancel();
+    }
+
+    @Override
+    public void play(double pausedNow) {
+        transitionLeft.play();
+        transitionRight.play();
+
+        long delay = getDelay(INITIAL_DURATION / 4, pausedNow, lastTaskRunNs);
+        quarterTimer = new Timer();
+        quarterTimer.scheduleAtFixedRate(
+            getMiddleColorTimerTask(), delay, (long) INITIAL_DURATION / 4);
+        quarterTimer.scheduleAtFixedRate(
+            getNullerTimerTask(), delay + (long) INITIAL_DURATION / 18, (long) INITIAL_DURATION / 4);
     }
 
     @Override
@@ -289,7 +371,6 @@ class GearsObstacle extends Obstacle {
     @Override
     public void stop() {
         quarterTimer.cancel();
-        quarterTimer.purge();
     }
 
     GearsObstacle(Node node) {

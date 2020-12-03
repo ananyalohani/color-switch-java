@@ -44,7 +44,7 @@ public class PauseMenu extends Menu {
 
     public void resumeGame() {
         stage.setScene(game.getScene());
-        game.playGame();
+        game.playGame(false);
     }
 
     public void saveGame() {

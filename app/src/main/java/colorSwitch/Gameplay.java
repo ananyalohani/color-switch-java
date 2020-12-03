@@ -87,10 +87,10 @@ public class Gameplay implements IScene {
         return this.paused;
     }
 
-    public void playGame() {
+    public void playGame(Boolean initialPlay) {
         paused = false;
         renderLoop.start();
-        currentState.playState();
+        currentState.playState(initialPlay);
     }
 
     public void pauseGame() {

@@ -24,7 +24,6 @@ public class Track extends GameObject {
     public void addObstacle() {
         // Get a random index and associated obstacle file
         int randomIndex = (int) (Math.random() * 4);
-        // int randomIndex = 0;
         String file = Obstacle.OBSTACLES[randomIndex];
 
         // Load that obstacle container containing the

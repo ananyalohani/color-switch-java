@@ -89,10 +89,19 @@ public class GameState implements Serializable {
 
     public void pauseState() {
         pausedNow = System.nanoTime();
+        for (Obstacle obstacle : obstacles) {
+            obstacle.pause();
+        }
     }
 
-    public void playState() {
-        lastTapNs += System.nanoTime() - pausedNow;
+    public void playState(Boolean initialPlay) {
+        double pauseDuration = System.nanoTime() - pausedNow;
+        lastTapNs += pauseDuration;
+        if (!initialPlay) {
+            for (Obstacle obstacle : obstacles) {
+                obstacle.play(pausedNow);
+            }
+        }
     }
 
     public ArrayList<Obstacle> getObstacles() {
