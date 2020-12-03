@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.paint.Paint;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
+import javafx.geometry.Bounds;
 
 public class GameState implements Serializable {
     private static final transient int DURATION = 3000;
@@ -132,6 +133,8 @@ public class GameState implements Serializable {
     }
 
     public void updateState(double now) {
+        if (hasEnded) return;
+
         // Calculate state vars
         double duration = (double) (now - lastTapNs) / 1_000_000_000;
 
@@ -205,7 +208,11 @@ public class GameState implements Serializable {
     private void collisionWithObstacle() {
         if (!hasEnded) {
             hasEnded = true;
-            gameplay.endGame();
+            ((AnchorPane) gameTrack.getNode()).getChildren().remove(ball.getNode());
+
+            ParallelTransition explosionsTransitions = explosion();
+            explosionsTransitions.setOnFinished(e -> { gameplay.endGame(); });
+            explosionsTransitions.play();
         }
     }
 
@@ -231,5 +238,46 @@ public class GameState implements Serializable {
 
         // Add a new obstacle to the track
         gameTrack.addObstacle();
+    }
+
+    private ParallelTransition explosion() {
+        Bounds ballBounds = Utils.getBounds(ball.getNode());
+        Point origin = new Point(
+            ballBounds.getMinX() + ballBounds.getWidth() / 2,
+            ballBounds.getMinY() + ballBounds.getHeight() / 2
+        );
+
+        ParallelTransition transitions = new ParallelTransition();
+
+        for (int i = 0; i < 50; i++) {
+            double radius = 2 + Math.random() * 5;
+            Circle dot = new Circle(
+                250,
+                origin.getY(),
+                radius,
+                Paint.valueOf(
+                    Colors.values()[(int) (Math.random() * 4)].colorCode
+                )
+            );
+            dot.setOpacity(0.5 + Math.random() * 0.5);
+
+            ((AnchorPane) gameTrack.getNode()).getChildren().add(dot);
+
+            TranslateTransition transition = new TranslateTransition(
+                Duration.millis(100 + Math.random() * 600), dot
+            );
+            transition.setToX(-250 + Math.random() * 500);
+            transition.setToY(-400 + Math.random() * 800);
+            transition.setInterpolator(Interpolator.EASE_OUT);
+
+            transitions.getChildren().add(
+                new SequentialTransition(
+                    new PauseTransition(Duration.millis((int) (Math.random() * 400))),
+                    transition
+                )
+            );
+        }
+
+        return transitions;
     }
 }

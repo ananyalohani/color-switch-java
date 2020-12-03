@@ -4,7 +4,7 @@ import javafx.scene.paint.Paint;
 
 public class Ball extends GameObject {
     private static final transient int JUMP_SIZE = 100; // pixels
-    private static final transient int JUMP_DURATION = 200; // milliseconds
+    private static final transient int JUMP_DURATION = 175; // milliseconds
     private static final transient double VELOCITY = Physics.velocity(JUMP_SIZE, JUMP_DURATION);
     private static final transient double DOWNWARD_ACCN = Physics.acceleration(VELOCITY, JUMP_SIZE);
 
