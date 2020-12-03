@@ -71,6 +71,11 @@ public class GameState implements Serializable {
                 return;
             }
 
+            if (codeString.equals("P") && !gameplay.getPaused()) {
+                gameplay.pauseGame();
+                return;
+            }
+
             if (codeString.equals("ENTER")) {
                 gameplay.pauseGame();
             }
