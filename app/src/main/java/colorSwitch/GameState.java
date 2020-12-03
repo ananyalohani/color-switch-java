@@ -222,11 +222,15 @@ public class GameState implements Serializable {
     }
 
     private void collisionWithStar(Star star) {
+        stars.remove(0);
         setScore(star.getValue());
         Utils.deleteNode(star.getNode());
     }
 
     private void collisionWithColorChanger(ColorChanger colorChanger) {
+        // Remove color changer from the arraylist
+        colorChangers.remove(0);
+
         // Change the color of the ball
         String color;
         Paint prevColor = ((Circle) ball.getNode()).getFill();
