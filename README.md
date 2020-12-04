@@ -36,6 +36,6 @@ The JAR files can be found in `app/build/libs/` directory.
 - [ ] implement serializable
 - [ ] statistics !!
 - [x] help scene !!
-- [ ] settings scene !!
-  - [ ] turn music on/off (if dark/light mode)
+- [x] settings scene !!
+  - [x] turn music on/off (if dark/light mode)
 - [ ] adding music/sound (that old banger) !!
