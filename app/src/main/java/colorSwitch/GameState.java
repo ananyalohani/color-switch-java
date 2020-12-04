@@ -213,9 +213,9 @@ public class GameState implements Serializable {
             hasEnded = true;
             ((AnchorPane) gameTrack.getNode()).getChildren().remove(ball.getNode());
 
-            ParallelTransition explosionsTransitions = explosion();
-            explosionsTransitions.setOnFinished(e -> { gameplay.endGame(); });
-            explosionsTransitions.play();
+            ParallelTransition endGameTransitions = getTransitions();
+            endGameTransitions.setOnFinished(e -> { gameplay.endGame(); });
+            endGameTransitions.play();
         }
     }
 
@@ -247,14 +247,20 @@ public class GameState implements Serializable {
         gameTrack.addObstacle();
     }
 
-    private ParallelTransition explosion() {
+    private ParallelTransition getTransitions() {
+        ParallelTransition transitions = new ParallelTransition();
+
+        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(700),
+            ((AnchorPane) gameTrack.getNode().getParent()));
+        fadeToBlack.setToValue(0);
+        transitions.getChildren().add(fadeToBlack);
+
+        // Particle explosion
         Bounds ballBounds = Utils.getBounds(ball.getNode());
         Point origin = new Point(
             ballBounds.getMinX() + ballBounds.getWidth() / 2,
             ballBounds.getMinY() + ballBounds.getHeight() / 2
         );
-
-        ParallelTransition transitions = new ParallelTransition();
 
         for (int i = 0; i < 50; i++) {
             double radius = 2 + Math.random() * 5;
