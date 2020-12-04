@@ -51,6 +51,10 @@ public class StartMenu extends Menu {
         this.stage = stage;
     }
 
+    public Stage getStage() {
+        return this.stage;
+    }
+
     StartMenu(ColorSwitch game) {
         super(null);
         this.mainGame = game;

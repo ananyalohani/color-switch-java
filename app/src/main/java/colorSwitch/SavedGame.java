@@ -1,9 +1,13 @@
-import java.util.Date;
 import javafx.scene.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.*;
 import java.time.*;
+import java.util.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.collections.*;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.text.Text;
 
 public class SavedGame implements Serializable {
     private static final long serialVersionUID = 1;
@@ -69,7 +73,7 @@ class SavedGamesScene implements IScene {
         AnchorPane savedGameCard = (AnchorPane) Utils.loadObject(FXMLs.Scene.GAME_CARD);
         ObservableList<Node> children = savedGameCard.getChildren();
         ((Text) children.get(0)).setText(savedGame.getLabel());
-        ((Text) children.get(1)).setText(LocalDate.now());
+        ((Text) children.get(1)).setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy")));
         ((Text) children.get(5)).setText(savedGame.getScore());
         savedGameCards.add(savedGameCard);
     }

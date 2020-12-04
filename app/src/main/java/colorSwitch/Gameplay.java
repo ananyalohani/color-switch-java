@@ -116,23 +116,27 @@ public class Gameplay implements IScene {
         endMenu.display();
     }
 
-    public void serialize() throws IOException {
-        ObjectOutputStream out = null;
-        try {
-            out = new ObjectOutputStream(new FileOutputStream("file"));
-            out.writeObject(currentState);
-        } finally {
-            out.close();
-        }
+    public void serialize() {
+    //     ObjectOutputStream out = null;
+    //     try {
+    //         out = new ObjectOutputStream(new FileOutputStream("file"));
+    //         out.writeObject(currentState);
+    //     } catch(IOException e) {
+    //         System.out.println("error in serializing");
+    //     } finally {
+    //         out.close();
+    //     }
     }
 
-    public void deserialize(String filename) throws IOException {
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(new FileInputStream(filename));
-            currentState = (GameState) in.readObject();
-        } finally {
-            in.close();
-        }
+    public void deserialize(String filename) {
+        // ObjectInputStream in = null;
+        // try {
+        //     in = new ObjectInputStream(new FileInputStream(filename));
+        //     currentState = (GameState) in.readObject();
+        // } catch(IOException e) {
+        //     System.out.println("error in deserializing");
+        // } finally {
+        //     in.close();
+        // }
     }
 }

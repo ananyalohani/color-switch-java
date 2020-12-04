@@ -5,9 +5,7 @@ import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import java.io.*;
 import javafx.scene.*;
-import java.io.*;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 
@@ -20,7 +18,7 @@ public class StartMenuController {
     private Group exitBtn, playBtn, helpBtn, settingsBtn;
 
     @FXML
-    private Button savedGamesBtn, leaderboardBtn, statsBtn;
+    private Button savedGamesBtn, statsBtn;
 
     @FXML
     private Text score;
@@ -55,12 +53,32 @@ public class StartMenuController {
 
     @FXML
     private void helpBtnClicked() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.HELP));
 
+            Scene scene = new Scene(loader.load());
+            startMenu.getStage().setScene(scene);
+
+            HelpController helpController = loader.getController();
+            helpController.setup(startMenu);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void settingsBtnClicked() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SETTINGS));
 
+            Scene scene = new Scene(loader.load());
+            startMenu.getStage().setScene(scene);
+
+            SettingsController sController = loader.getController();
+            sController.setup(startMenu);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

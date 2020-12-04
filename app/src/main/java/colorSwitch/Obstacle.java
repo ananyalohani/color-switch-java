@@ -147,7 +147,8 @@ class CircleObstacle extends Obstacle {
     CircleObstacle(Node node) {
         super(node, 3000);
 
-        id = count++;
+        // id = count++;
+        count++;
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
         this.ring = (Group) components.get(2).getNode();
