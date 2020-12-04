@@ -21,7 +21,7 @@ public class Ball extends GameObject {
 
     public void updateVelocity(int score) {
         if (score <= MAX_SCORE) {
-            jumpDuration = 200 - 50 * score / MAX_SCORE;
+            jumpDuration = 200 - 100 * score / MAX_SCORE;
             velocity = Physics.velocity(JUMP_SIZE, jumpDuration);
         }
     }
