@@ -11,9 +11,9 @@ import javafx.geometry.Bounds;
 public abstract class Obstacle extends GameObject {
     protected static final transient String OBSTACLES[] = {
         FXMLs.Obstacle.CIRCLE,
-        FXMLs.Obstacle.GEARS,
+        FXMLs.Obstacle.BAR,
         FXMLs.Obstacle.SQUARE,
-        FXMLs.Obstacle.BAR
+        FXMLs.Obstacle.GEARS
     };
 
     private static transient double lastObstacleY;
@@ -49,8 +49,6 @@ public abstract class Obstacle extends GameObject {
     }
 
     public abstract void move();
-
-    public abstract void updateSpeed(int score);
 
     public abstract void stop();
 
@@ -111,12 +109,6 @@ class CircleObstacle extends Obstacle {
         long delay = getDelay(INITIAL_PERIOD / 4, pausedNs);
         // Scehdule that timer again with that delay
         quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_PERIOD / 4);
-    }
-
-    @Override
-    public void updateSpeed(int score) {
-        // double newDuration = score; // TODO
-        // transition.setDuration(newDuration);
     }
 
     @Override
@@ -187,12 +179,6 @@ class BarObstacle extends Obstacle {
     }
 
     @Override
-    public void updateSpeed(int score) {
-        double newDuration = score; // TODO
-        // transition.setDuration(newDuration);
-    }
-
-    @Override
     public Boolean isColliding(Ball ball) {
         Boolean collision = false;
 
@@ -252,12 +238,6 @@ class SquareObstacle extends Obstacle {
         long delay = getDelay(INITIAL_PERIOD, pausedNs);
         quarterTimer = new Timer();
         quarterTimer.scheduleAtFixedRate(getTimerTask(), delay, (int) INITIAL_PERIOD);
-    }
-
-    @Override
-    public void updateSpeed(int Score) {
-        // double newDuration = score; // TODO
-        // transition.setDuration(newDuration);
     }
 
     @Override
@@ -353,11 +333,6 @@ class GearsObstacle extends Obstacle {
             getMiddleColorTimerTask(), delay, (long) INITIAL_PERIOD / 4);
         quarterTimer.scheduleAtFixedRate(
             getNullerTimerTask(), delay + (long) INITIAL_PERIOD / 18, (long) INITIAL_PERIOD / 4);
-    }
-
-    @Override
-    public void updateSpeed(int Score) {
-
     }
 
     @Override

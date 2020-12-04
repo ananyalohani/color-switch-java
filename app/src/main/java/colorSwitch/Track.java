@@ -13,6 +13,7 @@ import java.util.*;
 
 public class Track extends GameObject {
     private GameState gameState;
+    private static transient final int SCORE_THRESHOLD = 3;
 
     @Override
     public Boolean isColliding(Ball ball) { return null; }
@@ -23,7 +24,8 @@ public class Track extends GameObject {
 
     public void addObstacle() {
         // Get a random index and associated obstacle file
-        int randomIndex = (int) (Math.random() * 4);
+        int randomIndex = (int) (Math.random() * 3) +
+            (gameState.getScore() >= SCORE_THRESHOLD ? 1 : 0);
         String file = Obstacle.OBSTACLES[randomIndex];
 
         // Load that obstacle container containing the
@@ -47,7 +49,7 @@ public class Track extends GameObject {
                 break;
             }
             case 1: {
-                obstacle = new GearsObstacle(obstacleNode);
+                obstacle = new BarObstacle(obstacleNode);
                 break;
             }
             case 2: {
@@ -55,7 +57,7 @@ public class Track extends GameObject {
                 break;
             }
             case 3: {
-                obstacle = new BarObstacle(obstacleNode);
+                obstacle = new GearsObstacle(obstacleNode);
                 break;
             }
         }
@@ -70,7 +72,7 @@ public class Track extends GameObject {
 
         // Position the obstacle and stars and color changer
         // Don't center align barObstacle
-        obstacle.positionSelf(randomIndex != 3, obstacleContainer);
+        obstacle.positionSelf(randomIndex != 1, obstacleContainer);
 
         // Start transitions on the object
         obstacle.move();

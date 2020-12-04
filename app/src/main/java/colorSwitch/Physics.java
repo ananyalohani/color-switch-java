@@ -1,11 +1,11 @@
 public class Physics {
     // v = s/t;
-    public static double velocity(int height, int duration) {
+    public static double velocity(double height, double duration) {
         return (double) height / duration * 1000;
     }
 
     // a = -u^2/2s
-    public static double acceleration(double velocity, int height) {
+    public static double acceleration(double velocity, double height) {
         return -Math.pow(velocity, 2) / (2 * height);
     }
 

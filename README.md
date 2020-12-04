@@ -26,6 +26,7 @@ The JAR files can be found in `app/build/libs/` directory.
   - [x] w/ stars
   - [x] w/ color changer
 - [x] obstacles pause on pause menu (and timertask)
+- [ ] restart game with stars minus
 - [ ] increase difficulty
 - [x] pause game hotkey !!
 - [x] dynamically add new objects
