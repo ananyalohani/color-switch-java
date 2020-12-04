@@ -17,13 +17,13 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TURQUOISE" height="20.0" layoutX="-12.0" layoutY="-8.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#4d4df8" height="20.0" layoutX="-127.0" layoutY="107.0" rotate="90.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ff1dce" height="20.0" layoutX="-12.0" layoutY="222.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
-                  <Text boundsType="VISUAL" fill="WHITE" layoutX="89.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★" wrappingWidth="42.234375">
-                     <font>
-                        <Font size="47.0" />
-                     </font>
-                  </Text>
                </children>
             </Group>
+            <Text boundsType="VISUAL" fill="WHITE" layoutX="80.0" layoutY="344.0" lineSpacing="1040.0" strokeType="OUTSIDE" strokeWidth="0.0" text="★" wrappingWidth="42.234375">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Text>
             <Group layoutX="-50.0" layoutY="101.0">
                <children>
                   <Arc fill="#ff1dce" layoutX="151.0" length="90.0" radiusX="20.0" radiusY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
