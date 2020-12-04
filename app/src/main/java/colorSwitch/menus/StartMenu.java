@@ -43,8 +43,13 @@ public class StartMenu extends Menu {
     }
 
     public void displaySavedGames() {
-        SavedGamesScene savedGamesScene = new SavedGamesScene(stage);
+        SavedGamesScene savedGamesScene = new SavedGamesScene(this);
         savedGamesScene.display();
+    }
+
+    public void displaySettings() {
+        SettingsScene settingsScene = new SettingsScene(this);
+        settingsScene.display();
     }
 
     public void setStage(Stage stage) {

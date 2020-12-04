@@ -8,6 +8,7 @@ public class Sounds {
     private static final String SCORE_FILE = "src/main/resources/sounds/score.mp3";
 
     private static void play(String file) {
+        if (!Settings.isSoundOn()) return;
         Media sound = new Media(new File(file).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();

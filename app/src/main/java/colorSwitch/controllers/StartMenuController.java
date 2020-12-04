@@ -36,16 +36,6 @@ public class StartMenuController {
         Utils.rotate(c3, DURATION, ANGLE);
         Utils.rotate(o1, DURATION, ANGLE);
         Utils.rotate(o2, DURATION, -ANGLE);
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SETTINGS));
-
-            settingsScene = new Scene(loader.load());
-            SettingsController sController = loader.getController();
-            sController.setup(startMenu);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setup(StartMenu startMenu) {
@@ -79,7 +69,7 @@ public class StartMenuController {
 
     @FXML
     private void settingsBtnClicked() {
-        startMenu.getStage().setScene(settingsScene);
+        startMenu.displaySettings();
     }
 
     @FXML

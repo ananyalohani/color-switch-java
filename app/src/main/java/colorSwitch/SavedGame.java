@@ -45,7 +45,7 @@ public class SavedGame implements Serializable {
 }
 
 class SavedGamesScene implements IScene {
-    private Stage stage;
+    private StartMenu startMenu;
     private transient ArrayList<AnchorPane> savedGameCards;
 
     public void display() {
@@ -53,7 +53,7 @@ class SavedGamesScene implements IScene {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SAVED_GAMES));
 
             Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
+            startMenu.getStage().setScene(scene);
 
             SavedGamesController sgController = loader.getController();
             sgController.setup(this);
@@ -63,8 +63,6 @@ class SavedGamesScene implements IScene {
     }
 
     public void goBack() {
-        StartMenu startMenu = new StartMenu(null);
-        startMenu.setStage(stage);
         startMenu.display();
     }
 
@@ -78,7 +76,7 @@ class SavedGamesScene implements IScene {
         savedGameCards.add(savedGameCard);
     }
 
-    public SavedGamesScene(Stage stage) {
-        this.stage = stage;
+    public SavedGamesScene(StartMenu startMenu) {
+        this.startMenu = startMenu;
     }
 }
