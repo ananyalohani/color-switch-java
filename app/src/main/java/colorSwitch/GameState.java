@@ -71,6 +71,7 @@ public class GameState implements Serializable {
             if (codeString.equals("SPACE") && !gameplay.getPaused()) {
                 lastTapNs = System.nanoTime();
                 translateOffset = ball.getNode().getTranslateY();
+                Sounds.bounce();
                 return;
             }
 
@@ -211,17 +212,20 @@ public class GameState implements Serializable {
     private void collisionWithObstacle() {
         if (!hasEnded) {
             hasEnded = true;
+            Sounds.collision();
+
             ((AnchorPane) gameTrack.getNode()).getChildren().remove(ball.getNode());
 
-            ParallelTransition explosionsTransitions = explosion();
-            explosionsTransitions.setOnFinished(e -> { gameplay.endGame(); });
-            explosionsTransitions.play();
+            ParallelTransition endGameTransitions = getTransitions();
+            endGameTransitions.setOnFinished(e -> { gameplay.endGame(); });
+            endGameTransitions.play();
         }
     }
 
     private void collisionWithStar(Star star) {
         stars.remove(0);
         setScore(star.getValue());
+        Sounds.score();
         Utils.deleteNode(star.getNode());
     }
 
@@ -247,14 +251,20 @@ public class GameState implements Serializable {
         gameTrack.addObstacle();
     }
 
-    private ParallelTransition explosion() {
+    private ParallelTransition getTransitions() {
+        ParallelTransition transitions = new ParallelTransition();
+
+        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(700),
+            ((AnchorPane) gameTrack.getNode().getParent()));
+        fadeToBlack.setToValue(0);
+        transitions.getChildren().add(fadeToBlack);
+
+        // Particle explosion
         Bounds ballBounds = Utils.getBounds(ball.getNode());
         Point origin = new Point(
             ballBounds.getMinX() + ballBounds.getWidth() / 2,
             ballBounds.getMinY() + ballBounds.getHeight() / 2
         );
-
-        ParallelTransition transitions = new ParallelTransition();
 
         for (int i = 0; i < 50; i++) {
             double radius = 2 + Math.random() * 5;

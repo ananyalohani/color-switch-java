@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 public class StartMenuController {
     private StartMenu startMenu;
+    private Scene settingsScene;
     private static final int DURATION = 3000;
     private static final int ANGLE = 360;
 
@@ -35,6 +36,16 @@ public class StartMenuController {
         Utils.rotate(c3, DURATION, ANGLE);
         Utils.rotate(o1, DURATION, ANGLE);
         Utils.rotate(o2, DURATION, -ANGLE);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SETTINGS));
+
+            settingsScene = new Scene(loader.load());
+            SettingsController sController = loader.getController();
+            sController.setup(startMenu);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setup(StartMenu startMenu) {
@@ -68,17 +79,7 @@ public class StartMenuController {
 
     @FXML
     private void settingsBtnClicked() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SETTINGS));
-
-            Scene scene = new Scene(loader.load());
-            startMenu.getStage().setScene(scene);
-
-            SettingsController sController = loader.getController();
-            sController.setup(startMenu);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        startMenu.getStage().setScene(settingsScene);
     }
 
     @FXML
