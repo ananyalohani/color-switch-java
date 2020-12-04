@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="800.0" maxWidth="500.0" minHeight="800.0" minWidth="500.0" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settingsController">
+   <children>
+      <Text fill="WHITE" layoutX="149.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+         <font>
+            <Font name="Blissful Thinking" size="51.0" />
+         </font>
+      </Text>
+      <Group fx:id="backBtn" layoutX="-198.0" layoutY="-58.0" onMouseClicked="#backBtnClicked" scaleX="0.5" scaleY="0.5" styleClass="clickable">
+         <children>
+            <Circle fill="#666666" layoutX="237.0" layoutY="102.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="211.0" layoutY="115.0" stroke="WHITE" strokeWidth="3.0" text="←">
+               <font>
+                  <Font name="Arial Bold" size="54.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+      <Button fx:id="musicButton" alignment="CENTER" contentDisplay="CENTER" layoutX="367.0" layoutY="165.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #ace890#ace890; -fx-background-radius: 10;" text="ON">
+         <font>
+            <Font name="Blissful Thinking" size="18.0" />
+         </font>
+      </Button>
+      <Text fx:id="gameName" fill="WHITE" layoutX="88.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOUND EFFECTS/MUSIC" wrappingWidth="251.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

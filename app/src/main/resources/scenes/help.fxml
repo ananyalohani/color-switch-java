@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="800.0" maxWidth="500.0" minHeight="800.0" minWidth="500.0" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="WHITE" layoutX="101.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS">
+         <font>
+            <Font name="Blissful Thinking" size="51.0" />
+         </font>
+      </Text>
+      <Text fill="#e19cff" layoutX="73.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Press the SPACEBAR to make the ball jump." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#93c5ff" layoutX="73.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Collect stars as you cross obstacles which add to your final score." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#e19cff" layoutX="73.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• If the ball hits an obstacle component whose color is different from the ball's, the game ends." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#93c5ff" layoutX="73.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• You can continue the game by spending some of the stars you earned." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#e19cff" layoutX="73.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• You can save the game by pausing it at any point, and continue it any time." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#93c5ff" layoutX="73.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• You can load any saved game from the Saved Games menu." wrappingWidth="368.21630859375">
+         <font>
+            <Font name="Blissful Thinking" size="23.0" />
+         </font>
+      </Text>
+      <Group fx:id="backBtn" layoutX="-198.0" layoutY="-58.0" onMouseClicked="#backBtnClicked" scaleX="0.5" scaleY="0.5" styleClass="clickable">
+         <children>
+            <Circle fill="#666666" layoutX="237.0" layoutY="102.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="211.0" layoutY="115.0" stroke="WHITE" strokeWidth="3.0" text="←">
+               <font>
+                  <Font name="Arial Bold" size="54.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

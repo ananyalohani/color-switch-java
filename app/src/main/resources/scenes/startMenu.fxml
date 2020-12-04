@@ -92,17 +92,12 @@
                   <String fx:value="clickable" />
                </styleClass>
             </Group>
-            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="542.0" mnemonicParsing="false" onMouseClicked="#savedGamesBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="81.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#savedGamesBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
             </Button>
-            <Button fx:id="leaderboardBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#leaderboardBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="LEADERBOARD" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Blissful Thinking" size="64.0" />
-               </font>
-            </Button>
-            <Button fx:id="statsBtn" contentDisplay="CENTER" layoutX="83.0" layoutY="648.0" mnemonicParsing="false" onMouseClicked="#statsBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="STATISTICS" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="statsBtn" contentDisplay="CENTER" layoutX="84.0" layoutY="635.0" mnemonicParsing="false" onMouseClicked="#statsBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="STATISTICS" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>
