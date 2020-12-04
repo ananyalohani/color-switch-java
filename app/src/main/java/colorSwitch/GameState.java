@@ -71,6 +71,7 @@ public class GameState implements Serializable {
             if (codeString.equals("SPACE") && !gameplay.getPaused()) {
                 lastTapNs = System.nanoTime();
                 translateOffset = ball.getNode().getTranslateY();
+                Sounds.bounce();
                 return;
             }
 
@@ -211,6 +212,8 @@ public class GameState implements Serializable {
     private void collisionWithObstacle() {
         if (!hasEnded) {
             hasEnded = true;
+            Sounds.collision();
+
             ((AnchorPane) gameTrack.getNode()).getChildren().remove(ball.getNode());
 
             ParallelTransition endGameTransitions = getTransitions();
@@ -222,6 +225,7 @@ public class GameState implements Serializable {
     private void collisionWithStar(Star star) {
         stars.remove(0);
         setScore(star.getValue());
+        Sounds.score();
         Utils.deleteNode(star.getNode());
     }
 
