@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
 import javafx.geometry.Bounds;
@@ -257,10 +258,20 @@ public class GameState implements Serializable {
     }
 
     private ParallelTransition getTransitions() {
+        AnchorPane gameTrackParent = (AnchorPane) gameTrack.getNode().getParent();
         ParallelTransition transitions = new ParallelTransition();
 
-        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(700),
-            ((AnchorPane) gameTrack.getNode().getParent()));
+        // Flash of white
+        Rectangle whiteFlash = new Rectangle(0, 0, 500, 800);
+        whiteFlash.setFill(Color.WHITE);
+        gameTrackParent.getChildren().add(whiteFlash);
+        FadeTransition whiteFlashTransition = new FadeTransition(Duration.millis(200), whiteFlash);
+        whiteFlashTransition.setToValue(0);
+        whiteFlashTransition.setOnFinished(e -> { gameTrackParent.getChildren().remove(whiteFlash); });
+        transitions.getChildren().add(whiteFlashTransition);
+
+        // Fade to black
+        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(900), gameTrackParent);
         fadeToBlack.setToValue(0);
         transitions.getChildren().add(fadeToBlack);
 
@@ -281,7 +292,6 @@ public class GameState implements Serializable {
                     Colors.values()[(int) (Math.random() * 4)].colorCode
                 )
             );
-            dot.setOpacity(0.5 + Math.random() * 0.5);
 
             ((AnchorPane) gameTrack.getNode()).getChildren().add(dot);
 

@@ -9,7 +9,7 @@
 
 <VBox prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" stylesheets="@../css/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EndMenuController">
    <children>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-opacity: 0;" VBox.vgrow="ALWAYS">
          <children>
             <Text fill="WHITE" layoutX="110.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER">
                <font>

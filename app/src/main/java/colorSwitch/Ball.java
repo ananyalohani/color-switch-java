@@ -3,7 +3,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 
 public class Ball extends GameObject {
-    private static final transient int JUMP_SIZE = 100; // pixels
+    private static final transient int JUMP_SIZE = 90; // pixels
     private static final transient int MAX_SCORE = 30;
     private static transient double jumpDuration = 200; // milliseconds
     private static transient double velocity = Physics.velocity(JUMP_SIZE, jumpDuration);
