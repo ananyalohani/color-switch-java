@@ -21,7 +21,7 @@ public class EndMenu extends Menu {
     public void displayMenu() {
         Scene scene = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.END_MENU));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.END_MENU));
 
             scene = new Scene(loader.load());
             stage.setScene(scene);
@@ -43,7 +43,7 @@ public class EndMenu extends Menu {
 
     @Override
     public void exit() {
-        StartMenu startMenu = new StartMenu(null);
+        StartMenu startMenu = new StartMenu();
         startMenu.setStage(stage);
         startMenu.display();
     }
@@ -53,7 +53,7 @@ public class EndMenu extends Menu {
     }
 
     public void newGame() {
-        StartMenu startMenu = new StartMenu(null);
+        StartMenu startMenu = new StartMenu();
         startMenu.setStage(stage);
         startMenu.newGame();
     }

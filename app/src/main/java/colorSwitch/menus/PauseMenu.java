@@ -17,7 +17,7 @@ public class PauseMenu extends Menu {
     @Override
     public void displayMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.PAUSE_MENU));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.PAUSE_MENU));
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
@@ -33,7 +33,7 @@ public class PauseMenu extends Menu {
 
     @Override
     public void exit() {
-        StartMenu startMenu = new StartMenu(null);
+        StartMenu startMenu = new StartMenu();
         startMenu.setStage(stage);
         startMenu.display();
     }

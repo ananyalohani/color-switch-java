@@ -50,7 +50,7 @@ class SavedGamesScene implements IScene {
 
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SAVED_GAMES));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.SAVED_GAMES));
 
             Scene scene = new Scene(loader.load());
             startMenu.getStage().setScene(scene);
@@ -68,7 +68,7 @@ class SavedGamesScene implements IScene {
 
     public void addGame(SavedGame savedGame) {
         // TODO create and position a new saved game card correspoding to the SavedGame object passed
-        AnchorPane savedGameCard = (AnchorPane) Utils.loadObject(FXMLs.Scene.GAME_CARD);
+        AnchorPane savedGameCard = (AnchorPane) Utils.loadObject(Constants.Scene.GAME_CARD);
         ObservableList<Node> children = savedGameCard.getChildren();
         ((Text) children.get(0)).setText(savedGame.getLabel());
         ((Text) children.get(1)).setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy")));

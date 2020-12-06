@@ -25,7 +25,7 @@ class SettingsScene implements IScene {
     @Override
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.SETTINGS));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.SETTINGS));
             Scene settingsScene = new Scene(loader.load());
             controller = loader.getController();
             controller.setup(this);

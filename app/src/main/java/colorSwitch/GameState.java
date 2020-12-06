@@ -228,7 +228,7 @@ public class GameState implements Serializable {
 
                     try {
                         _dialogParent = FXMLLoader.<AnchorPane>load(
-                            getClass().getResource(FXMLs.Scene.RESTART_DIALOG)
+                            getClass().getResource(Constants.Scene.RESTART_DIALOG)
                         );
                     } catch (IOException err) {
                         return;

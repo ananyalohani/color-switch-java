@@ -8,7 +8,6 @@ import javafx.scene.*;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
-
 public class StartMenuController {
     private StartMenu startMenu;
     private Scene settingsScene;
@@ -40,6 +39,7 @@ public class StartMenuController {
 
     public void setup(StartMenu startMenu) {
         this.startMenu = startMenu;
+        startMenu.setScoreText(score);
     }
 
     @FXML
@@ -55,7 +55,7 @@ public class StartMenuController {
     @FXML
     private void helpBtnClicked() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.HELP));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.HELP));
 
             Scene scene = new Scene(loader.load());
             startMenu.getStage().setScene(scene);

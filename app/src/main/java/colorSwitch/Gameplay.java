@@ -30,7 +30,7 @@ public class Gameplay implements IScene {
     public Gameplay(SavedGame savedGame, Stage stage) {
         commonSetup(stage);
         // DO GAMESTATE THING HERE
-        deserialize(savedGame.getGameStateFile());
+        // deserialize(savedGame.getGameStateFile());
     }
 
     public Gameplay(Stage stage) {
@@ -56,7 +56,7 @@ public class Gameplay implements IScene {
     @Override
     public void display() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLs.Scene.GAMEPLAY));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.Scene.GAMEPLAY));
             scene = new Scene(loader.load());
             stage.setScene(scene);
             gpController = loader.getController();
@@ -113,10 +113,13 @@ public class Gameplay implements IScene {
             obstacle.stop();
         }
 
+        App.game.setTotalScore(App.game.getTotalScore() + currentState.getScore());
+        App.game.serialize();
+
         endMenu.display();
     }
 
-    public void serialize() {
+    // public void serialize() {
     //     ObjectOutputStream out = null;
     //     try {
     //         out = new ObjectOutputStream(new FileOutputStream("file"));
@@ -126,17 +129,17 @@ public class Gameplay implements IScene {
     //     } finally {
     //         out.close();
     //     }
-    }
+    // }
 
-    public void deserialize(String filename) {
-        // ObjectInputStream in = null;
-        // try {
-        //     in = new ObjectInputStream(new FileInputStream(filename));
-        //     currentState = (GameState) in.readObject();
-        // } catch(IOException e) {
-        //     System.out.println("error in deserializing");
-        // } finally {
-        //     in.close();
-        // }
-    }
+    // public void deserialize(String filename) {
+    //     ObjectInputStream in = null;
+    //     try {
+    //         in = new ObjectInputStream(new FileInputStream(filename));
+    //         currentState = (GameState) in.readObject();
+    //     } catch(IOException e) {
+    //         System.out.println("error in deserializing");
+    //     } finally {
+    //         in.close();
+    //     }
+    // }
 }

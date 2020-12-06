@@ -10,10 +10,10 @@ import javafx.geometry.Bounds;
 
 public abstract class Obstacle extends GameObject {
     protected static final transient String OBSTACLES[] = {
-        FXMLs.Obstacle.CIRCLE,
-        FXMLs.Obstacle.BAR,
-        FXMLs.Obstacle.SQUARE,
-        FXMLs.Obstacle.GEARS
+        Constants.Obstacle.CIRCLE,
+        Constants.Obstacle.BAR,
+        Constants.Obstacle.SQUARE,
+        Constants.Obstacle.GEARS
     };
 
     private static transient double lastObstacleY;

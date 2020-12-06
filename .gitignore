@@ -9,3 +9,6 @@ app/bin
 
 # Ignore Gradle build output directory
 build
+
+app/src/main/data/*
+!app/src/main/data/.gitkeep
