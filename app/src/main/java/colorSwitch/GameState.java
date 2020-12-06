@@ -265,15 +265,20 @@ public class GameState implements Serializable {
         Rectangle whiteFlash = new Rectangle(0, 0, 500, 800);
         whiteFlash.setFill(Color.WHITE);
         gameTrackParent.getChildren().add(whiteFlash);
-        FadeTransition whiteFlashTransition = new FadeTransition(Duration.millis(200), whiteFlash);
+        FadeTransition whiteFlashTransition = new FadeTransition(Duration.millis(400), whiteFlash);
         whiteFlashTransition.setToValue(0);
         whiteFlashTransition.setOnFinished(e -> { gameTrackParent.getChildren().remove(whiteFlash); });
         transitions.getChildren().add(whiteFlashTransition);
 
         // Fade to black
-        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(900), gameTrackParent);
+        FadeTransition fadeToBlack = new FadeTransition(Duration.millis(500), gameTrackParent);
         fadeToBlack.setToValue(0);
-        transitions.getChildren().add(fadeToBlack);
+        transitions.getChildren().add(
+            new SequentialTransition(
+                new PauseTransition(Duration.millis(1000)),
+                fadeToBlack
+            )
+        );
 
         // Particle explosion
         Bounds ballBounds = Utils.getBounds(ball.getNode());
