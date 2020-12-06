@@ -35,6 +35,8 @@ The JAR files can be found in `app/build/libs/` directory.
   - [x] color changer
 - [x] update score
 - [ ] implement serializable
+  - [x] ColorSwitch
+  - [ ] saved games
 - [ ] statistics !!
 - [x] help scene !!
 - [x] settings scene !!
