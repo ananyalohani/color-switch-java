@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="800.0" maxWidth="500.0" minHeight="800.0" minWidth="500.0" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="800.0" maxWidth="500.0" minHeight="800.0" minWidth="500.0" opacity="0.95" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #222;" translateZ="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Group layoutX="19.0" layoutY="297.0">
          <children>

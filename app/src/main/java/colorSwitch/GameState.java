@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
 import javafx.geometry.Bounds;
+import javafx.event.*;
 
 public class GameState implements Serializable {
     private static final long serialVersionUID = 1;
@@ -22,7 +23,8 @@ public class GameState implements Serializable {
     // Constants
     private static final transient int DURATION = 3000;
     private static final transient int ANGLE = 360;
-    private static final transient int MAX_NUMBER = 5;
+    private static final transient int MAX_NUMBER_OBJ = 5;
+    private static final transient int RESTART_SCORE = 5;
 
     private Ball ball;
     private Track gameTrack;
@@ -162,7 +164,7 @@ public class GameState implements Serializable {
     }
 
     public void addObstacle(Obstacle obstacle) {
-        if (obstacles.size() > MAX_NUMBER) {
+        if (obstacles.size() > MAX_NUMBER_OBJ) {
             Obstacle oldestObstacle = obstacles.get(0);
             Group oldestObstacleContainer = (Group) oldestObstacle.getNode().getParent();
 
@@ -175,12 +177,12 @@ public class GameState implements Serializable {
     }
 
     public void addStar(Star star) {
-        if (stars.size() > MAX_NUMBER) stars.remove(0);
+        if (stars.size() > MAX_NUMBER_OBJ) stars.remove(0);
         stars.add(star);
     }
 
     public void addColorChanger(ColorChanger colorChanger) {
-        if (colorChangers.size() > MAX_NUMBER) colorChangers.remove(0);
+        if (colorChangers.size() > MAX_NUMBER_OBJ) colorChangers.remove(0);
         colorChangers.add(colorChanger);
     }
 
@@ -188,7 +190,7 @@ public class GameState implements Serializable {
         // Checking collisions with obstacles
         for (Obstacle obstacle : obstacles) {
             if (obstacle.isColliding(ball)) {
-                collisionWithObstacle();
+                collisionWithObstacle(obstacle);
                 return;
             }
         }
@@ -210,15 +212,60 @@ public class GameState implements Serializable {
         }
     }
 
-    private void collisionWithObstacle() {
+    private void collisionWithObstacle(Obstacle obstacle) {
         if (!hasEnded) {
             hasEnded = true;
             Sounds.collision();
 
             ((AnchorPane) gameTrack.getNode()).getChildren().remove(ball.getNode());
+            ArrayList<Circle> dots = new ArrayList<Circle>();
 
-            ParallelTransition endGameTransitions = getTransitions();
-            endGameTransitions.setOnFinished(e -> { gameplay.endGame(); });
+            ParallelTransition endGameTransitions = getTransitions(dots);
+            endGameTransitions.setOnFinished(e -> {
+                if (score >= RESTART_SCORE) {
+                    AnchorPane _dialogParent = null;
+                    AnchorPane gameTrackParent = (AnchorPane) gameTrack.getNode().getParent();
+
+                    try {
+                        _dialogParent = FXMLLoader.<AnchorPane>load(
+                            getClass().getResource(FXMLs.Scene.RESTART_DIALOG)
+                        );
+                    } catch (IOException err) {
+                        return;
+                    }
+                    AnchorPane dialogParent = _dialogParent;
+
+                    Group dialog = (Group) dialogParent.getChildren().get(0);
+                    ObservableList<Node> dialogChildren = dialog.getChildren();
+                    Button yesBtn = (Button) dialogChildren.get(3);
+                    Button noBtn = (Button) dialogChildren.get(4);
+                    Text dialogScoreText = (Text) dialogChildren.get(6);
+
+                    dialogScoreText.setText(score.toString());
+
+                    yesBtn.setOnAction(event -> {
+                        score -= RESTART_SCORE;
+                        gameTrackParent.getChildren().remove(dialogParent);
+                        translateOffset += obstacle instanceof GearsObstacle ? 150 : 100;
+                        ((AnchorPane) gameTrack.getNode()).getChildren().add(ball.getNode());
+                        lastTapNs = System.nanoTime();
+                        hasEnded = false;
+
+                        for (Circle dot : dots) {
+                            ((AnchorPane) gameTrack.getNode()).getChildren().remove(dot);
+                        }
+                    });
+
+                    noBtn.setOnAction(event -> {
+                        gameplay.endGame();
+                    });
+
+                    gameTrackParent.getChildren().add(dialogParent);
+                    return;
+                }
+
+                gameplay.endGame();
+            });
             endGameTransitions.play();
         }
     }
@@ -245,7 +292,6 @@ public class GameState implements Serializable {
         while (true) {
             int randomIndex = (int) (Math.random() * 4);
             color = Colors.values()[randomIndex].colorCode;
-            // System.out.println(color);
             if (!Paint.valueOf(color).equals(prevColor)) break;
         }
         ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
@@ -257,7 +303,7 @@ public class GameState implements Serializable {
         gameTrack.addObstacle();
     }
 
-    private ParallelTransition getTransitions() {
+    private ParallelTransition getTransitions(ArrayList<Circle> dotList) {
         AnchorPane gameTrackParent = (AnchorPane) gameTrack.getNode().getParent();
         ParallelTransition transitions = new ParallelTransition();
 
@@ -273,12 +319,6 @@ public class GameState implements Serializable {
         // Fade to black
         FadeTransition fadeToBlack = new FadeTransition(Duration.millis(500), gameTrackParent);
         fadeToBlack.setToValue(0);
-        transitions.getChildren().add(
-            new SequentialTransition(
-                new PauseTransition(Duration.millis(1000)),
-                fadeToBlack
-            )
-        );
 
         // Particle explosion
         Bounds ballBounds = Utils.getBounds(ball.getNode());
@@ -298,6 +338,7 @@ public class GameState implements Serializable {
                 )
             );
 
+            dotList.add(dot);
             ((AnchorPane) gameTrack.getNode()).getChildren().add(dot);
 
             TranslateTransition transition = new TranslateTransition(
