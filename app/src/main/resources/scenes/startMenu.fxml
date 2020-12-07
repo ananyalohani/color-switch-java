@@ -92,7 +92,7 @@
                   <String fx:value="clickable" />
                </styleClass>
             </Group>
-            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="81.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#savedGamesBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="savedGamesBtn" contentDisplay="CENTER" layoutX="84.0" layoutY="580.0" mnemonicParsing="false" onMouseClicked="#savedGamesBtnClicked" prefHeight="58.0" prefWidth="333.0" scaleX="0.65" scaleY="0.65" style="-fx-font-family: &quot;Blissful Thinking&quot;; -fx-font-size: 30; -fx-background-color: #0d66bf#0d66bf; -fx-background-radius: 10px;" text="SAVED GAMES" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Blissful Thinking" size="64.0" />
                </font>

@@ -26,6 +26,11 @@ public class Ball extends GameObject {
         }
     }
 
+    public void reset() {
+        jumpDuration = 200;
+        velocity = Physics.velocity(JUMP_SIZE, jumpDuration);
+    }
+
     public double move(double duration, double translateOffset) {
         double displacement = Physics.displacement(velocity, duration, DOWNWARD_ACCN);
         double resolvedDisplacement = displacement - translateOffset;

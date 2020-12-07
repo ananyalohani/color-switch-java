@@ -257,6 +257,7 @@ public class GameState implements Serializable {
 
                         maxDisplacement += gameTrackShift;
                         translateOffset = ball.getNode().getTranslateY() + ballShift;
+                        ball.reset();
 
                         score -= RESTART_SCORE;
                         gameTrackParent.getChildren().remove(dialogParent);
