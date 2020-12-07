@@ -244,16 +244,35 @@ public class GameState implements Serializable {
                     dialogScoreText.setText(score.toString());
 
                     yesBtn.setOnAction(event -> {
+                        Bounds obstacleBounds = Utils.getBounds(obstacle.getNode());
+                        double obstacleBottomY = obstacleBounds.getMaxY();
+                        double ballCurrentAbsoluteY =
+                            ball.getNode().getLayoutY() +
+                            gameTrack.getNode().getTranslateY() +
+                            ball.getNode().getTranslateY();
+                        double ballShift = obstacleBottomY - ballCurrentAbsoluteY + 150;
+                        double gameTrackShift = ballShift + ballCurrentAbsoluteY > 600
+                            ? 600 - (ballShift + ballCurrentAbsoluteY)
+                            : 0;
+
+                        maxDisplacement += gameTrackShift;
+                        translateOffset = ball.getNode().getTranslateY() + ballShift;
+
                         score -= RESTART_SCORE;
                         gameTrackParent.getChildren().remove(dialogParent);
-                        translateOffset += obstacle instanceof GearsObstacle ? 150 : 100;
-                        ((AnchorPane) gameTrack.getNode()).getChildren().add(ball.getNode());
-                        lastTapNs = System.nanoTime();
-                        hasEnded = false;
-
                         for (Circle dot : dots) {
                             ((AnchorPane) gameTrack.getNode()).getChildren().remove(dot);
                         }
+
+                        TranslateTransition gameTrackTranslate = new TranslateTransition(
+                            Duration.millis(gameTrackShift == 0 ? 0 : 500), gameTrack.getNode());
+                        gameTrackTranslate.setToY(gameTrack.getNode().getTranslateY() + gameTrackShift);
+                        gameTrackTranslate.setOnFinished(_event -> {
+                            ((AnchorPane) gameTrack.getNode()).getChildren().add(ball.getNode());
+                            lastTapNs = System.nanoTime();
+                            hasEnded = false;
+                        });
+                        gameTrackTranslate.play();
                     });
 
                     noBtn.setOnAction(event -> {

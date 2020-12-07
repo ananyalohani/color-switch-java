@@ -35,11 +35,10 @@ public class ColorSwitch extends Application implements Serializable {
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("src/main/data/ColorSwitch"));
-            System.out.println(totalScore);
             out.writeObject(this);
         } catch(Exception e) {
             e.printStackTrace();
-            // System.out.println("error in serializing");
+            System.out.println("error in serializing");
         } finally {
             try { out.close(); } catch (IOException err) {}
         }

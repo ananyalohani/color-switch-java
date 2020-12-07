@@ -12,7 +12,6 @@ public class StartMenu extends Menu {
     @Override
     public void display() {
         displayMenu();
-        System.out.println("jdsfnk " + App.game.getTotalScore());
     }
 
     @Override
