@@ -259,7 +259,7 @@ public class GameState implements Serializable {
                         translateOffset = ball.getNode().getTranslateY() + ballShift;
                         ball.reset();
 
-                        score -= RESTART_SCORE;
+                        this.setScore(-RESTART_SCORE);
                         gameTrackParent.getChildren().remove(dialogParent);
                         for (Circle dot : dots) {
                             ((AnchorPane) gameTrack.getNode()).getChildren().remove(dot);

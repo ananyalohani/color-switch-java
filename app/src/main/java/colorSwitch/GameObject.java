@@ -8,6 +8,8 @@ import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.Scene;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
 import java.util.*;
 
 public abstract class GameObject implements Serializable {
@@ -93,6 +95,8 @@ class Star extends GameObject {
         else {
             this.value = prevStarValue = 3;
             ((Text) node).setFill(YELLOW);
+            Effect glow = new Glow(1.0);
+            ((Text) node).setEffect(glow);
         }
     }
 }

@@ -12,6 +12,7 @@ public class ColorSwitch extends Application implements Serializable {
     private transient StartMenu startMenu;
     private ArrayList<SavedGame> savedGames;
     private int totalScore;
+    private int noOfGames;
 
     public ColorSwitch() {}
 
@@ -29,6 +30,10 @@ public class ColorSwitch extends Application implements Serializable {
 
     public void setTotalScore(int newScore) {
         this.totalScore = newScore;
+    }
+
+    public void incrementGames() {
+        noOfGames++;
     }
 
     public void serialize() {

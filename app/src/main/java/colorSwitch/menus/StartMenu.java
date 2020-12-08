@@ -42,6 +42,7 @@ public class StartMenu extends Menu {
 
     public void newGame() {
         Gameplay newGameGameplay = new Gameplay(stage);
+        App.game.incrementGames();
         newGameGameplay.display();
         newGameGameplay.playGame(true);
     }
