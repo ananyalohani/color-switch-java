@@ -12,15 +12,19 @@ import javafx.scene.text.Text;
 public class SavedGame implements Serializable {
     private static final long serialVersionUID = 1;
 
-    private Integer id;
+    // private Integer id;
     private String label;
     private String gameStateFile;
-    private Date timestamp;
-    private static Integer lastSavedGameId;
+    private String timestamp;
+    // private static Integer lastSavedGameId;
     private String score;
 
-    SavedGame(GameState state, String label) {
+    SavedGame(GameState state) {
         this.score = state.getScore().toString();
+        this.label = "SAVED GAME " + App.game.getStats().getStat(Stat.SAVED_COUNT);
+        this.timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy HH:MM"));
+        this.gameStateFile = Constants.DataFiles.ROOT + label;
+        App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
     }
 
     public Integer getId() {
@@ -39,7 +43,7 @@ public class SavedGame implements Serializable {
         return this.gameStateFile;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return this.timestamp;
     }
 }

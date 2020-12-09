@@ -11,10 +11,12 @@ public class ColorSwitch extends Application implements Serializable {
     public static final long serialVersionUID = 40L;
     private transient StartMenu startMenu;
     private ArrayList<SavedGame> savedGames;
-    private int totalScore;
-    private int noOfGames;
+    private Statistics stats;
 
-    public ColorSwitch() {}
+    public ColorSwitch() {
+        stats = new Statistics();
+        startMenu = new StartMenu();
+    }
 
     public SavedGame getSavedGames(Integer id) {
         return null;
@@ -24,16 +26,8 @@ public class ColorSwitch extends Application implements Serializable {
         launch();
     }
 
-    public int getTotalScore() {
-        return this.totalScore;
-    }
-
-    public void setTotalScore(int newScore) {
-        this.totalScore = newScore;
-    }
-
-    public void incrementGames() {
-        noOfGames++;
+    public Statistics getStats() {
+        return this.stats;
     }
 
     public void serialize() {
@@ -51,8 +45,6 @@ public class ColorSwitch extends Application implements Serializable {
 
     @Override
     public void start(Stage stage) {
-        startMenu = new StartMenu();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scenes/startMenu.fxml"));
             stage.setScene(new Scene(loader.load()));

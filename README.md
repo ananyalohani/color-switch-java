@@ -15,7 +15,7 @@ For development:
 
 - Run: `gradle run`
 - Build (normal JAR): `gradle build`
-- Clean `gradle clean`
+- Clean: `gradle clean`
 
 The JAR files can be found in `app/build/libs/` directory.
 
@@ -42,3 +42,19 @@ The JAR files can be found in `app/build/libs/` directory.
 - [x] settings scene !!
   - [x] turn music on/off
 - [ ] adding music/sound (that old banger) !!
+
+### List of classes to be serialized:
+
+- [ ] GameState
+- [ ] GameObject
+  - [ ] Obstacles
+    - [ ] Circle
+    - [ ] Square
+    - [ ] Bar
+    - [ ] Gears
+  - [ ] ObstacleComponent(?)
+  - [ ] Balls ( ͡° ͜ʖ ͡°)
+  - [ ] Star
+  - [ ] ColorChanger
+  - [ ] Track
+-

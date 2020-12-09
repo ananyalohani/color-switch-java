@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Gameplay implements IScene {
-    // Constants
-    private static transient Integer count = 1;
-
     // State and variables
     private boolean paused = false;
     private Stage stage;
@@ -101,10 +98,7 @@ public class Gameplay implements IScene {
     }
 
     public void saveGame() {
-        String label = "Game " + count.toString();
-        count++;
-        SavedGame savedGame = new SavedGame(currentState, label);
-
+        SavedGame savedGame = new SavedGame(currentState);
     }
 
     public void endGame() {
@@ -113,23 +107,29 @@ public class Gameplay implements IScene {
             obstacle.stop();
         }
 
-        App.game.setTotalScore(App.game.getTotalScore() + currentState.getScore());
+        App.game.getStats().setStat(Stat.TOTAL_SCORE, currentState.getScore(), true);
+        if (currentState.getScore() > App.game.getStats().getStat(Stat.HIGHSCORE)) {
+            App.game.getStats().setStat(Stat.HIGHSCORE, currentState.getScore(), false);
+        }
         App.game.serialize();
 
         endMenu.display();
     }
 
-    // public void serialize() {
-    //     ObjectOutputStream out = null;
-    //     try {
-    //         out = new ObjectOutputStream(new FileOutputStream("file"));
-    //         out.writeObject(currentState);
-    //     } catch(IOException e) {
-    //         System.out.println("error in serializing");
-    //     } finally {
-    //         out.close();
-    //     }
-    // }
+    public void serialize() {
+        ObjectOutputStream out = null;
+        SavedGame savedGame = new SavedGame(currentState);
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(savedGame.getGameStateFile()
+            ));
+            out.writeObject(this);
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("error in serializing");
+        } finally {
+            try { out.close(); } catch (IOException err) {}
+        }
+    }
 
     // public void deserialize(String filename) {
     //     ObjectInputStream in = null;

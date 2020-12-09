@@ -26,7 +26,7 @@ public class Constants {
     }
 
     class DataFiles {
-        public static final String ROOT = "src/main/data";
-        public static final String COLOR_SWITCH = ROOT + "/ColorSwitch";
+        public static final String ROOT = "src/main/data/";
+        public static final String COLOR_SWITCH = ROOT + "ColorSwitch";
     }
 }

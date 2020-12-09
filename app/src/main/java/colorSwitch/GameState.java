@@ -252,13 +252,13 @@ public class GameState implements Serializable {
                             ball.getNode().getTranslateY();
                         double ballShift = obstacleBottomY - ballCurrentAbsoluteY + 150;
                         double gameTrackShift = ballShift + ballCurrentAbsoluteY > 600
-                            ? 600 - (ballShift + ballCurrentAbsoluteY)
-                            : 0;
+                            ? 600 - (ballShift + ballCurrentAbsoluteY) : 0;
 
                         maxDisplacement += gameTrackShift;
                         translateOffset = ball.getNode().getTranslateY() + ballShift;
                         ball.reset();
 
+                        App.game.getStats().setStat(Stat.REVIVAL_COUNT, 1, true);
                         this.setScore(-RESTART_SCORE);
                         gameTrackParent.getChildren().remove(dialogParent);
                         for (Circle dot : dots) {

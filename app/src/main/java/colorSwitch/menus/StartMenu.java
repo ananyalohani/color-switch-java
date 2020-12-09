@@ -28,7 +28,7 @@ public class StartMenu extends Menu {
             e.printStackTrace();
         }
 
-        scoreText.setText(App.game.getTotalScore() + "");
+        scoreText.setText(App.game.getStats().getStat(Stat.TOTAL_SCORE) + "");
     }
 
     @Override
@@ -42,7 +42,7 @@ public class StartMenu extends Menu {
 
     public void newGame() {
         Gameplay newGameGameplay = new Gameplay(stage);
-        App.game.incrementGames();
+        App.game.getStats().setStat(Stat.GAME_COUNT, 1, true);
         newGameGameplay.display();
         newGameGameplay.playGame(true);
     }
