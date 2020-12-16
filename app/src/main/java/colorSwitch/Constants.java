@@ -14,10 +14,10 @@ public class Constants {
     }
 
     class Obstacle {
-        public static final String CIRCLE = "game-objects/circleObstacle.fxml";
-        public static final String GEARS = "game-objects/gearsObstacle.fxml";
-        public static final String SQUARE = "game-objects/squareObstacle.fxml";
-        public static final String BAR = "game-objects/barObstacle.fxml";
+        public static final String CIRCLE = "obstacles/circleObstacle.fxml";
+        public static final String GEARS = "obstacles/gearsObstacle.fxml";
+        public static final String SQUARE = "obstacles/squareObstacle.fxml";
+        public static final String BAR = "obstacles/barObstacle.fxml";
     }
 
     class DataFiles {
