@@ -18,18 +18,15 @@ public class SavedGame implements Serializable {
     private String timestamp;
     // private static Integer lastSavedGameId;
     private String score;
+    private GameState state;
 
     SavedGame(GameState state) {
+        this.state = state;
         this.score = state.getScore().toString();
         this.label = "SAVED GAME " + App.game.getStats().getStat(Stat.SAVED_COUNT);
         this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         this.gameStateFile = Constants.DataFiles.ROOT + label;
-        App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
     }
-
-    // public Integer getId() {
-    //     return this.id;
-    // }
 
     public String getLabel() {
         return this.label;

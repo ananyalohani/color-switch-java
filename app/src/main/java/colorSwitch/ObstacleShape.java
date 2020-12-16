@@ -1,7 +1,6 @@
-
 public enum ObstacleShape {
   CIRCLE,
-  HORIZONTAL_BAR,
+  BAR,
   SQUARE,
-  TRIANGLE
+  GEARS
 }

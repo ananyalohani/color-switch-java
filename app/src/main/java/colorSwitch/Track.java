@@ -18,15 +18,23 @@ public class Track extends GameObject {
     @Override
     public Boolean isColliding(Ball ball) { return null; }
 
-    public void shiftUp(double delta) {
-        node.setTranslateY(node.getTranslateY() + delta);
+    public double shiftUp(double delta) {
+        double newTranslate = node.getTranslateY() + delta;
+        node.setTranslateY(newTranslate);
+        return newTranslate;
     }
 
-    public void addObstacle() {
-        // Get a random index and associated obstacle file
-        int randomIndex = (int) (Math.random() * 3) +
-            (gameState.getScore() >= SCORE_THRESHOLD ? 1 : 0);
-        String file = Obstacle.OBSTACLES[randomIndex];
+    public void addObstacle(ObstacleShape shape) {
+        int shapeIndex;
+        if (shape == null) {
+            // Get a random index and associated obstacle file
+            shapeIndex = (int) (Math.random() * 3) +
+                (gameState.getScore() >= SCORE_THRESHOLD ? 1 : 0);
+        } else {
+            shapeIndex = Arrays.asList(ObstacleShape.values()).indexOf(shape);
+        }
+
+        String file = Obstacle.OBSTACLES[shapeIndex];
 
         // Load that obstacle container containing the
         // obstacle, color changer and the star
@@ -43,7 +51,7 @@ public class Track extends GameObject {
         Star star = new Star(starNode);
         ColorChanger colorChanger = new ColorChanger(colorChangerNode);
 
-        switch (randomIndex) {
+        switch (shapeIndex) {
             case 0: {
                 obstacle = new CircleObstacle(obstacleNode);
                 break;
@@ -72,7 +80,7 @@ public class Track extends GameObject {
 
         // Position the obstacle and stars and color changer
         // Don't center align barObstacle
-        obstacle.positionSelf(randomIndex != 1, obstacleContainer);
+        obstacle.positionSelf(shapeIndex != 1, obstacleContainer);
 
         // Start transitions on the object
         obstacle.move();

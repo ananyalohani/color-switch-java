@@ -98,8 +98,10 @@ public class Gameplay implements IScene {
     }
 
     public void saveGame() {
-        // SavedGame savedGame = new SavedGame(currentState);
-        serialize();
+        SavedGame savedGame = new SavedGame(currentState);
+        App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
+        App.game.addSavedGame(savedGame);
+        serialize(savedGame);
     }
 
     public void endGame() {
@@ -117,9 +119,8 @@ public class Gameplay implements IScene {
         endMenu.display();
     }
 
-    public void serialize() {
+    public void serialize(SavedGame savedGame) {
         ObjectOutputStream out = null;
-        SavedGame savedGame = new SavedGame(currentState);
         try {
             out = new ObjectOutputStream(new FileOutputStream(savedGame.getGameStateFile()));
             out.writeObject(savedGame);

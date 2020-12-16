@@ -33,7 +33,7 @@ public class GameState implements Serializable {
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Star> stars;
     private ArrayList<ColorChanger> colorChangers;
-    private Gameplay gameplay;
+    private transient Gameplay gameplay;
 
     private double lastTapNs;
     private long pausedNow;
@@ -41,6 +41,8 @@ public class GameState implements Serializable {
     private double translateOffset;
     private double maxDisplacement;
     private Boolean hasEnded;
+    private double trackTranslate;
+    private double firstObstacleY;
 
     // FXML Nodes
     private transient Text scoreCountNode;
@@ -87,8 +89,8 @@ public class GameState implements Serializable {
         Star.reset();
 
         // Set 2 new obstacles on start
-        gameTrack.addObstacle();
-        gameTrack.addObstacle();
+        gameTrack.addObstacle(null);
+        gameTrack.addObstacle(null);
     }
 
     public void initNodes(
@@ -155,7 +157,7 @@ public class GameState implements Serializable {
 
             // If ball has reached halfway point, move track down
             if (displacement > translateHalfway) {
-                gameTrack.shiftUp(delta);
+                trackTranslate = gameTrack.shiftUp(delta);
             }
         }
 
@@ -173,6 +175,8 @@ public class GameState implements Serializable {
 
             obstacles.remove(0);
         }
+
+        firstObstacleY = obstacles.get(0).getNode().getParent().getTranslateY();
         obstacles.add(obstacle);
     }
 
@@ -320,7 +324,7 @@ public class GameState implements Serializable {
         Utils.deleteNode(colorChanger.getNode());
 
         // Add a new obstacle to the track
-        gameTrack.addObstacle();
+        gameTrack.addObstacle(null);
     }
 
     private ParallelTransition getTransitions(ArrayList<Circle> dotList) {

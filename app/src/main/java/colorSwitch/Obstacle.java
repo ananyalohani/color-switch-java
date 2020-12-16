@@ -56,9 +56,10 @@ public abstract class Obstacle extends GameObject {
 
     public abstract void play(double pausedNs);
 
-    Obstacle(Node node, double duration) {
+    Obstacle(Node node, double duration, ObstacleShape shape) {
         super(node);
         this.INITIAL_PERIOD = duration;
+        this.shape = shape;
         components = Utils.getComponents(this, ((Group) node).getChildren());
     }
 }
@@ -137,7 +138,7 @@ class CircleObstacle extends Obstacle {
     }
 
     CircleObstacle(Node node) {
-        super(node, 3000);
+        super(node, 3000, ObstacleShape.CIRCLE);
 
         // id = count++;
         count++;
@@ -202,7 +203,7 @@ class BarObstacle extends Obstacle {
     }
 
     BarObstacle(Node node) {
-        super(node, 2000);
+        super(node, 2000, ObtsacleShape.BAR);
     }
 }
 
@@ -264,7 +265,7 @@ class SquareObstacle extends Obstacle {
     }
 
     SquareObstacle(Node node) {
-        super(node, 1000);
+        super(node, 1000, ObstacleShape.SQUARE);
 
         this.rotationPivot = new Point(
             WIDTH / 2 + OFFSET.getX(),
@@ -351,7 +352,7 @@ class GearsObstacle extends Obstacle {
     }
 
     GearsObstacle(Node node) {
-        super(node, 10000);
+        super(node, 10000, ObstacleShape.GEARS);
 
         this.criticalRegion = (Rectangle) components.get(0).getNode();
 

@@ -22,6 +22,10 @@ public class ColorSwitch extends Application implements Serializable {
         return null;
     }
 
+    public void addSavedGame(SavedGame savedGame) {
+        savedGames.add(savedGame);
+    }
+
     public void _init() {
         launch();
     }
