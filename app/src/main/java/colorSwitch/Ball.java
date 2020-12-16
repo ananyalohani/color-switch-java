@@ -11,12 +11,13 @@ public class Ball extends GameObject {
 
     private Colors ballColor;
 
-    public Colors getBallColor() {
+    public Colors getColor() {
         return this.ballColor;
     }
 
-    public void setBallColor(Colors newColor) {
+    public void setColor(Colors newColor) {
         this.ballColor = newColor;
+        ((Circle) node).setFill(Paint.valueOf(newColor.colorCode));
     }
 
     public void updateVelocity(int score) {

@@ -78,12 +78,7 @@ public class StartMenuController {
     }
 
     @FXML
-    private void leaderboardBtnClicked() {
-
-    }
-
-    @FXML
     private void statsBtnClicked() {
-
+        startMenu.displayStatistics();
     }
 }

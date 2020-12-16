@@ -58,6 +58,11 @@ public class StartMenu extends Menu {
         settingsScene.display();
     }
 
+    public void displayStatistics() {
+        StatisticsScene statisticsScene = new StatisticsScene(this);
+        statisticsScene.display();
+    }
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }

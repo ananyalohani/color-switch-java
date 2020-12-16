@@ -35,9 +35,4 @@ public class EndMenuController {
     private void newGameBtnClicked() {
         endMenu.newGame();
     }
-
-    @FXML
-    private void saveToLBBtnClicked() {
-        endMenu.saveToLeaderboard();
-    }
 }

@@ -44,11 +44,13 @@ public class GameState implements Serializable, Cloneable {
     private transient double lastTapNs;
     private transient long pausedNow;
     private transient Boolean hasEnded;
+    private transient double secondsTicker;
 
     private int starCount = 0;
     private int prevStarValue = 1;
     private int starsCrossed;
     private int colorChangersCrossed;
+    private Colors ballColor;
 
     // FXML Nodes
     private transient Text scoreCountNode;
@@ -80,6 +82,9 @@ public class GameState implements Serializable, Cloneable {
 
         // Setup the ball and scene
         scene = gameplay.getScene();
+
+        // load the saved score
+        scoreCountNode.setText(score.toString());
 
         // Halfway point of frame w.r.t. ball y-tranlate
         translateHalfway = Utils.getAbsoluteY(ball.getNode()) - scene.getHeight() / 2;
@@ -187,11 +192,17 @@ public class GameState implements Serializable, Cloneable {
 
         // Check for collision with updated states
         checkForCollision();
+
+        if (now - secondsTicker >= 1_000_000_000) {
+            App.game.getStats().setStat(Stat.TOTAL_TIME, 1, true);
+            secondsTicker = now;
+        }
     }
 
     public void restoreState() {
         Obstacle.setLastObstacleY(firstObstacleY);
         gameTrack.getNode().setTranslateY(trackTranslate);
+        ball.setColor(ballColor);
 
         ArrayList<ObstacleShape> savedObstacleShapes = (ArrayList<ObstacleShape>) obstacleShapes.clone();
         obstacleShapes = new ArrayList<ObstacleShape>();
@@ -367,14 +378,13 @@ public class GameState implements Serializable, Cloneable {
         colorChangersCrossed++;
 
         // Change the color of the ball
-        String color;
-        Paint prevColor = ((Circle) ball.getNode()).getFill();
+        Colors prevColor = ball.getColor();
         while (true) {
             int randomIndex = (int) (Math.random() * 4);
-            color = Colors.values()[randomIndex].colorCode;
-            if (!Paint.valueOf(color).equals(prevColor)) break;
+            ballColor = Colors.values()[randomIndex];
+            if (prevColor != ballColor) break;
         }
-        ((Circle) ball.getNode()).setFill(Paint.valueOf(color));
+        ball.setColor(ballColor);
 
         // Delete the colorChanger node
         Utils.deleteNode(colorChanger.getNode());

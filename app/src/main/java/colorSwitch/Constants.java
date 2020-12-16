@@ -10,6 +10,7 @@ public class Constants {
         public static final String SETTINGS = "scenes/settings.fxml";
         public static final String HELP = "scenes/help.fxml";
         public static final String RESTART_DIALOG = "scenes/restartGameDialog.fxml";
+        public static final String STATISTICS = "scenes/statistics.fxml";
     }
 
     class Obstacle {
