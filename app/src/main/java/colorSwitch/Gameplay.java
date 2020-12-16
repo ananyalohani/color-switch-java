@@ -25,6 +25,9 @@ public class Gameplay implements IScene {
 
     public Gameplay(SavedGame savedGame, Stage stage) {
         commonSetup(stage);
+        this.currentState = savedGame.getState();
+        currentState.restoreState(this);
+
         // DO GAMESTATE THING HERE
         // deserialize(savedGame.getGameStateFile());
     }
@@ -101,6 +104,7 @@ public class Gameplay implements IScene {
         SavedGame savedGame = new SavedGame(currentState);
         App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
         App.game.addSavedGame(savedGame);
+        App.game.serialize();
         serialize(savedGame);
     }
 
@@ -131,16 +135,4 @@ public class Gameplay implements IScene {
             try { out.close(); } catch (IOException err) {}
         }
     }
-
-    // public void deserialize(String filename) {
-    //     ObjectInputStream in = null;
-    //     try {
-    //         in = new ObjectInputStream(new FileInputStream(filename));
-    //         currentState = (GameState) in.readObject();
-    //     } catch(IOException e) {
-    //         System.out.println("error in deserializing");
-    //     } finally {
-    //         in.close();
-    //     }
-    // }
 }

@@ -56,7 +56,7 @@ public abstract class GameObject implements Serializable {
 class Star extends GameObject {
     private Integer value;
     private Obstacle obstacle;
-    private final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
+    private transient final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
     private static int starCount = 0;
     private static int prevStarValue = 1;
 

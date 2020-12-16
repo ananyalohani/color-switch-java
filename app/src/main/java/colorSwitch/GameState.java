@@ -30,7 +30,8 @@ public class GameState implements Serializable {
     private Track gameTrack;
     private Integer score;
     private Boolean stateSaved;
-    private ArrayList<Obstacle> obstacles;
+    private transient ArrayList<Obstacle> obstacles;
+    private ArrayList<ObstacleShape> obstacleShapes;
     private ArrayList<Star> stars;
     private ArrayList<ColorChanger> colorChangers;
     private transient Gameplay gameplay;
@@ -54,6 +55,7 @@ public class GameState implements Serializable {
         this.stateSaved = false;
         this.hasEnded = false;
         this.obstacles = new ArrayList<Obstacle>();
+        this.obstacleShapes = new ArrayList<ObstacleShape>();
         this.stars = new ArrayList<Star>();
         this.colorChangers = new ArrayList<ColorChanger>();
     }
@@ -165,6 +167,16 @@ public class GameState implements Serializable {
         checkForCollision();
     }
 
+    public void restoreState(Gameplay gameplay) {
+        this.gameplay = gameplay;
+        Obstacle.lastObstacleY = firstObstacleY;
+        gameTrack.getNode().setTranslateY(trackTranslate);
+        lastTapNs = System.nanoTime();
+        for (ObstacleShape shape : obstacleShapes) {
+            gameTrack.addObstacle(shape);
+        }
+    }
+
     public void addObstacle(Obstacle obstacle) {
         if (obstacles.size() > MAX_NUMBER_OBJ) {
             Obstacle oldestObstacle = obstacles.get(0);
@@ -174,10 +186,17 @@ public class GameState implements Serializable {
             ((AnchorPane) gameTrack.getNode()).getChildren().remove(oldestObstacleContainer);
 
             obstacles.remove(0);
+            obstacleShapes.remove(0);
         }
 
-        firstObstacleY = obstacles.get(0).getNode().getParent().getTranslateY();
+        if (obstacles.size() > 0) {
+            firstObstacleY = obstacles.get(0).getNode().getParent().getTranslateY();
+        } else {
+            firstObstacleY = obstacle.getNode().getParent().getTranslateY();
+        }
+
         obstacles.add(obstacle);
+        obstacleShapes.add(obstacle.getShape());
     }
 
     public void addStar(Star star) {

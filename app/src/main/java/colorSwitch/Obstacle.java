@@ -16,7 +16,7 @@ public abstract class Obstacle extends GameObject {
         Constants.Obstacle.GEARS
     };
 
-    private static transient double lastObstacleY;
+    public static transient double lastObstacleY;
 
     private static final transient double FIXED_GAP = 400;
     protected final double INITIAL_PERIOD;
@@ -24,8 +24,7 @@ public abstract class Obstacle extends GameObject {
     protected double expectedNextTaskNs;
 
     protected ObstacleShape shape;
-    protected ArrayList<ObstacleComponent> components;
-    protected int count = 0;
+    protected transient ArrayList<ObstacleComponent> components;
 
     protected long getDelay(double period, double pausedNs) {
         double delay = period * 1_000_000 - (pausedNs - lastTaskNs);
@@ -35,6 +34,10 @@ public abstract class Obstacle extends GameObject {
 
     public static void reset() {
         lastObstacleY = 0;
+    }
+
+    public ObstacleShape getShape() {
+        return this.shape;
     }
 
     public void positionSelf(Boolean positionCenter, Node obstacleContainer) {
@@ -140,8 +143,6 @@ class CircleObstacle extends Obstacle {
     CircleObstacle(Node node) {
         super(node, 3000, ObstacleShape.CIRCLE);
 
-        // id = count++;
-        count++;
         this.outerBoundingBox = (Rectangle) components.get(0).getNode();
         this.innerBoundingBox = (Rectangle) components.get(1).getNode();
         this.ring = (Group) components.get(2).getNode();
@@ -203,7 +204,7 @@ class BarObstacle extends Obstacle {
     }
 
     BarObstacle(Node node) {
-        super(node, 2000, ObtsacleShape.BAR);
+        super(node, 2000, ObstacleShape.BAR);
     }
 }
 

@@ -1,8 +1,9 @@
 import javafx.scene.Group;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
+import javafx.scene.layout.*;
 import java.io.*;
 import javafx.scene.*;
 import javafx.stage.Stage;
@@ -20,6 +21,9 @@ public class SavedGamesController {
     private Group backBtn;
 
     @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private void initialize() {}
 
     @FXML
@@ -29,6 +33,7 @@ public class SavedGamesController {
 
     public void setup(SavedGamesScene savedGamesScene) {
         this.savedGamesScene = savedGamesScene;
+        savedGamesScene.setScrollPane(scrollPane);
     }
 
     public SavedGamesController() {}

@@ -16,10 +16,11 @@ public class ColorSwitch extends Application implements Serializable {
     public ColorSwitch() {
         stats = new Statistics();
         startMenu = new StartMenu();
+        savedGames = new ArrayList<SavedGame>();
     }
 
-    public SavedGame getSavedGames(Integer id) {
-        return null;
+    public ArrayList<SavedGame> getSavedGames() {
+        return this.savedGames;
     }
 
     public void addSavedGame(SavedGame savedGame) {

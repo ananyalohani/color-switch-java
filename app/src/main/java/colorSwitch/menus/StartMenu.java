@@ -33,6 +33,7 @@ public class StartMenu extends Menu {
 
     @Override
     public void exit() {
+        App.game.serialize();
         System.exit(0);
     }
 
