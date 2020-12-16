@@ -22,19 +22,20 @@ public class Gameplay implements IScene {
     private EndMenu endMenu;
     private GameplayController gpController;
     private AnimationTimer renderLoop;
+    private Boolean isSavedGame;
 
     public Gameplay(SavedGame savedGame, Stage stage) {
         commonSetup(stage);
         this.currentState = savedGame.getState();
-        currentState.restoreState(this);
-
-        // DO GAMESTATE THING HERE
-        // deserialize(savedGame.getGameStateFile());
+        this.isSavedGame = true;
+        this.currentState.setGameplay(this);
+        this.currentState.setSaved(true);
     }
 
     public Gameplay(Stage stage) {
         commonSetup(stage);
         this.currentState = new GameState(this);
+        this.isSavedGame = false;
     }
 
     // Setting menus
@@ -63,6 +64,10 @@ public class Gameplay implements IScene {
         }
 
         currentState.setup();
+
+        if (isSavedGame) {
+            currentState.restoreState();
+        }
     }
 
     public GameState getState() {

@@ -29,12 +29,12 @@ public class GameState implements Serializable {
     private Ball ball;
     private Track gameTrack;
     private Integer score;
-    private Boolean stateSaved;
-    private transient ArrayList<Obstacle> obstacles;
     private ArrayList<ObstacleShape> obstacleShapes;
-    private ArrayList<Star> stars;
-    private ArrayList<ColorChanger> colorChangers;
+    private transient ArrayList<Obstacle> obstacles;
+    private transient ArrayList<Star> stars;
+    private transient ArrayList<ColorChanger> colorChangers;
     private transient Gameplay gameplay;
+    private transient boolean isSavedGame;
 
     private double lastTapNs;
     private long pausedNow;
@@ -52,17 +52,26 @@ public class GameState implements Serializable {
     public GameState(Gameplay gameplay) {
         this.gameplay = gameplay;
         this.score = 0;
-        this.stateSaved = false;
         this.hasEnded = false;
-        this.obstacles = new ArrayList<Obstacle>();
         this.obstacleShapes = new ArrayList<ObstacleShape>();
-        this.stars = new ArrayList<Star>();
-        this.colorChangers = new ArrayList<ColorChanger>();
+    }
+
+    public void setGameplay(Gameplay gameplay) {
+        this.gameplay = gameplay;
+    }
+
+    public void setSaved(boolean val) {
+        this.isSavedGame = val;
     }
 
     public void setup() {
         // Setup the FXML nodes
         gameplay.getController().setup(gameplay, this);
+
+        // initialise gameobject lists
+        obstacles = new ArrayList<Obstacle>();
+        stars = new ArrayList<Star>();
+        colorChangers = new ArrayList<ColorChanger>();
 
         // Setup the ball and scene
         scene = gameplay.getScene();
@@ -91,8 +100,10 @@ public class GameState implements Serializable {
         Star.reset();
 
         // Set 2 new obstacles on start
-        gameTrack.addObstacle(null);
-        gameTrack.addObstacle(null);
+        if (!isSavedGame) {
+            gameTrack.addObstacle(null);
+            gameTrack.addObstacle(null);
+        }
     }
 
     public void initNodes(
@@ -135,14 +146,6 @@ public class GameState implements Serializable {
         scoreCountNode.setText(score.toString());
     }
 
-    public void setSavedState(Boolean newState) {
-        this.stateSaved = newState;
-    }
-
-    public Boolean isStateSaved() {
-        return stateSaved;
-    }
-
     public void updateState(double now) {
         if (hasEnded) return;
 
@@ -167,12 +170,15 @@ public class GameState implements Serializable {
         checkForCollision();
     }
 
-    public void restoreState(Gameplay gameplay) {
-        this.gameplay = gameplay;
+    public void restoreState() {
         Obstacle.lastObstacleY = firstObstacleY;
         gameTrack.getNode().setTranslateY(trackTranslate);
+        ball.getNode().setTranslateY(translateOffset);
         lastTapNs = System.nanoTime();
-        for (ObstacleShape shape : obstacleShapes) {
+
+        ArrayList<ObstacleShape> savedObstacles = (ArrayList<ObstacleShape>) obstacleShapes.clone();
+        obstacleShapes = new ArrayList<ObstacleShape>();
+        for (ObstacleShape shape : savedObstacles) {
             gameTrack.addObstacle(shape);
         }
     }
