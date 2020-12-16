@@ -34,9 +34,16 @@ The JAR files can be found in `app/build/libs/` directory.
   - [x] obstacles
   - [x] color changer
 - [x] update score
-- [ ] implement serializable
+- [x] implement serializable
   - [x] ColorSwitch
-  - [ ] saved games
+  - [x] saved games
+- [ ] restoring game
+  - [ ] restore ball color
+  - [ ] restore star value (??)
+  - [x] position ball
+  - [x] position obstacles more precisely
+  - [x] remove stars/colorchangers
+  - [x] keep starCount/prevStarValue
 - [ ] statistics !!
 - [x] help scene !!
 - [x] settings scene !!

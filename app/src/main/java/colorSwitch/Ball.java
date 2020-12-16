@@ -3,11 +3,11 @@ import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 
 public class Ball extends GameObject {
-    private final transient int JUMP_SIZE = 90; // pixels
-    private final transient int MAX_SCORE = 30;
-    private transient double jumpDuration = 200; // milliseconds
-    private transient double velocity = Physics.velocity(JUMP_SIZE, jumpDuration);
-    private final transient double DOWNWARD_ACCN = Physics.acceleration(velocity, JUMP_SIZE);
+    private final int JUMP_SIZE = 90; // pixels
+    private final int MAX_SCORE = 30;
+    private double jumpDuration = 200; // milliseconds
+    private double velocity = Physics.velocity(JUMP_SIZE, jumpDuration);
+    private final double DOWNWARD_ACCN = Physics.acceleration(velocity, JUMP_SIZE);
 
     private Colors ballColor;
 

@@ -103,7 +103,7 @@ public class GameState implements Serializable, Cloneable {
 
         // Set 2 new obstacles on start
         if (!isSavedGame) {
-            Obstacle.reset();
+            Obstacle.setLastObstacleY(0);
             gameTrack.addObstacle(null);
             gameTrack.addObstacle(null);
         }
@@ -190,7 +190,7 @@ public class GameState implements Serializable, Cloneable {
     }
 
     public void restoreState() {
-        Obstacle.lastObstacleY = firstObstacleY;
+        Obstacle.setLastObstacleY(firstObstacleY);
         gameTrack.getNode().setTranslateY(trackTranslate);
 
         ArrayList<ObstacleShape> savedObstacleShapes = (ArrayList<ObstacleShape>) obstacleShapes.clone();
@@ -225,9 +225,9 @@ public class GameState implements Serializable, Cloneable {
         }
 
         if (obstacles.size() > 0) {
-            firstObstacleY = obstacles.get(0).getNode().getParent().getTranslateY();
+            firstObstacleY = obstacles.get(0).getObstacleBaseY();
         } else {
-            firstObstacleY = obstacle.getNode().getParent().getTranslateY();
+            firstObstacleY = obstacle.getObstacleBaseY();
         }
 
         obstacles.add(obstacle);

@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Track extends GameObject {
     private GameState gameState;
-    private static transient final int SCORE_THRESHOLD = 3;
+    private static final int SCORE_THRESHOLD = 3;
     private int starCount = 0;
     private int prevStarValue = 1;
 

@@ -14,7 +14,7 @@ import java.util.*;
 
 public abstract class GameObject {
     protected Point position;
-    protected transient Node node;
+    protected Node node;
     protected final double WIDTH;
     protected final double HEIGHT;
     protected final Point OFFSET;
@@ -53,7 +53,7 @@ public abstract class GameObject {
 
 class Star extends GameObject {
     private Integer value;
-    private transient final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
+    private final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
 
     public Integer getValue() {
         return this.value;
