@@ -20,12 +20,6 @@ public class Constants {
         public static final String BAR = "game-objects/barObstacle.fxml";
     }
 
-    class GameObject {
-        public static final String ONE_STAR = "game-objects/oneStar.fxml";
-        public static final String THREE_STAR = "game-objects/threeStar.fxml";
-        public static final String COLOR_CHANGER = "game-objects/colorChanger.fxml";
-    }
-
     class DataFiles {
         public static final String ROOT = "src/main/data/";
         public static final String COLOR_SWITCH = ROOT + "ColorSwitch";
