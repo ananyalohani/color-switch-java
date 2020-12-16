@@ -45,6 +45,9 @@ public class GameState implements Serializable {
     private transient long pausedNow;
     private transient Boolean hasEnded;
 
+    private int starsCrossed;
+    private int colorChangersCrossed;
+
     // FXML Nodes
     private transient Text scoreCountNode;
     private transient Scene scene;
@@ -116,6 +119,19 @@ public class GameState implements Serializable {
         this.scoreCountNode = scoreCountNode;
     }
 
+    public ArrayList<Obstacle> getObstacles() {
+        return this.obstacles;
+    }
+
+    public Integer getScore() {
+        return this.score;
+    }
+
+    private void setScore(Integer delta) {
+        this.score += delta;
+        scoreCountNode.setText(score.toString());
+    }
+
     public void pauseState() {
         pausedNow = System.nanoTime();
         for (Obstacle obstacle : obstacles) {
@@ -131,19 +147,6 @@ public class GameState implements Serializable {
                 obstacle.play(pausedNow);
             }
         }
-    }
-
-    public ArrayList<Obstacle> getObstacles() {
-        return this.obstacles;
-    }
-
-    public Integer getScore() {
-        return this.score;
-    }
-
-    private void setScore(Integer delta) {
-        this.score += delta;
-        scoreCountNode.setText(score.toString());
     }
 
     public void updateState(double now) {
@@ -174,10 +177,19 @@ public class GameState implements Serializable {
         Obstacle.lastObstacleY = firstObstacleY;
         gameTrack.getNode().setTranslateY(trackTranslate);
 
-        ArrayList<ObstacleShape> savedObstacles = (ArrayList<ObstacleShape>) obstacleShapes.clone();
+        ArrayList<ObstacleShape> savedObstacleShapes = (ArrayList<ObstacleShape>) obstacleShapes.clone();
         obstacleShapes = new ArrayList<ObstacleShape>();
-        for (ObstacleShape shape : savedObstacles) {
+
+        for (ObstacleShape shape : savedObstacleShapes) {
             gameTrack.addObstacle(shape);
+        }
+
+        for (int i = 0; i < starsCrossed; i++) {
+            Utils.deleteNode(stars.get(i).getNode());
+        }
+
+        for (int i = 0; i < colorChangersCrossed; i++) {
+            Utils.deleteNode(colorChangers.get(i).getNode());
         }
     }
 
@@ -191,6 +203,9 @@ public class GameState implements Serializable {
 
             obstacles.remove(0);
             obstacleShapes.remove(0);
+
+            starsCrossed--;
+            colorChangersCrossed--;
         }
 
         if (obstacles.size() > 0) {
@@ -321,6 +336,7 @@ public class GameState implements Serializable {
         stars.remove(0);
         setScore(star.getValue());
         Utils.deleteNode(star.getNode());
+        starsCrossed++;
 
         Sounds.score();
 
@@ -332,6 +348,7 @@ public class GameState implements Serializable {
     private void collisionWithColorChanger(ColorChanger colorChanger) {
         // Remove color changer from the arraylist
         colorChangers.remove(0);
+        colorChangersCrossed++;
 
         // Change the color of the ball
         String color;
