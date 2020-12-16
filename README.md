@@ -38,30 +38,14 @@ The JAR files can be found in `app/build/libs/` directory.
   - [x] ColorSwitch
   - [x] saved games
 - [ ] restoring game
-  - [ ] restore ball color
+  - [x] restore ball color
   - [ ] restore star value (??)
   - [x] position ball
   - [x] position obstacles more precisely
   - [x] remove stars/colorchangers
   - [x] keep starCount/prevStarValue
-- [ ] statistics !!
+- [x] statistics !!
 - [x] help scene !!
 - [x] settings scene !!
   - [x] turn music on/off
-- [ ] adding music/sound (that old banger) !!
-
-### List of classes to be serialized:
-
-- [ ] GameState
-- [ ] GameObject
-  - [ ] Obstacles
-    - [ ] Circle
-    - [ ] Square
-    - [ ] Bar
-    - [ ] Gears
-  - [ ] ObstacleComponent(?)
-  - [ ] Balls ( ͡° ͜ʖ ͡°)
-  - [ ] Star
-  - [ ] ColorChanger
-  - [ ] Track
--
+- [ ] ~~adding music/sound (that old banger) !!~~

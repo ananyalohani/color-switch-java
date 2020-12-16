@@ -59,6 +59,15 @@ class Star extends GameObject {
         return this.value;
     }
 
+    public void setValue(int value) {
+        if (value == 3) {
+            ((Text) node).setFill(YELLOW);
+            Effect glow = new Glow(1.0);
+            ((Text) node).setEffect(glow);
+        }
+        this.value = value;
+    }
+
     public void position(Point position) {
         node.setLayoutX(position.getX());
         node.setLayoutY(position.getY());
@@ -80,14 +89,11 @@ class Star extends GameObject {
         // * it is the star after a three-pointer
         // * 70% chance
         if (starCount < 5 || prevStarValue == 3 || Math.random() < 0.7) {
-            this.value = 1;
+            setValue(1);
         }
         // 3 pointer star // 30% chance
         else {
-            this.value = 3;
-            ((Text) node).setFill(YELLOW);
-            Effect glow = new Glow(1.0);
-            ((Text) node).setEffect(glow);
+            setValue(3);
         }
 
         gameState.setStarCount(starCount + 1);

@@ -28,6 +28,7 @@ public class GameState implements Serializable, Cloneable {
 
     private Integer score;
     private ArrayList<ObstacleShape> obstacleShapes;
+    private ArrayList<Integer> starValues;
     private transient Ball ball;
     private transient Track gameTrack;
     private transient ArrayList<Obstacle> obstacles;
@@ -61,6 +62,7 @@ public class GameState implements Serializable, Cloneable {
         this.score = 0;
         this.hasEnded = false;
         this.obstacleShapes = new ArrayList<ObstacleShape>();
+        this.starValues = new ArrayList<Integer>();
     }
 
     public void setGameplay(Gameplay gameplay) {
@@ -207,8 +209,15 @@ public class GameState implements Serializable, Cloneable {
         ArrayList<ObstacleShape> savedObstacleShapes = (ArrayList<ObstacleShape>) obstacleShapes.clone();
         obstacleShapes = new ArrayList<ObstacleShape>();
 
+        ArrayList<Integer> starValuesClone = (ArrayList<Integer>) starValues.clone(); 
+        starValues = new ArrayList<Integer>();
+
         for (ObstacleShape shape : savedObstacleShapes) {
             gameTrack.addObstacle(shape);
+        }
+
+        for(int i = 0; i < starValuesClone.size(); i++) {
+            stars.get(i).setValue(starValuesClone.get(i));
         }
 
         for (int i = 0; i < starsCrossed; i++) {
@@ -230,6 +239,7 @@ public class GameState implements Serializable, Cloneable {
 
             obstacles.remove(0);
             obstacleShapes.remove(0);
+            starValues.remove(0);
 
             starsCrossed--;
             colorChangersCrossed--;
@@ -248,6 +258,7 @@ public class GameState implements Serializable, Cloneable {
     public void addStar(Star star) {
         if (stars.size() > MAX_NUMBER_OBJ) stars.remove(0);
         stars.add(star);
+        starValues.add(star.getValue());
     }
 
     public void addColorChanger(ColorChanger colorChanger) {
