@@ -36,14 +36,14 @@ public class GameState implements Serializable {
     private transient Gameplay gameplay;
     private transient boolean isSavedGame;
 
-    private double lastTapNs;
-    private long pausedNow;
-    private double translateHalfway;
     private double translateOffset;
     private double maxDisplacement;
-    private Boolean hasEnded;
     private double trackTranslate;
     private double firstObstacleY;
+    private transient double translateHalfway;
+    private transient double lastTapNs;
+    private transient long pausedNow;
+    private transient Boolean hasEnded;
 
     // FXML Nodes
     private transient Text scoreCountNode;
@@ -173,8 +173,6 @@ public class GameState implements Serializable {
     public void restoreState() {
         Obstacle.lastObstacleY = firstObstacleY;
         gameTrack.getNode().setTranslateY(trackTranslate);
-        ball.getNode().setTranslateY(translateOffset);
-        lastTapNs = System.nanoTime();
 
         ArrayList<ObstacleShape> savedObstacles = (ArrayList<ObstacleShape>) obstacleShapes.clone();
         obstacleShapes = new ArrayList<ObstacleShape>();
