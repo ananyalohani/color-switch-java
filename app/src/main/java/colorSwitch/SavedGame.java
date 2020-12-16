@@ -22,14 +22,14 @@ public class SavedGame implements Serializable {
     SavedGame(GameState state) {
         this.score = state.getScore().toString();
         this.label = "SAVED GAME " + App.game.getStats().getStat(Stat.SAVED_COUNT);
-        this.timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy HH:MM"));
+        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         this.gameStateFile = Constants.DataFiles.ROOT + label;
         App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
     }
 
-    public Integer getId() {
-        return this.id;
-    }
+    // public Integer getId() {
+    //     return this.id;
+    // }
 
     public String getLabel() {
         return this.label;

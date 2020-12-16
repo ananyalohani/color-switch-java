@@ -30,7 +30,11 @@ public class PauseMenuController {
 
     @FXML
     public void saveGameBtnClicked() {
-        pauseMenu.saveGame();
+        if (!pauseMenu.getSaved()) {
+            pauseMenu.saveGame();
+            pauseMenu.setSaved(true);
+            saveGameBtn.setText("GAME SAVED!");
+        }
     }
 
     @FXML

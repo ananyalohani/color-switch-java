@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 public class PauseMenu extends Menu {
     private Stage stage;
     private Text scoreCountNode;
+    private boolean isSaved;
 
     @Override
     public void display() {
@@ -36,6 +37,14 @@ public class PauseMenu extends Menu {
         StartMenu startMenu = new StartMenu();
         startMenu.setStage(stage);
         startMenu.display();
+    }
+
+    public boolean getSaved() {
+        return this.isSaved;
+    }
+
+    public void setSaved(boolean val) {
+        this.isSaved = val;
     }
 
     public void initNodes(Text scoreCountNode) {

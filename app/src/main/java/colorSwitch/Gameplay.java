@@ -19,7 +19,6 @@ public class Gameplay implements IScene {
 
     // Menus and state
     private GameState currentState;
-    private PauseMenu pauseMenu;
     private EndMenu endMenu;
     private GameplayController gpController;
     private AnimationTimer renderLoop;
@@ -39,7 +38,6 @@ public class Gameplay implements IScene {
     private void commonSetup(Stage stage) {
         this.stage = stage;
 
-        pauseMenu = new PauseMenu(this);
         endMenu = new EndMenu(this);
 
         renderLoop = new AnimationTimer() {
@@ -94,11 +92,14 @@ public class Gameplay implements IScene {
         paused = true;
         renderLoop.stop();
         currentState.pauseState();
+
+        PauseMenu pauseMenu = new PauseMenu(this);
         pauseMenu.display();
     }
 
     public void saveGame() {
-        SavedGame savedGame = new SavedGame(currentState);
+        // SavedGame savedGame = new SavedGame(currentState);
+        serialize();
     }
 
     public void endGame() {
@@ -120,9 +121,8 @@ public class Gameplay implements IScene {
         ObjectOutputStream out = null;
         SavedGame savedGame = new SavedGame(currentState);
         try {
-            out = new ObjectOutputStream(new FileOutputStream(savedGame.getGameStateFile()
-            ));
-            out.writeObject(this);
+            out = new ObjectOutputStream(new FileOutputStream(savedGame.getGameStateFile()));
+            out.writeObject(savedGame);
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("error in serializing");
