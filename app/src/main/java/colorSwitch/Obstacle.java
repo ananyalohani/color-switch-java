@@ -33,7 +33,7 @@ public abstract class Obstacle extends GameObject {
     }
 
     public static void reset() {
-        // lastObstacleY = 0;
+        lastObstacleY = 0;
     }
 
     public ObstacleShape getShape() {

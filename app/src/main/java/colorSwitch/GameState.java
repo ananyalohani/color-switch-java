@@ -45,6 +45,8 @@ public class GameState implements Serializable, Cloneable {
     private transient long pausedNow;
     private transient Boolean hasEnded;
 
+    private int starCount = 0;
+    private int prevStarValue = 1;
     private int starsCrossed;
     private int colorChangersCrossed;
 
@@ -99,11 +101,9 @@ public class GameState implements Serializable, Cloneable {
             }
         });
 
-        Obstacle.reset();
-        Star.reset();
-
         // Set 2 new obstacles on start
         if (!isSavedGame) {
+            Obstacle.reset();
             gameTrack.addObstacle(null);
             gameTrack.addObstacle(null);
         }
@@ -130,6 +130,22 @@ public class GameState implements Serializable, Cloneable {
     private void setScore(Integer delta) {
         this.score += delta;
         scoreCountNode.setText(score.toString());
+    }
+
+    public int getStarCount() {
+        return this.starCount;
+    }
+
+    public int getPrevStarValue() {
+        return this.prevStarValue;
+    }
+
+    public void setStarCount(int val) {
+        this.starCount = val;
+    }
+
+    public void setPrevStarValue(int val) {
+        this.prevStarValue = val;
     }
 
     public void pauseState() {

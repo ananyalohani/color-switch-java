@@ -14,6 +14,8 @@ import java.util.*;
 public class Track extends GameObject {
     private GameState gameState;
     private static transient final int SCORE_THRESHOLD = 3;
+    private int starCount = 0;
+    private int prevStarValue = 1;
 
     @Override
     public Boolean isColliding(Ball ball) { return null; }
@@ -48,8 +50,8 @@ public class Track extends GameObject {
         // Create respective new objects for each,
         // using switch-case for object
         Obstacle obstacle = null;
-        Star star = new Star(starNode);
         ColorChanger colorChanger = new ColorChanger(colorChangerNode);
+        Star star = new Star(starNode, gameState);
 
         switch (shapeIndex) {
             case 0: {

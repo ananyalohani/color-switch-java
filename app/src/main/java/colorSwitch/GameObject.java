@@ -53,10 +53,7 @@ public abstract class GameObject {
 
 class Star extends GameObject {
     private Integer value;
-    private Obstacle obstacle;
     private transient final Paint YELLOW = Color.web("#FFF873"); // ? is this serializable?
-    private static int starCount = 0;
-    private static int prevStarValue = 1;
 
     public Integer getValue() {
         return this.value;
@@ -67,35 +64,34 @@ class Star extends GameObject {
         node.setLayoutY(position.getY());
     }
 
-    public static void reset() {
-        starCount = 0;
-        prevStarValue = 1;
-    }
-
     @Override
     public Boolean isColliding(Ball ball) {
         return Utils.intersects(ball.getNode(), node);
     }
 
-    Star(Node node) {
+    Star(Node node, GameState gameState) {
         super(node);
 
-        starCount++;
+        int starCount = gameState.getStarCount();
+        int prevStarValue = gameState.getPrevStarValue();
 
         // 1 pointer star if:
         // * one of the first five
         // * it is the star after a three-pointer
         // * 70% chance
         if (starCount < 5 || prevStarValue == 3 || Math.random() < 0.7) {
-            this.value = prevStarValue = 1;
+            this.value = 1;
         }
         // 3 pointer star // 30% chance
         else {
-            this.value = prevStarValue = 3;
+            this.value = 3;
             ((Text) node).setFill(YELLOW);
             Effect glow = new Glow(1.0);
             ((Text) node).setEffect(glow);
         }
+
+        gameState.setStarCount(starCount + 1);
+        gameState.setPrevStarValue(this.value);
     }
 }
 
