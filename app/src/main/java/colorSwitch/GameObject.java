@@ -12,9 +12,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import java.util.*;
 
-public abstract class GameObject implements Serializable {
-    private static final long serialVersionUID = 1;
-
+public abstract class GameObject {
     protected Point position;
     protected transient Node node;
     protected final double WIDTH;

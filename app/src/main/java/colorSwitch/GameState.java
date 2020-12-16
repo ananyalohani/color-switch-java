@@ -17,7 +17,7 @@ import javafx.util.Duration;
 import javafx.geometry.Bounds;
 import javafx.event.*;
 
-public class GameState implements Serializable {
+public class GameState implements Serializable, Cloneable {
     private static final long serialVersionUID = 1;
 
     // Constants
@@ -26,10 +26,10 @@ public class GameState implements Serializable {
     private static final transient int MAX_NUMBER_OBJ = 5;
     private static final transient int RESTART_SCORE = 5;
 
-    private Ball ball;
-    private Track gameTrack;
     private Integer score;
     private ArrayList<ObstacleShape> obstacleShapes;
+    private transient Ball ball;
+    private transient Track gameTrack;
     private transient ArrayList<Obstacle> obstacles;
     private transient ArrayList<Star> stars;
     private transient ArrayList<ColorChanger> colorChangers;

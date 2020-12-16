@@ -26,7 +26,7 @@ public class Gameplay implements IScene {
 
     public Gameplay(SavedGame savedGame, Stage stage) {
         commonSetup(stage);
-        this.currentState = savedGame.getState();
+        this.currentState = deserializeGameState(savedGame);
         this.isSavedGame = true;
         this.currentState.setGameplay(this);
         this.currentState.setSaved(true);
@@ -106,10 +106,11 @@ public class Gameplay implements IScene {
     }
 
     public void saveGame() {
-        SavedGame savedGame = new SavedGame(currentState);
+        SavedGame savedGame = new SavedGame(currentState.getScore());
         App.game.getStats().setStat(Stat.SAVED_COUNT, 1, true);
         App.game.addSavedGame(savedGame);
         App.game.serialize();
+        serializeGameState(savedGame);
     }
 
     public void endGame() {
@@ -125,5 +126,32 @@ public class Gameplay implements IScene {
         App.game.serialize();
 
         endMenu.display();
+    }
+
+    public void serializeGameState(SavedGame savedGame) {
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(savedGame.getGameStateFile()));
+            out.writeObject(currentState);
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("error in serializing");
+        } finally {
+            try { out.close(); } catch (IOException err) {}
+        }
+    }
+
+    public GameState deserializeGameState(SavedGame savedGame) {
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream(savedGame.getGameStateFile()));
+            return (GameState) in.readObject();
+        } catch (Exception e) {
+            System.out.println("error in deserializing");
+        } finally {
+            try { in.close(); } catch (IOException err) {}
+        }
+
+        return null;
     }
 }

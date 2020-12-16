@@ -13,17 +13,13 @@ import javafx.scene.text.Text;
 public class SavedGame implements Serializable {
     private static final long serialVersionUID = 1;
 
-    // private Integer id;
     private String label;
     private String gameStateFile;
     private String timestamp;
-    // private static Integer lastSavedGameId;
     private String score;
-    private GameState state;
 
-    SavedGame(GameState state) {
-        this.state = state;
-        this.score = state.getScore().toString();
+    SavedGame(int score) {
+        this.score = score + "";
         this.label = "SAVED GAME " + App.game.getStats().getStat(Stat.SAVED_COUNT);
         this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         this.gameStateFile = Constants.DataFiles.ROOT + label;
@@ -43,10 +39,6 @@ public class SavedGame implements Serializable {
 
     public String getTimestamp() {
         return this.timestamp;
-    }
-
-    public GameState getState() {
-        return this.state;
     }
 }
 
@@ -98,6 +90,8 @@ class SavedGamesScene implements IScene {
         });
 
         deleteBtn.setOnAction(e -> {
+            File gameStateFile = new File(savedGame.getGameStateFile());
+            gameStateFile.delete();
             App.game.getSavedGames().remove(index);
             display();
         });

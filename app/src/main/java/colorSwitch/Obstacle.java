@@ -19,9 +19,9 @@ public abstract class Obstacle extends GameObject {
     public static transient double lastObstacleY;
 
     private static final transient double FIXED_GAP = 400;
-    protected final double INITIAL_PERIOD;
-    protected double lastTaskNs;
-    protected double expectedNextTaskNs;
+    protected transient final double INITIAL_PERIOD;
+    protected transient double lastTaskNs;
+    protected transient double expectedNextTaskNs;
 
     protected ObstacleShape shape;
     protected transient ArrayList<ObstacleComponent> components;
@@ -33,7 +33,7 @@ public abstract class Obstacle extends GameObject {
     }
 
     public static void reset() {
-        lastObstacleY = 0;
+        // lastObstacleY = 0;
     }
 
     public ObstacleShape getShape() {
