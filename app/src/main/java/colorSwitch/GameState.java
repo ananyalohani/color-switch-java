@@ -379,7 +379,7 @@ public class GameState implements Serializable, Cloneable {
 
         Sounds.score();
 
-        if (score > 3) {
+        if (score > 5) {
             ball.updateVelocity(score);
         }
     }
