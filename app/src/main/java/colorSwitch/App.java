@@ -1,5 +1,3 @@
-package colorSwitch;
-
 import java.io.*;
 
 public class App {
