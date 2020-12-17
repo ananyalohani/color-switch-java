@@ -72,7 +72,8 @@ class SavedGamesScene implements IScene {
     }
 
     public void addGame(SavedGame savedGame, int index) {
-        // TODO create and position a new saved game card correspoding to the SavedGame object passed
+        // create and position a new saved game card corresponding to the SavedGame object passed
+
         AnchorPane savedGameCard = (AnchorPane) Utils.loadObject(Constants.Scene.GAME_CARD);
 
         ObservableList<Node> children = savedGameCard.getChildren();
@@ -83,6 +84,7 @@ class SavedGamesScene implements IScene {
         Button resumeBtn = (Button) children.get(2);
         Button deleteBtn = (Button) children.get(3);
 
+        // Action Listeners on the saved game card buttons
         resumeBtn.setOnAction(e -> {
             Gameplay savedGameGameplay = new Gameplay(savedGame, startMenu.getStage());
             savedGameGameplay.display();
