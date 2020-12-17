@@ -113,6 +113,7 @@ public class GameState implements Serializable, Cloneable {
             Obstacle.setLastObstacleY(0);
             gameTrack.addObstacle(null);
             gameTrack.addObstacle(null);
+            ballColor = ball.getColor();
         }
     }
 

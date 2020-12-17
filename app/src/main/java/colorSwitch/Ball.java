@@ -46,7 +46,7 @@ public class Ball extends GameObject {
         super(node);
 
         int randomIndex = (int) (Math.random() * 4);
-        String color = Colors.values()[randomIndex].colorCode;
-        ((Circle) node).setFill(Paint.valueOf(color));
+        ballColor = Colors.values()[randomIndex];
+        ((Circle) node).setFill(Paint.valueOf(ballColor.colorCode));
     }
 }
