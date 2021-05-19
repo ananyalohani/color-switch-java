@@ -1,6 +1,6 @@
-<div style="text-align: center">
-<img src='demo/ColorSwitch.png' style="height: 80px;">
-<h1>Color Switch</h1>
+<div align="center">
+  <img src="images/logo.png" width="80">
+  <h1>Color Switch</h1>
 </div>
 
 ### Creators
@@ -24,11 +24,24 @@ For development:
 
 - **Obstacles**:
   We implemented 4 types of obstacles:
-
-  - Circle: Rotate transition
-  - Horizontal Bar: Translate transition
-  - Gears: Two Rotate transitions
-  - Square: Discrete rotation transition using `TimerTask`
+  <table>
+    <tr>
+      <th>Circle</th>
+      <th>Square</th>
+    </tr>
+    <tr>
+      <td> <img src ="images/circle.gif">
+      <td> <img src ="images/square.gif">
+    </tr>
+    <tr>
+      <th>Horizontal Bar</th>
+      <th>Gears</th>
+    </tr>
+    <tr>
+      <td> <img src ="images/bar.gif">
+      <td> <img src ="images/gears.gif">
+    </tr>
+  </table>
 
   A new obstacle is dynamically added when the ball collides with a color changer.
 
@@ -71,8 +84,31 @@ For development:
 - Gameplay Music
 - End Game Animation
 
-### Gameplay
+### Demo
 
-![image](demo/screen1.gif)
-![image](demo/screen3.gif)
-![image](demo/screen2.gif)
+<table>
+  <tr>
+    <th width="50%">Gameplay</th>
+    <th width="50%">More Gameplay</th>
+  </tr>
+  <tr>
+    <td> <img src ="images/gameplay.gif">
+    <td> <img src ="images/more_gameplay.gif">
+  </tr>
+  <tr>
+    <th width="50%">Saved Games</th>
+    <th width="50%">Instructions</th>
+  </tr>
+  <tr>
+    <td> <img src ="images/saved_games.gif">
+    <td> <img src ="images/instructions.gif">
+  </tr>
+    <tr>
+    <th width="50%">Statistics</th>
+    <th width="50%">Settings</th>
+  </tr>
+  <tr>
+    <td> <img src ="images/statistics.gif">
+    <td> <img src ="images/settings.gif">
+  </tr>
+</table>
