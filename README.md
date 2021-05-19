@@ -3,10 +3,26 @@
   <h1>Color Switch</h1>
 </div>
 
-### Creators
+### Table of Contents
 
-- **[Ananya Lohani](https://ananyalohani.me/)**
-- **[Mihir Chaturvedi](https://mihir.ch/)**
+- [Overview](#overview)
+  - [Built With](#built-with)
+- [Instructions](#instructions)
+- [Features](#features)
+  - [Other Miscellaneous Features](#other-miscellaneous-features)
+- [Demo](#demo)
+- [Creators](#creators)
+
+### Overview
+
+The popular game Color Switch, built for desktop.
+
+#### Built With
+
+- JavaFX
+- FXML
+- CSS
+- Gradle
 
 ### Instructions
 
@@ -23,27 +39,28 @@ For development:
 ### Features
 
 - **Obstacles**:
-  We implemented 4 types of obstacles:
-  <table>
-    <tr>
-      <th>Circle</th>
-      <th>Square</th>
-    </tr>
-    <tr>
-      <td> <img src ="images/circle.gif">
-      <td> <img src ="images/square.gif">
-    </tr>
-    <tr>
-      <th>Horizontal Bar</th>
-      <th>Gears</th>
-    </tr>
-    <tr>
-      <td> <img src ="images/bar.gif">
-      <td> <img src ="images/gears.gif">
-    </tr>
-  </table>
+  We implemented 4 types of obstacles.
 
-  A new obstacle is dynamically added when the ball collides with a color changer.
+<table>
+  <tr>
+    <th width="50%">Circle</th>
+    <th width="50%">Square</th>
+  </tr>
+  <tr>
+    <td> <img src ="images/circle.gif">
+    <td> <img src ="images/square.gif">
+  </tr>
+  <tr>
+    <th width="50%">Horizontal Bar</th>
+    <th width="50%">Gears</th>
+  </tr>
+  <tr>
+    <td> <img src ="images/bar.gif">
+    <td> <img src ="images/gears.gif">
+  </tr>
+</table>
+
+A new obstacle is dynamically added when the ball collides with a color changer.
 
 - **Collision**: Collision of the ball with the obstacles, stars and color changers has been detected through a combination of `BoundsIntersects` and `BoundsTransformation`.
 
@@ -112,3 +129,8 @@ For development:
     <td> <img src ="images/settings.gif">
   </tr>
 </table>
+
+### Creators
+
+- **[Ananya Lohani](https://ananyalohani.me/)** | [GitHub](https://github.com/ananyalohani/)
+- **[Mihir Chaturvedi](https://mihir.ch/)** | [GitHub](https://github.com/plibither8/)
