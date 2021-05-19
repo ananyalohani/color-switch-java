@@ -3,8 +3,9 @@
   <h1>Color Switch</h1>
 </div>
 
-### Table of Contents
+## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
   - [Built With](#built-with)
 - [Instructions](#instructions)
@@ -13,18 +14,18 @@
 - [Demo](#demo)
 - [Creators](#creators)
 
-### Overview
+## Overview
 
 The popular game Color Switch, built for desktop.
 
-#### Built With
+### Built With
 
 - JavaFX
 - FXML
 - CSS
 - Gradle
 
-### Instructions
+## Instructions
 
 This project uses Gradle to build the files, create executables and run the compiled code. It must be installed on your system.
 
@@ -36,7 +37,7 @@ For development:
 - Build (normal JAR): `gradle build`
 - Clean: `gradle clean`
 
-### Features
+## Features
 
 - **Obstacles**:
   We implemented 4 types of obstacles.
@@ -84,7 +85,7 @@ A new obstacle is dynamically added when the ball collides with a color changer.
     - Game score
   - Serializing the instance of `ColorSwitch` which contains the statistics of the game and the list of saved games.
 
-#### Other Miscellaneous Features
+### Other Miscellaneous Features
 
 - Two types of stars
   - One point
@@ -101,7 +102,7 @@ A new obstacle is dynamically added when the ball collides with a color changer.
 - Gameplay Music
 - End Game Animation
 
-### Demo
+## Demo
 
 <table>
   <tr>
@@ -130,7 +131,7 @@ A new obstacle is dynamically added when the ball collides with a color changer.
   </tr>
 </table>
 
-### Creators
+## Creators
 
 - **[Ananya Lohani](https://ananyalohani.me/)** | [GitHub](https://github.com/ananyalohani/)
 - **[Mihir Chaturvedi](https://mihir.ch/)** | [GitHub](https://github.com/plibither8/)
